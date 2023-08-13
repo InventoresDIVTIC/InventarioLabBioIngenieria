@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins',sans-serif;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-out {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.slide-in {
+    animation: slide-in 0.3s ease-out forwards;
+}
+
+.slide-out {
+    animation: slide-out 0.3s ease-out forwards;
+}
+
+@keyframes slide-in-Content {
+    0% {
+        margin-left: 0; /* Sin desplazamiento */
+    }
+    100% {
+        margin-left: 230px; /* Desplazamiento hacia la izquierda */
+    }
+}
+
+@keyframes slide-out-Content {
+    0% {
+        margin-left: 230px; /* Desplazamiento hacia la izquierda */
+    }
+    100% {
+        margin-left: 0; /* Sin desplazamiento */
+    }
+}
+
+.slide-in-Content {
+    animation: slide-in-Content 0.3s ease-out forwards;
+}
+
+.slide-out-Content {
+    animation: slide-out-Content 0.3s ease-out forwards;
+}
+
+
+
+#sidebar {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#menu-icon {
+    transition: transform 0.3s;
+}
+
+#menu-icon:hover {
+    transform: scale(1.1);
+}
+
+#menu-icon.clicked {
+    transform: rotate(180deg);
+}

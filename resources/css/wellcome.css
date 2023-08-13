@@ -1,0 +1,54 @@
+html,
+* {
+  margin: 0;
+  padding: 0;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("http://localhost/labbio/resources/img/ImagenBackground.jpg") no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.Layouts {
+  /* Estilos para el div con la clase "Layouts" */
+  position: absolute; /* Posición absoluta para ubicarlo en la esquina superior derecha */
+  top: 20px; /* Ajustar la distancia desde la parte superior */
+  right: 20px; /* Ajustar la distancia desde la parte derecha */
+}
+
+a.Inicio,
+a.Button-Inicio,
+a.Button.register {
+  /* Estilos para los enlaces con las clases "Inicio", "Button-Inicio" y "Button register" */
+  display: inline-block; /* Mostrar como elementos en línea */
+  padding: 10px 20px; /* Espacio interno para el contenido */
+  margin: 5px; /* Margen exterior para separar los enlaces */
+  text-decoration: none; /* Quitar la decoración de texto subrayado */
+  border: none; /* Eliminar el borde */
+  border-radius: 5px; /* Borde redondeado */
+  color: #333; /* Color de texto */
+  background-color: #fff; /* Color de fondo */
+}
+
+a.Inicio:hover,
+a.Button-Inicio:hover,
+a.Button.register:hover {
+  /* Estilos al pasar el cursor por encima de los enlaces */
+  background-color: #e6e6e6; /* Cambiar el color de fondo al pasar el cursor */
+}
+
+.footer {
+    background-color: #27374D;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-pagina {
+    font-size: 14px;
+}

@@ -1,0 +1,38 @@
+li {
+    margin: .5rem;
+}
+
+span {
+    margin-left: 1rem;
+}
+
+.label {
+    display: flex;
+    align-items: center;
+    padding: .600rem;
+    width: 13rem;
+}
+
+.label:active{
+    background-color: gray;
+    box-shadow: none;
+}
+
+.label:hover {
+    background-color: #526D82;
+    border-radius: .5rem;
+    box-shadow: none;
+}
+
+.icon {
+    float: left;
+    padding: .325rem;
+    background: white;
+    border-radius: .5rem;
+    box-shadow: 0 3px 9px #c4c7c7;
+    margin-left: 1rem;
+}
+
+#menu-icon {
+    padding-top: 9px;
+}

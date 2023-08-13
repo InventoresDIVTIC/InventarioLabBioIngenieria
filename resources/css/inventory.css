@@ -1,0 +1,428 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins',sans-serif;
+}
+  
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    
+    background-color:#F1F6F9;
+    background-position: center;
+    background-size: cover;
+}
+
+h2{
+    font-size: 2em;
+    color: #fff;
+    text-align: center;
+}
+
+#recipientes {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 2rem;
+}
+
+#activos_filter{
+    display: flex;
+    align-items: center;
+    justify-content: right;  
+    margin-left: 20rem; 
+}
+
+#activos_length{
+    margin-left: 1rem;
+    margin-bottom: -4rem;
+}
+
+#activos_next{
+    margin-left: 1rem;
+}
+
+.forget{
+    margin: -15px 0 15px ;
+    font-size: .9em;
+    color: #fff !important;
+    display: flex;
+    justify-content: space-between;  
+}
+
+.forget label input{
+    margin-right: 3px;
+    
+}
+.forget label a{
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.boton{
+    width: 45%;
+    height: 30px;
+    border-radius: 40px;
+    background: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: .9em;
+    font-weight: 600;
+    transition: .3s ease all;
+    overflow: hidden;
+    text-align: center;
+    margin: 25px 0 10px;
+    text-decoration-color: #fff;
+}
+
+.boton:hover {
+    background-color: #526D82;
+    color: white;
+  }
+  
+.boton:active {
+    background-color: #526D82;
+  }
+  
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.register{
+    font-size: .9em;
+    color: #fff;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #007bff;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    z-index: 9999;
+}
+.floating-button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para la ventana flotante */
+.floating-message {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 9999;
+}
+.floating-button:hover + .floating-message {
+    opacity: 1;
+    visibility: visible;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    font-size: .8rem;
+}
+
+td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    font-size: .8rem;
+}
+
+.editicon {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.idactivo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ordicon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: .4rem;
+}
+
+.orden {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.textid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos para el gradiente */
+thead {
+    background: linear-gradient(to bottom,#205397, #27374D);
+    color: #fff;
+    font-size: .8rem;
+    text-align: center;
+}
+
+.dataTables_wrapper select,
+.dataTables_wrapper input {
+	color: #4a5568;
+	padding-left: 1rem;
+	/*padding-right: 1rem;*/
+	padding-top: .5rem;
+	padding-bottom: .5rem;
+	line-height: 1.25;
+	border-width: 2px;
+	border-radius: .25rem;
+	border-color: #edf2f7;
+	background-color: #edf2f7;
+    margin-bottom: 1.4rem;
+    justify-content: right;
+    margin-left: 5px;
+}
+
+.dataTables_filter input {
+    color: #4a5568;
+	padding-left: 1rem;
+	/*padding-right: 1rem;*/
+	padding-top: .5rem;
+	padding-bottom: .5rem;
+	line-height: 1.25;
+	border-width: 2px;
+	border-radius: .25rem;
+	border-color: #edf2f7;
+	background-color: #edf2f7;
+    margin-bottom: 1.4rem;
+    justify-content: right;
+    width: 60%;
+}
+
+/*Row Hover*/
+table.dataTable.hover tbody tr:hover,
+table.dataTable.display tbody tr:hover {
+	background-color: #ebf4ff;
+}
+
+/*Pagination Buttons*/
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+	font-weight: 700;
+	border-radius: .25rem;
+	border: 1px solid transparent;
+}
+
+/*Pagination Buttons - Current selected */
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+	color: #fff !important;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+	font-weight: 700;
+	border-radius: .25rem;
+	background: #667eea !important;
+	border: 1px solid transparent;
+    display: inline-block;
+    width: 2%;
+    text-align: center;
+    margin-right: .5rem;
+    margin-left: .5rem;
+}
+
+/*Pagination Buttons - Hover */
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+	color: #fff !important;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+	font-weight: 700;
+	border-radius: .25rem;
+	background: #667eea !important;
+	border: 1px solid transparent;
+}
+
+/*Add padding to bottom border */
+table.dataTable.no-footer {
+	border-bottom: 1px solid #e2e8f0;
+	margin-top: 0.75em;
+	margin-bottom: 0.75em;
+}
+
+/*Change colour of responsive icon*/
+table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before,
+table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
+	background-color: #667eea !important;
+}
+
+.paginate_button {
+    margin: .4rem;
+}
+
+/* Estilos para los iconos de ordenamiento de las tablas*/
+#icon-id {
+    transition: transform 0.1s;
+}
+
+#icon-id.clicked {
+    transform: rotate(180deg);
+}
+
+#icon-type {
+    transition: transform 0.1s;
+}
+
+#icon-type.clicked {
+    transform: rotate(180deg);
+}
+
+#icon-brand {
+    transition: transform 0.1s;
+}
+
+#icon-brand.clicked {
+    transform: rotate(180deg);
+}
+
+#icon-model {
+    transition: transform 0.1s;
+}
+
+#icon-model.clicked {
+    transform: rotate(180deg);
+}
+
+#icon-serial {
+    transition: transform 0.1s;
+}
+
+#icon-serial.clicked {
+    transform: rotate(180deg);
+}
+
+#icon-location {
+    transition: transform 0.1s;
+}
+
+#icon-location.clicked {
+    transform: rotate(180deg);
+}
+
+#icon-sublocation {
+    transition: transform 0.1s;
+}
+
+#icon-sublocation.clicked {
+    transform: rotate(180deg);
+}
+
+#icon-status {
+    transition: transform 0.1s;
+}
+
+#icon-status.clicked {
+    transform: rotate(180deg);
+}
+
+#icon-ultmprev {
+    transition: transform 0.1s;
+}
+
+#icon-ultmprev.clicked {
+    transform: rotate(180deg);
+}
+
+/* Estilos para los iconos de ordenamisnto de las tablas */
+
+/* CLASES PARA VER MEJOR EL ORDENAMISNTO EN LA TABLA
+
+.sorting {
+    background-color: green;
+}
+
+.sorting_asc {
+    background-color: blue;
+}
+
+.sorting_desc {
+    background-color: red;
+}
+*/
+.screen-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 7rem; /* Espacio entre los círculos */
+}
+
+.screen-indicator .indicator {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: #D1D5DB;
+}
+
+.screen-indicator .active {
+    background-color: #38A169;
+    box-shadow: 0 0 20px #38A169, 0 0 40px #38A169, 0 0 60px #38A169;
+}
+
+.screen-title {
+    color: #42a5f5; /* Azul vibrante */
+    font-size: 1.6rem; /* Tamaño de fuente ligeramente más grande */
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 10px; /* Aumentar el espacio entre el título y el contenido */
+    margin-top: 30px; /* Espacio entre el indicador y el título de pantalla */
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #42a5f5; /* Línea inferior del título */
+}
+
+/* Efecto de sombra para dar profundidad al título */
+.screen-title {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.textarea-wide {
+    width: 100%; /* O ajusta el valor del ancho que desees, por ejemplo, 400px */
+    padding: 10px; /* Ajusta el valor del margen interior (padding) para aumentar el tamaño a los lados */
+    /* Otros estilos personalizados si los necesitas */
+}
+
+.footer {
+    background-color: #27374D;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-pagina {
+    font-size: 14px;
+}
