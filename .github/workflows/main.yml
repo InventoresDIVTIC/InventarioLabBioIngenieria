@@ -16,5 +16,3 @@ jobs:
         server: 66.225.201.137
         username: bioingenieria@inventores.org
         password: ${{ secrets.FTP_ACCESO }}
-        local_dir: ./resources/views/auth/
-        remote_dir: /public_html/resources/views/auth/
