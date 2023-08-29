@@ -10,7 +10,7 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
     - name: Install Dependecies
-      run: composer install -q -no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
