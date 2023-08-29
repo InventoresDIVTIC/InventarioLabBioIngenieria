@@ -15,7 +15,7 @@
             <form method="post" action="{{ route('guardarActivo') }}" class="space-y-6">
                     @csrf
                     <div>
-                        <x-input-label for="category" :value="__('Categoría')" />
+                        <x-input-label for="category" :value="__('Categoría')"/>
                         <div x-data="customSelect()">
                         <select id="category" name="category" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="category"  @change="selectOption($event)">
                             <option value="Equipo Médico">Equipo Médico</option>
