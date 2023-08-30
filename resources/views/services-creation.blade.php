@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://localhost/labbio/resources/css/dashboard.css">
+    <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/dashboard.css">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js"></script>
     <title>REGISTRO DE SERVICIOS | DEV LAB DE BIOINGENIERIA</title>
@@ -25,7 +25,7 @@
                         </div>
                         <x-input-error class="mt-2" :messages="$errors->get('status')" />
                     </div>
-                    
+
                     <div>
                         <x-input-label for="services_type" :value="__('Tipo de servicio')" />
                         <div x-data="customSelect()">
@@ -48,14 +48,14 @@
                             x-on:click.prevent="$dispatch('open-modal', 'show_table_prov')" readonly />
                         @include('layouts.modal-proveedores-table')
 
-                        <!-- 
+                        <!--
                         <input name="supplier_id">
                         <div>
                             <select id="supplier_name" name="supplier_name" class="mt-1 block w-full bg-gray-800 text-white custom-select2" required autofocus autocomplete="supplier_name">
                                 <?php
                                 // Obtener los proveedores desde la base de datos o alguna otra fuente de datos
                                 $proveedores = DB::table('proveedores')->get();
-                                
+
                                 // Iterar sobre los proveedores y crear las opciones con atributo data-id
                                 foreach ($proveedores as $proveedor) {
                                     echo "<option value=\"$proveedor->name\" data-id=\"$proveedor->id\">$proveedor->name</option>";
@@ -67,7 +67,7 @@
                         <x-input-error class="mt-2" :messages="$errors->get('supplier_name')" />
                     </div>
 
-                    <div>                            
+                    <div>
                         <x-input-label for="type" :value="__('Activo')" />
                         <x-text-input id="active_id" name="active_id" type="hidden" class="mt-1 block w-full" required
                         autofocus autocomplete="active_id"/>
@@ -82,13 +82,13 @@
                         <x-input-error class="mt-2" :messages="$errors->get('active_id')" />
 
 
-                        <!-- 
+                        <!--
                         <div x-data="customSelect()">
                             <select id="active_name" name="active_name" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="active_name" @change="selectOption($event)">
                                 <?php
                                 // Obtener los nombres de los proveedores desde la base de datos o alguna otra fuente de datos
                                 //$activos = DB::table('activos')->pluck('type');
-                                
+
                                 // Iterar sobre los nombres de los proveedores y crear las opciones
                                 //foreach ($activos as $activo) {
                                   //  echo "<option value=\"$activo\">$activo</option>";
@@ -116,7 +116,7 @@
                 <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
                     <div>
                         <x-primary-button>{{ __('Guardar') }}</x-primary-button>
-                    </div> 
+                    </div>
 
                     <div style="color: #d1d5db; background-color: rgb(31 41 55 / var(--tw-bg-opacity)); padding: .44rem; border-radius: .375rem; border-color: #6b7180; border-width: 1px; font-weight: 600; font-size: .75rem; text-transform: uppercase;">
                         @if (Route::has('services'))
@@ -126,7 +126,7 @@
                         @endif
                      </div>
                 </div>
-                
+
                 <script>
                     $(document).ready(function() {
                         var table = $('#proveedores').DataTable({
@@ -154,7 +154,7 @@
                 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
                 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
                 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-                            
+
                 <script>
                     function customSelect() {
                         return {
@@ -164,10 +164,10 @@
                             },
                         };
                     }
-                    
+
                     // Agrega una escucha al evento submit del formulario para enviar el valor seleccionado
                     document.querySelector('form').addEventListener('submit', function() {
-                        
+
                         const selectedValueFieldStatus = document.querySelector('input[name="status_selected"]');
                         selectedValueFieldStatus.value = customSelect().selectedValue;
 
@@ -177,11 +177,11 @@
                         //const selectedValueFieldSupplier = document.querySelector('input[name="supplier_name_selected"]');
                         //selectedValueFieldSupplier.value = customSelect().selectedValue;
                         //const supplierId = selectedSupplier.options[selectedSupplier.selectedIndex].getAttribute('data-id');
-                        //document.querySelector('input[name="supplier_id"]').value = supplierId;                        
+                        //document.querySelector('input[name="supplier_id"]').value = supplierId;
                         //const selectedValueFieldActives = document.querySelector('input[name="active_name_selected"]');
                         //selectedValueFieldActives.value = customSelect().selectedValue;
                         //const supplierId = selectedSupplier.options[selectedSupplier.selectedIndex].getAttribute('data-id');
-                        //document.querySelector('input[name="supplier_id"]').value = supplierId; 
+                        //document.querySelector('input[name="supplier_id"]').value = supplierId;
                     });
                 </script>
             </form>

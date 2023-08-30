@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://localhost/labbio/resources/css/edit-perfil.css">
+  <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/edit-perfil.css">
   <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <title>MI PERFIL</title>
 </head>
 <body>
     <x-app-layout>
-        <section class="bg-img">    
+        <section class="bg-img">
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                
+
             <div class="p-4 sm:p-8 sm:rounded-lg shadow-lg" style="background: linear-gradient(to left, #205397, #27374D);">
                     <div class="max-w-xl mx-auto">
                         @include('profile.partials.update-profile-information-form')
@@ -35,7 +35,7 @@
             </div>
         </div>
         </section>
-        
+
     </x-app-layout>
-    
+
 </body>

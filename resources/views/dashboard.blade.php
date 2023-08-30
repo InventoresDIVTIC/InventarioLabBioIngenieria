@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="http://localhost/labbio/resources/css/dashboard.css">
+  <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/dashboard.css">
   <title>DEV LAB DE BIOINGENIERIA</title>
 </head>
 <body>

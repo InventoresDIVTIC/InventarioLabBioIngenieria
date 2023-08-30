@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://localhost/labbio/resources/css/Registro.css">
+  <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/Registro.css">
   <title>DEV LAB DE BIOINGENIERIA</title>
 </head>
 <body>
@@ -33,7 +33,7 @@
                     <x-input-error :messages="$errors->get('code')" class="error-message" />
                 </div>
 
-                <!-- Acount 
+                <!-- Acount
                 <div class="inputbox">
                     <x-input-label for="account" :value="__('Cuenta')" />
                     <x-text-input id="account" class="block mt-1 w-full" type="text" name="account" :value="old('account')" required autofocus autocomplete="account" />

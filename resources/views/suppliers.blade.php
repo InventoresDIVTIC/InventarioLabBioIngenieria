@@ -8,7 +8,7 @@
     <title>PROVEEDORES | DEV LAB DE BIOINGENIERIA</title>
     <meta name="keywords" content="">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://localhost/labbio/resources/css/supplier.css">
+    <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/supplier.css">
 </head>
 
 <x-app-layout>
@@ -102,7 +102,7 @@
                                 <?php
                                 // Obtén los datos de la tabla "proveedores" de la base de datos
                                 $proveedores = \App\Models\Proveedores::all();
-                                
+
                                 foreach ($proveedores as $proveedores) { ?>
                                 <td>
                                     <div class="idproveedor">
@@ -152,7 +152,7 @@
         Agregar proveedores
     </div>
 </x-app-layout>
-    
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>

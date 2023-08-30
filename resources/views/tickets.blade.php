@@ -8,7 +8,7 @@
     <title>TICKETS | DEV LAB DE BIOINGENIERIA</title>
     <meta name="keywords" content="">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://localhost/labbio/resources/css/tickets.css">
+    <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/tickets.css">
 </head>
 
 <x-app-layout>
@@ -94,7 +94,7 @@
                                 <?php
                                 // Obtén los datos de la tabla "tickets" de la base de datos
                                 $tickets = \App\Models\Tickets::all();
-                                
+
                                 foreach ($tickets as $tickets) { ?>
                                 <td>
                                     <div class="idtickets">

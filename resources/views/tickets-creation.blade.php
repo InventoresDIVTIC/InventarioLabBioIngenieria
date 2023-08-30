@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://localhost/labbio/resources/css/dashboard.css">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://localhost/labbio/resources/css/tickets.css">
+    <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/tickets.css">
     <title>DEV LAB DE BIOINGENIERIA</title>
 </head>
 
@@ -87,7 +87,7 @@
             }).columns.adjust().responsive.recalc();
         });
     </script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
