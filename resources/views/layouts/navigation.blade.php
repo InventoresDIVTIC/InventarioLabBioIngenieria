@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="http://localhost/labbio/resources/css/navigation.css">
+<link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/navigation.css">
 
 <!-- Navigation Links -->
 <div class="w-full flex flex-col gap-5 items-center">

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="http://localhost/labbio/resources/css/modal-table.css">    
+<link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/modal-table.css">    
 <x-modal name="show_table">
     <div class="container w-full md:w-4/5 xl:w-3/5 mx-auto" style="background-color:#F1F6F9;">
         <div id="recipientes" class="w-full p-8 lg:mt-0 rounded shadow bg-white">
