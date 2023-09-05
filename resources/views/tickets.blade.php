@@ -152,7 +152,7 @@
 
 <!-- Archivo de idioma en español -->
 <script src="https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
-<script src="http://localhost/labbio/resources/js/tickets.js"></script>
+<script src="https://bioingenieria.inventores.org/resources/js/tickets.js"></script>
 
 </body>
 </html>

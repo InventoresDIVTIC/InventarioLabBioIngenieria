@@ -160,7 +160,7 @@
 
     <!-- Archivo de idioma en español -->
     <script src="https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
-    <script src="http://localhost/labbio/resources/js/services.js"></script>
+    <script src="https://bioingenieria.inventores.org/resources/js/services.js"></script>
 
 </body>
 </html>

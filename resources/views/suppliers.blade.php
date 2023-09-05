@@ -158,7 +158,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <!-- Archivo de idioma en español -->
     <script src="https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
-    <script src="http://localhost/labbio/resources/js/suppliers.js"></script>
+    <script src="https://bioingenieria.inventores.org/resources/js/suppliers.js"></script>
 
 </body>
 </html>
