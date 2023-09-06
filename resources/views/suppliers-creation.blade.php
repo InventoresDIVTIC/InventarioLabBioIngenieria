@@ -71,7 +71,7 @@
 
                     <div>
                         <x-input-label for="business_email" :value="__('Correo comercial')" />
-                        <x-text-input id="business_email" name="business_email" type="text" class="mt-1 block w-full" required
+                        <x-text-input id="business_email" name="business_email" type="email" class="mt-1 block w-full" required
                             autofocus autocomplete="business_email" />
                         <x-input-error class="mt-2" :messages="$errors->get('business_email')" />
                     </div>

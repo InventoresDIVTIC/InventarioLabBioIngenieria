@@ -14,49 +14,74 @@
     <x-app-layout>
         <section>
         <div class="max-w-9xl mx-auto p-6 sm:p-8 sm:rounded-lg shadow-lg" style="background: linear-gradient(to left, #205397, #27374D); margin: 1rem; margin-top: 3rem;">
-                    <h2 style="color: #d1d5db; font-size: 1.8rem; text-align: center; text-transform: uppercase; padding-bottom: 5px;">Editar Artículo de Inventario</h2>
-                    <div class="flex items-center justify-center mt-4 screen-indicator">
-                        <!-- Indicador de pantallas -->
-                        <template x-for="screen in 2" :key="screen">
-                            <div x-bind:class="{'indicator active': pantalla === screen, 'indicator': pantalla !== screen}"></div>
-                        </template>
-                    </div>
+                    <h2 style="color: #d1d5db; font-size: 1.8rem; text-align: center; text-transform: uppercase; padding-bottom: 5px;">Editar Proveedor</h2>
                     <p class="screen-title" x-text="'Pantalla ' + pantallaTitulo" style="color: #d1d5db;"></p>
                     <form id="form-inventario" class="space-y-6 w-full sm:w-96">
                     <!-- Pantalla 1: Datos Generales -->
                     <div x-data="{ pantalla }">
                         <div x-show="pantalla === 1">
                             <div class="grid grid-cols-3 gap-6">
-
+                                <div>
+                                    <x-input-label for="name" :value="__('Nombre del servicio')" />
+                                    <x-text-input id="name" name="name" type="text" class="mt-1 w-full" required autofocus autocomplete="name" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                                </div>
+                                <div>
+                                    <x-input-label for="company_name" :value="__('Nombre de la compañia')" />
+                                    <x-text-input id="company_name" name="company_name" type="text" class="mt-1 w-full" required autofocus autocomplete="company_name" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('company_name')" />
+                                </div>
+                                <div>
+                                    <x-input-label for="city" :value="__('Ciudad')" />
+                                    <x-text-input id="city" name="city" type="text" class="mt-1 w-full" required autofocus autocomplete="city" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('city')" />
+                                </div>
+                                <div>
+                                    <x-input-label for="state" :value="__('Estado')" />
+                                    <x-text-input id="state" name="state" type="text" class="mt-1 w-full" required autofocus autocomplete="state" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('state')" />
+                                </div>
+                                <div>
+                                    <x-input-label for="country" :value="__('País')" />
+                                    <x-text-input id="country" name="country" type="text" class="mt-1 w-full" required autofocus autocomplete="country" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('country')" />
+                                </div>
+                                <div>
+                                    <x-input-label for="phone" :value="__('Telefóno')" />
+                                    <x-text-input id="phone" name="phone" type="text" class="mt-1 w-full" required autofocus autocomplete="phone" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+                                </div>
+                                <div>
+                                    <x-input-label for="site_web" :value="__('sitio web')" />
+                                    <x-text-input id="site_web" name="site_web" type="text" class="mt-1 block w-full" required autofocus autocomplete="site_web" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('site_web')" />
+                                </div>
+                                <div>
+                                    <x-input-label for="business_email" :value="__('Correo comercial')" />
+                                    <x-text-input id="business_email" name="business_email" type="email" class="mt-1 block w-full" required autofocus autocomplete="business_email" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('business_email')" />
+                                </div>
+                                <div>
+                                    <x-input-label for="support_email" :value="__('Correo de soporte')" />
+                                    <x-text-input id="support_email" name="support_email" type="email" class="mt-1 block w-full" required autofocus autocomplete="support_email" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('support_email')" />
+                                </div>
+                                <div class="flex justify-center">
+                                    <div class="max-w-full">
+                                        <x-input-label for="motive" :value="__('Descripción')" />
+                                        <textarea id="motive" name="motive" class="mt-1 {{ $errors->has('motive') ? 'border-red-500' : 'border-gray-300' }} rounded-md shadow-sm focus:ring focus:ring-opacity-50 textarea-wide" required autocomplete="motive" rows="3">{{ old('motive') }}</textarea>
+                                        <x-input-error class="mt-2" :messages="$errors->get('motive')" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <x-input-label for="category" :value="__('Correo de soporte')" />
+                                    <x-text-input id="category" name="category" type="email" class="mt-1 block w-full" required autofocus autocomplete="category" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('category')" />
+                                </div>
                             </div>
                         </div>
-
-                        <!-- Pantalla 2: Datos de Facturas -->
-                        <div x-show="pantalla === 2">
-                            <div class="grid grid-cols-2 gap-6">
-
-                            </div>
-                        </div>
-
-                                                <!-- Pantalla 3: Datos de registro y mantenimiento -->
-                         <div x-show="pantalla === 3">
-                            <div class="grid grid-cols-3 gap-6">
-
-                            </div>
-                        </div>
-
-                        <!-- Pantalla 4: Datos de eliminacion -->
-                        <div x-show="pantalla === 4">
-                            <div class="grid grid-cols-1 gap-6">
-
-                            </div>
-                        </div>
-
-
                         <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
                             <div>
-                                <button type="button" id="btn-anterior" x-show="pantalla > 1" @click="pantalla -= 1" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
-                                <button type="button" id="btn-siguiente" x-show="pantalla < 4" @click="pantalla += 1" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
                                 <button type="submit" x-show="pantalla > 0" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
                             </div>
                         </div>
@@ -72,9 +97,6 @@
     // Objeto para mapear los números de pantalla con sus títulos
     const titulosPantallas = {
         1: 'Datos Generales',
-        2: 'Datos de Facturas',
-        3: 'Datos de registro/mantenimiento',
-        4: 'Datos de eliminacion', // Puedes agregar más títulos aquí
     };
 
     // Función para obtener el título de la pantalla actual
@@ -117,7 +139,7 @@
         });
 
         btnSiguiente.addEventListener('click', () => {
-            if (pantalla < 4) {
+            if (pantalla < 1) {
                 pantalla += 1;
                 updateIndicator();
                 pantallaTitleElement.textContent = getPantallaTitulo(); // Actualiza el título de la pantalla

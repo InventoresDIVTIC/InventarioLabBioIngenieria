@@ -15,7 +15,7 @@
     <x-app-layout>
         <section>
         <div class="max-w-9xl mx-auto p-6 sm:p-8 sm:rounded-lg shadow-lg" style="background: linear-gradient(to left, #205397, #27374D); margin: 1rem; margin-top: 3rem;">
-                    <h2 style="color: #d1d5db; font-size: 1.8rem; text-align: center; text-transform: uppercase; padding-bottom: 5px;">Editar Artículo de Inventario</h2>
+                    <h2 style="color: #d1d5db; font-size: 1.8rem; text-align: center; text-transform: uppercase; padding-bottom: 5px;">Editar Servicio</h2>
                     <div class="flex items-center justify-center mt-4 screen-indicator">
                         <!-- Indicador de pantallas -->
                         <template x-for="screen in 2" :key="screen">
