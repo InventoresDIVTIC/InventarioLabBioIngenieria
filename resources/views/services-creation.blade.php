@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/dashboard.css">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js"></script>
     <title>REGISTRO DE SERVICIOS | DEV LAB DE BIOINGENIERIA</title>
 </head>
 <body>
