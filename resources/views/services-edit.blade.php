@@ -9,6 +9,7 @@
     <script src="/ruta/hacia/signature-pad.js"></script>
     <link rel="stylesheet" href="/ruta/hacia/signature-pad.css">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/inventory.css">
+    <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/modal-table.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
     <title>DEV LAB DE BIOINGENIERIA</title>
 </head>
@@ -117,8 +118,8 @@
                                         class="mt-1 block w-full" required autofocus autocomplete="active_id" />
                                     <x-text-input id="type" name="type" type="text"
                                         class="mt-1 block w-full" required autofocus autocomplete="type"
-                                        x-on:click.prevent="$dispatch('open-modal', 'show_table')" readonly />
-                                    @include('layouts.modal-activos-table')
+                                        x-on:click.prevent="$dispatch('open-modal', 'show_table_activos_prov')" readonly />
+                                    @include('layouts.modal-activos-prov-table')
                                     <x-input-error class="mt-2" :messages="$errors->get('active_id')" />
                                 </div>
                                 <div>
@@ -449,7 +450,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script src="https://bioingenieria.inventores.org/resources/js/services-edit.js"></script>
+<script src="https://bioingenieria.inventores.org/resources/js/services-creation.js"></script>
 </body>
 
 </html>
