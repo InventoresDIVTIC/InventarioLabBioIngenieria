@@ -14,8 +14,6 @@
 </head>
 <body class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
     <x-app-layout>
-
-
         <section>
             <div>
                 <div>
