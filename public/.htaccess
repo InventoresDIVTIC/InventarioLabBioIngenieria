@@ -25,7 +25,7 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_URI} !^/public/
-    RewriteRule ^(css|js|images)/(.*)$ public/$1/$2 [L,NC]
+    RewriteRule ^(.*)$ /public/$1 [L,QSA]
 
     RewriteCond %{REQUEST_FILENAME} -f
     RewriteCond %{REQUEST_FILENAME} -d
