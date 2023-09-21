@@ -134,7 +134,7 @@
                                         echo "<td>{$activo->status}</td>";
 
                                         // Obtén el último mprev del activo desde la tabla "activos_servicios"
-                                        $ultimo_mprev = \App\Models\activoServicios::where('activo_id', $activo->id)->orderBy('last_mprev', 'desc')->pluck('last_mprev')->first();
+                                        $ultimo_mprev = \App\Models\ActivoServicios::where('activo_id', $activo->id)->orderBy('last_mprev', 'desc')->pluck('last_mprev')->first();
                                         echo "<td>{$ultimo_mprev}</td>";
 
                                         echo "</tr>";
