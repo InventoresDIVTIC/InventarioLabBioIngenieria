@@ -143,7 +143,7 @@
                             </div>
                         </div>
 
-                        <!-- Pantalla 2: Datos de Facturas -->
+                        <!-- Pantalla 2: Datos de las Facturas -->
                         <div x-show="pantalla === 2">
                             <div class="grid grid-cols-2 gap-6">
                                 <div>
