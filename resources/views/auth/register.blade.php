@@ -72,7 +72,7 @@
                 </div>
                 <br>
                 <div>
-                    <a href="{{ url()->previous() }}" class="forget-label-b">
+                    <a href="{{ route('login') }}" class="forget-label-b">
                         {{ __('¿Ya tienes una cuenta? Inicia Sesión') }}
                     </a>
                 </div>

@@ -69,5 +69,6 @@ window.onload = function() {
             $(element).removeClass('row-selected1')
         })
     }
+    /// Nuevo Código ///
 
 }
