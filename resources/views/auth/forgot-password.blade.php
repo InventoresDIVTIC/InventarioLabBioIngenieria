@@ -31,7 +31,7 @@
                             </x-primary-button>
                     </div>
                     <div class="return">
-                                <a href="{{ url()->previous() }}" >
+                                <a href="{{ route('login') }}" class="forget-label-b" >
                                         {{ __('Regresar') }}
                                 </a>
                     </div>
