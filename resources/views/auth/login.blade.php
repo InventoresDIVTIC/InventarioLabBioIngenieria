@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/login.css">
+    <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/login.css">
     <title>DEV LAB DE BIOINGENIERIA</title>
 </head>
 <body>

@@ -8,8 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js"></script>
     <script src="/ruta/hacia/signature-pad.js"></script>
     <link rel="stylesheet" href="/ruta/hacia/signature-pad.css">
-    <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/inventory.css">
-    <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/modal-table.css">
+    <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/inventory.css">
+    <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/modal-table.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
     <title>DEV LAB DE BIOINGENIERIA</title>
 </head>
@@ -450,7 +450,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-<script src="https://bioingenieria.inventores.org/resources/js/services-creation.js"></script>
+<script src="https://bioingenieria.inventores.org/js/services-creation.js"></script>
 </body>
 
 </html>

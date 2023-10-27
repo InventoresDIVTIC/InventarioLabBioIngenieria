@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/modal-table.css">    
+<link rel="stylesheet" href="https://bioingenieria.inventores.org/css/modal-table.css">
 <x-modal name="show_table_activos_prov">
     <div class="container w-full md:w-4/5 xl:w-3/5 mx-auto" style="background-color:#F1F6F9;">
         <div id="recipientes" class="w-full p-8 lg:mt-0 rounded shadow bg-white">
@@ -35,7 +35,7 @@
                     <?php
                         // Obtén los datos de la tabla "activos" y "activos_servicios" de la base de datos
                         $activos = \App\Models\Activo::all();
-                        foreach ($activos as $activo) { 
+                        foreach ($activos as $activo) {
                     ?>
                     <td>
                         <div class="idactivo">
@@ -46,7 +46,7 @@
                                     echo "<td>{$activo->model}</td>";
                                     echo "<td>{$activo->sublocation}</td>";
                                     echo "</tr>";
-                                    
+
                             }
                         ?>
                 </tbody>

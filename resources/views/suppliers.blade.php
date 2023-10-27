@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PROVEEDORES | DEV LAB DE BIOINGENIERIA</title>
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/supplier.css">
+    <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/supplier.css">
 </head>
 
 <x-app-layout>
@@ -157,7 +157,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <!-- Archivo de idioma en español -->
     <script src="https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
-    <script src="https://bioingenieria.inventores.org/resources/js/suppliers.js"></script>
+    <script src="https://bioingenieria.inventores.org/js/suppliers.js"></script>
 
 </body>
 </html>

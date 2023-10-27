@@ -7,7 +7,7 @@
     <title>SERVICIOS | DEV LAB DE BIOINGENIERIA</title>
     <meta name="keywords" content="">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/services.css">
+    <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/services.css">
 </head>
 <body class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
     <x-app-layout>
@@ -160,7 +160,7 @@
 
     <!-- Archivo de idioma en español -->
     <script src="https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
-    <script src="https://bioingenieria.inventores.org/resources/js/services.js"></script>
+    <script src="https://bioingenieria.inventores.org/js/services.js"></script>
 
 </body>
 </html>

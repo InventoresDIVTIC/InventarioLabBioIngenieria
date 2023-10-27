@@ -8,7 +8,7 @@
     <title>TICKETS | DEV LAB DE BIOINGENIERIA</title>
     <meta name="keywords" content="">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/tickets.css">
+    <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/tickets.css">
 </head>
 
 <x-app-layout>
@@ -152,7 +152,7 @@
 
 <!-- Archivo de idioma en español -->
 <script src="https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
-<script src="https://bioingenieria.inventores.org/resources/js/tickets.js"></script>
+<script src="https://bioingenieria.inventores.org/js/tickets.js"></script>
 
 </body>
 </html>

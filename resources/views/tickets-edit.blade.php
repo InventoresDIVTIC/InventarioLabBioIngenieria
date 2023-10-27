@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="/ruta/hacia/signature-pad.js"></script>
     <link rel="stylesheet" href="/ruta/hacia/signature-pad.css">
-    <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/inventory.css">
+    <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/inventory.css">
     <title>DEV LAB DE BIOINGENIERIA</title>
 </head>
 <body>

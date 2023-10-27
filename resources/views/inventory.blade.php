@@ -7,7 +7,7 @@
     <title>INVENTARIO | DEV LAB DE BIOINGENIERIA</title>
     <meta name="keywords" content="">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/inventory.css">
+    <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/inventory.css">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
@@ -166,7 +166,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <!-- Archivo de idioma en español -->
     <script src="https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
-    <script src="https://bioingenieria.inventores.org/resources/js/inventory.js"></script>
+    <script src="https://bioingenieria.inventores.org/js/inventory.js"></script>
 
 </body>
 </html>

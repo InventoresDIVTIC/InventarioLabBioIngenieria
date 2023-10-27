@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js"></script>
     <script src="/ruta/hacia/signature-pad.js"></script>
     <link rel="stylesheet" href="/ruta/hacia/signature-pad.css">
-    <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/inventory.css">
+    <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/inventory.css">
     <title>DEV LAB DE BIOINGENIERIA</title>
 </head>
 <body>

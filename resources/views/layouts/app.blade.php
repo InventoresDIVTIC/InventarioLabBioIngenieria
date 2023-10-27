@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/app-blade.css">
+    <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/app-blade.css">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -22,7 +22,7 @@
 
     <div id="body" style="background-color: #27374d;" class="w-full fixed z-30 transition-all duration-200">
         <div class="w-full h-auto p-4 flex justify-between">
-            
+
         <div id="menu-icon">
                 <div class="icon-container" @click.prevent="isOpen = !isOpen">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-list" viewBox="0 0 16 16">
@@ -42,7 +42,7 @@
             </script>
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center" style="background-color: #27374d;">
-                
+
                 <x-dropdown width="48" style="margin-right: 15px;">
                     <x-slot name="trigger">
                         <button
@@ -90,8 +90,8 @@
 <div class="h-full w-full pt-16">
     <div class="flex" id="wrapper">
         <div id="animation">
-             <aside id="sidebar" 
-             class="fixed top-0 left-0 z-20 flex-col flex-shrink-0 pt-16 w-60 h-full duration-200 lg:flex transition-width lg:w-60" 
+             <aside id="sidebar"
+             class="fixed top-0 left-0 z-20 flex-col flex-shrink-0 pt-16 w-60 h-full duration-200 lg:flex transition-width lg:w-60"
              :class="isOpen ? 'w-60 slide-in' : 'slide-out'">
                 <div class="w-full h-auto p-2 flex justify-center">
                     <!-- Logo -->
@@ -135,7 +135,7 @@
                     // Volver a la posición original si el slidebar se desactiva
                     content.classList.toggle('slide-out-Content');
                 }
-                
+
             });
         </script>
 </body>

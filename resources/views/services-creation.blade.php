@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://bioingenieria.inventores.org/resources/css/dashboard.css">
+    <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/dashboard.css">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>REGISTRO DE SERVICIOS | DEV LAB DE BIOINGENIERIA</title>
 </head>
@@ -148,7 +148,7 @@
                     });
                 </script>
 
-                <script src="https://bioingenieria.inventores.org/resources/js/services-creation.js"></script>
+                <script src="https://bioingenieria.inventores.org/js/services-creation.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
                 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
