@@ -18,7 +18,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body x-data="{ isOpen: true }" class="font-sans antialiased">
+<body x-data="{ isOpen: false }" class="font-sans antialiased">
 
     <div id="body" style="background-color: #27374d;" class="w-full fixed z-30 transition-all duration-200">
         <div class="w-full h-auto p-4 flex justify-between">
