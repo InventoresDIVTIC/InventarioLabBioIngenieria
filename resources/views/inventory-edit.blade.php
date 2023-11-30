@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js"></script>
     <script src="/ruta/hacia/signature-pad.js"></script>
     <link rel="stylesheet" href="/ruta/hacia/signature-pad.css">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/inventory.css">
@@ -17,7 +16,7 @@
                     <h2 style="color: #d1d5db; font-size: 1.8rem; text-align: center; text-transform: uppercase; padding-bottom: 5px;">Editar Artículo de Inventario</h2>
                     <div class="flex items-center justify-center mt-4 screen-indicator">
                         <!-- Indicador de pantallas -->
-                        <template x-for="screen in 2" :key="screen">
+                        <template x-for="screen in 4" :key="screen">
                             <div x-bind:class="{'indicator active': pantalla === screen, 'indicator': pantalla !== screen}"></div>
                         </template>
                     </div>

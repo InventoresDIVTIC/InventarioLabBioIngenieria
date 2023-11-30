@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js"></script>
     <script src="/ruta/hacia/signature-pad.js"></script>
     <link rel="stylesheet" href="/ruta/hacia/signature-pad.css">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/inventory.css">
@@ -19,20 +17,17 @@
         <section>
             <div class="max-w-9xl mx-auto p-6 sm:p-8 sm:rounded-lg shadow-lg"
                 style="background: linear-gradient(to left, #205397, #27374D); margin: 1rem; margin-top: 3rem;">
-                <h2
-                    style="color: #d1d5db; font-size: 1.8rem; text-align: center; text-transform: uppercase; padding-bottom: 5px;">
-                    Editar Servicio</h2>
+                <h2 style="color: #d1d5db; font-size: 1.8rem; text-align: center; text-transform: uppercase; padding-bottom: 5px;">Editar Servicio</h2>
                 <div class="flex items-center justify-center mt-4 screen-indicator">
                     <!-- Indicador de pantallas -->
-                    <template x-for="screen in 2" :key="screen">
-                        <div x-bind:class="{ 'indicator active': pantalla === screen, 'indicator': pantalla !== screen }">
-                        </div>
+                    <template x-for="screen in 4" :key="screen">
+                        <div x-bind:class="{ 'indicator active': pantalla === screen, 'indicator': pantalla !== screen }"></div>
                     </template>
                 </div>
                 <p class="screen-title" x-text="'Pantalla ' + pantallaTitulo" style="color: #d1d5db;"></p>
                 <form id="form-inventario" class="space-y-6 w-full sm:w-96">
                     <!-- Pantalla 1: Datos Generales -->
-                    <div>
+                    <div x-data="{ pantalla }">
                         <div x-show="pantalla === 1">
                             <div class="grid grid-cols-2 gap-6">
                                 <div>
@@ -116,9 +111,10 @@
                                     <x-input-label for="type" :value="__('Activo')" />
                                     <x-text-input id="active_id" name="active_id" type="hidden"
                                         class="mt-1 block w-full" required autofocus autocomplete="active_id" />
-                                    <x-text-input id="type" name="type" type="text"
-                                        class="mt-1 block w-full" required autofocus autocomplete="type"
-                                        x-on:click.prevent="$dispatch('open-modal', 'show_table_activos_prov')" readonly />
+                                    <x-text-input id="type" name="type" type="text" class="mt-1 block w-full"
+                                        required autofocus autocomplete="type"
+                                        x-on:click.prevent="$dispatch('open-modal', 'show_table_activos_prov')"
+                                        readonly />
                                     @include('layouts.modal-activos-prov-table')
                                     <x-input-error class="mt-2" :messages="$errors->get('active_id')" />
                                 </div>
@@ -338,7 +334,6 @@
                             </div>
                         </div>
 
-
                         <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
                             <div>
                                 <button type="button" id="btn-anterior" x-show="pantalla > 1"
@@ -351,9 +346,9 @@
                                     class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
                             </div>
                         </div>
+                        
                     </div>
-            </div>
-            </form>
+                </form>
             </div>
         </section>
     </x-app-layout>
@@ -446,11 +441,11 @@
         });
     </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-<script src="https://bioingenieria.inventores.org/js/services-creation.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://bioingenieria.inventores.org/js/services-creation.js"></script>
 </body>
 
 </html>
