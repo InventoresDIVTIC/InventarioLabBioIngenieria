@@ -1,10 +1,10 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+        <h2 class="text-lg font-medium text-gray-900" style="color: #d1d5db;">
             {{ __('Actualizar contraseña') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        <p class="mt-1 text-sm text-gray-600" style="color: #d1d5db;">
             {{ __('Asegúrese de que su cuenta esté usando una contraseña de máximo 16 caracteres y minimo 8 caracteres.') }}
         </p>
     </header>
