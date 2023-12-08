@@ -20,7 +20,6 @@ window.onload = function() {
 
     $('input').click(function(e) {
         idName = e.target.id;
-        console.log(idName);
         cleanTr();
         $('#select-proveedor').attr("disabled", true);
         $('#select-proveedor').addClass('disabled');
