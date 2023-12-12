@@ -39,6 +39,23 @@
                     menuIcon.classList.toggle('scale');
                     menuIcon.classList.toggle('clicked');
                 });
+
+                const sidebar = document.getElementById('animation');
+                const content = document.getElementById('content');
+
+                menuIcon.addEventListener('click', () => {
+                    sidebar.classList.toggle('slide-in');
+                    sidebar.classList.toggle('slide-out');
+
+                    if (sidebar.classList.contains('slide-in')) {
+                        // Desplazar hacia la derecha si el slidebar se activa
+                        content.classList.toggle('slide-in-Content');
+                    } else {
+                        // Volver a la posición original si el slidebar se desactiva
+                        content.classList.toggle('slide-out-Content');
+                    }
+
+                });
             </script>
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center" style="background-color: #27374d;">
@@ -118,26 +135,5 @@
         </main>
     </div>
 </div>
-
-        <script>
-            const menuIcon = document.getElementById('menu-icon');
-            const sidebar = document.getElementById('animation');
-            const content = document.getElementById('content');
-
-            menuIcon.addEventListener('click', () => {
-                sidebar.classList.toggle('slide-in');
-                sidebar.classList.toggle('slide-out');
-
-                if (sidebar.classList.contains('slide-in')) {
-                    // Desplazar hacia la derecha si el slidebar se activa
-                    content.classList.toggle('slide-in-Content');
-                } else {
-                    // Volver a la posición original si el slidebar se desactiva
-                    content.classList.toggle('slide-out-Content');
-                }
-
-            });
-        </script>
 </body>
-
 </html>
