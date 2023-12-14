@@ -41,6 +41,7 @@ class RegisteredUserController extends Controller
         ]);
 
         // Función para verificar si el correo que se intenta ingresar ya está registrado
+        
 
         event(new Registered($user));
 

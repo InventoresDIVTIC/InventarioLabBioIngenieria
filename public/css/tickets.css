@@ -253,6 +253,11 @@ table.dataTable.display tbody tr:hover {
 	border-radius: .25rem;
 	background: #667eea !important;
 	border: 1px solid transparent;
+    display: inline-block;
+    width: 2%;
+    text-align: center;
+    margin-right: .5rem;
+    margin-left: .5rem;
 }
 
 /*Pagination Buttons - Hover */
