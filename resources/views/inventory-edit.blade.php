@@ -253,7 +253,7 @@
 
                                 <div>
                                     <x-input-label for="divisa" :value="__('Divisa')" />
-                                    <select id="divisa1" name="divisa1"
+                                    <select id="divisa" name="divisa"
                                         class="mt-1 block w-full bg-gray-800 text-white" required autofocus
                                         autocomplete="divisa" @change="selectOption($event)">
                                         <option value="Por definir">Por definir</option>
@@ -263,13 +263,6 @@
                                     </select>
                                     <x-input-error class="mt-2" :messages="$errors->get('divisa')" />
                                 </div>
-                                <script>
-                                    var select = document.getElementById('divisa1');
-                                        select.addEventListener('change', function() {
-
-                                        select.options[2].setAttribute('selected');
-                                        });         
-                                </script>
 
                                 <div>
                                     <x-input-label for="price" :value="__('Precio')" />
@@ -492,6 +485,22 @@
             </div>
         </section>
     </x-app-layout>
+    
+    <script>
+        var x = document.getElementById("divisa").options.length;
+        var data = "<?php echo $activo->divisa; ?>";
+        if(data == null){
+            document.getElementById("divisa").selectedIndex = 0;
+        }else{
+            for (var i = 0; i < x; i++) {
+                if (data == document.getElementById("divisa").options[i].text){
+                    document.getElementById("divisa").selectedIndex = i;
+                    break;
+                }
+            }
+        }             
+    </script>
+
     <script>
         let pantalla = 1;
 
