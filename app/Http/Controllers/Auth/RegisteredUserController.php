@@ -40,9 +40,6 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // Función para verificar si el correo que se intenta ingresar ya está registrado
-        
-
         event(new Registered($user));
 
         Auth::login($user);
