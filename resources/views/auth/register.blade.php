@@ -21,7 +21,7 @@
 
                 <!-- Lastname -->
                 <div class="inputbox">
-                    <x-input-label for="lastname" :value="__('Apellido')" />
+                    <x-input-label for="lastname" :value="__('Apellidos')" />
                     <x-text-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')" required autofocus autocomplete="lastname" />
                     <x-input-error :messages="$errors->get('lastname')" class="error-message" />
                 </div>
@@ -49,7 +49,7 @@
 
                 <!-- Password -->
                 <div class="inputbox">
-                    <x-input-label for="password" :value="__('Password')" />
+                    <x-input-label for="password" :value="__('Contraseña (entre 8 a 16 caracteres)')" />
                     <x-text-input id="password" class="block mt-1 w-full"
                                     type="password"
                                     name="password"
@@ -59,7 +59,7 @@
 
                 <!-- Confirm Password -->
                 <div class="inputbox">
-                    <x-input-label for="password_confirmation" :value="__('Confirmar password')" />
+                    <x-input-label for="password_confirmation" :value="__('Confirmar Contraseña')" />
                     <x-text-input id="password_confirmation" class="block mt-1 w-full"
                                     type="password"
                                     name="password_confirmation" required autocomplete="new-password" />
