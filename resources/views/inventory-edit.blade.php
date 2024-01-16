@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/inventory.css">
-    <script src="https://bioingenieria.inventores.org/js/inventory-edit.js"></script>
+    <script src="https://bioingenieria.inventores.org/js/select-edit.js"></script>
     <title>DEV LAB DE BIOINGENIERIA</title>
 </head>
 
@@ -221,7 +221,7 @@
                                         <x-input-label for="comments" :value="__('Comentarios')" />
                                         <textarea id="comments" name="comments"
                                             class="mt-1 {{ $errors->has('comments') ? 'border-red-500' : 'border-gray-300' }} rounded-md shadow-sm focus:ring focus:ring-opacity-50 textarea-wide"
-                                            required autocomplete="comments" value='<?php echo "{$activo->comments}"; ?>' rows="3">{{ old('description') }}</textarea>
+                                            required autocomplete="comments" rows="3"><?php echo "{$activo->comments}"; ?></textarea>
                                         <x-input-error class="mt-2" :messages="$errors->get('comments')" />
                                     </div>
                                 </div>
@@ -426,13 +426,20 @@
                                 </div>
 
                                 <div>
+                                    <x-input-label for="service_provider" :value="__('Proveedor del servicio')" />
+                                    <x-text-input id="service_provider" name="service_provider" type="text"
+                                        class="mt-1 w-full" required autocomplete="service_provider" value='<?php echo "{$activo->service_provider}"; ?>'/>
+                                    <x-input-error class="mt-2" :messages="$errors->get('service_provider')" />
+                                </div>
+
+                                <div>
                                     <x-input-label for="last_mprev" :value="__('Ultimo mantenimiento preventivo')" />
                                     <x-text-input id="last_mprev" name="last_mprev" type="text"
                                         class="mt-1 w-full" required autocomplete="last_mprev" value='<?php echo "{$activo->last_mprev}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('last_mprev')" />
                                 </div>
                                 <div>
-                                    <x-input-label for="next_mprev" :value="__('Ultimo mantenimiento preventivo')" />
+                                    <x-input-label for="next_mprev" :value="__('Siguiente mantenimiento preventivo')" />
                                     <x-text-input id="next_mprev" name="next_mprev" type="text"
                                         class="mt-1 w-full" required autocomplete="next_mprev" value='<?php echo "{$activo->next_mprev}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('next_mprev')" />
@@ -462,7 +469,7 @@
                                         <x-input-label for="motive" :value="__('Descripción')" />
                                         <textarea id="motive" name="motive"
                                             class="mt-1 {{ $errors->has('motive') ? 'border-red-500' : 'border-gray-300' }} rounded-md shadow-sm focus:ring focus:ring-opacity-50 textarea-wide"
-                                            required autocomplete="motive" rows="3">{{ old('motive') }}</textarea>
+                                            required autocomplete="motive" rows="3"><?php echo "{$activo->motive}"; ?></textarea>
                                         <x-input-error class="mt-2" :messages="$errors->get('motive')" />
                                     </div>
                                 </div>
@@ -489,15 +496,12 @@
         </section>
     </x-app-layout>
     <script>
-        selectData("<?php echo $activo->category; ?>","category");
-        selectData("<?php echo $activo->location; ?>","location");
-        selectData("<?php echo $activo->sublocation; ?>","sublocation");
-        selectData("<?php echo $activo->status; ?>","status");
-        selectData("<?php echo $activo->hierarchy; ?>","hierarchy");
-        selectData("<?php echo $activo->criticality; ?>","criticality");
-        selectData("<?php echo $activo->risk; ?>","risk");
-        selectData("<?php echo $activo->divisa; ?>","divisa");
-        selectData("<?php echo $activo->frecuency_mprev; ?>","frecuency_mprev");
+        <?php
+            $properties = ["category", "location", "sublocation", "status", "hierarchy", "criticality", "risk", "divisa", "frecuency_mprev"];
+            foreach ($properties as $property) {
+                echo "selectData('{$activo->{$property}}', '$property');";
+            }
+        ?>
     </script>
     <script>
         let pantalla = 1;
@@ -546,6 +550,7 @@
                 pantalla -= 1;
                 updateIndicator();
                 pantallaTitleElement.textContent = getPantallaTitulo(); // Actualiza el título de la pantalla
+                window.scrollTo(0, 0);
             }
         });
 
@@ -554,6 +559,7 @@
                 pantalla += 1;
                 updateIndicator();
                 pantallaTitleElement.textContent = getPantallaTitulo(); // Actualiza el título de la pantalla
+                window.scrollTo(0, 0);
             }
         });
 

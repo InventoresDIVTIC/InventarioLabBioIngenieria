@@ -1,6 +1,5 @@
 function selectData(data, id) {
     var x = document.getElementById(id).options.length;
-    console.log(data);
     if (data == null) {
         document.getElementById(id).selectedIndex = 0;
     } else {
