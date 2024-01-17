@@ -105,7 +105,7 @@
                                 foreach ($proveedores as $proveedores) { ?>
                                 <td>
                                     <div class="idproveedor">
-                                        <a href="{{ route('suppliers-edit') }}">
+                                        <a href="{{ route('suppliers-edit', ['id' => $proveedores->id]) }}">
                                             <div title="Editar a este Proveedor" class="editicon">
                                                 <svg style="float: left;" xmlns="http://www.w3.org/2000/svg"
                                                     fill="none" viewBox="0 0 24 24" stroke-width="1.5"
