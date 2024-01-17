@@ -429,6 +429,7 @@
                 pantalla -= 1;
                 updateIndicator();
                 pantallaTitleElement.textContent = getPantallaTitulo(); // Actualiza el título de la pantalla
+                window.scrollTo(0, 0);
             }
         });
 
@@ -437,6 +438,7 @@
                 pantalla += 1;
                 updateIndicator();
                 pantallaTitleElement.textContent = getPantallaTitulo(); // Actualiza el título de la pantalla
+                window.scrollTo(0, 0);
             }
         });
 
