@@ -3,7 +3,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Servicios; 
+use App\Models\Servicios;
+use App\Models\ServiciosDetalles;
+use App\Models\ServiciosFirmas;
+use App\Models\ServiciosGastos;
 
 class ServicesController extends Controller
 {
@@ -21,10 +24,10 @@ class ServicesController extends Controller
             'scheduled_date' => 'required|date',
             'assigned_engineer' => 'required|string',
         ]);
-        
+
         $user_id = Auth::id();
         $user_name = Auth::user()->name;
-        
+
 
         // Crear una nueva instancia del modelo Servicios y asignar los valores recibidos del formulario
         $service = new Servicios();
@@ -43,6 +46,27 @@ class ServicesController extends Controller
 
         // Guardar el registro en la base de datos
         $service->save();
+
+        // Crear un nuevo registro de ActivoProveeduria relacionado
+        $ServiciosDetalles = new ServiciosDetalles();
+        $ServiciosDetalles->services_id = $service->id;
+
+        // Guardar el ActivoProveeduria en la base de datos
+        $ServiciosDetalles->save();
+
+        // Crear un nuevo registro de activoFinanzas relacionado
+        $ServiciosFirmas = new ServiciosFirmas();
+        $ServiciosFirmas->services_id = $service->id;
+
+        // Guardar el activoFinanzas en la base de datos
+        $ServiciosFirmas->save();
+
+        // Crear un nuevo registro de activoServicios relacionado
+        $ServiciosGastos = new ServiciosGastos();
+        $ServiciosGastos->services_id = $service->id;
+
+        // Guardar el activoServicios en la base de datos
+        $ServiciosGastos->save();
 
         // Redirigir a la página de servicios o mostrar un mensaje de éxito
         return redirect()->route('services')->with('success', 'El servicio se ha registrado correctamente.');

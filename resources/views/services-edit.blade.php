@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/ruta/hacia/signature-pad.css">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/inventory.css">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/modal-table.css">
+    <script src="https://bioingenieria.inventores.org/js/inventory-edit.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
     <title>DEV LAB DE BIOINGENIERIA</title>
 </head>
@@ -26,6 +27,15 @@
                 </div>
                 <p class="screen-title" x-text="'Pantalla ' + pantallaTitulo" style="color: #d1d5db;"></p>
                 <form id="form-inventario" class="space-y-6 w-full sm:w-96">
+                    <?php
+                        $id = $_GET['id'];
+                        $servicios = DB::table('servicios')
+                                    ->join('servicios_detalles','servicios.id','=','servicios_detalles.services_id')
+                                    ->join('servicios_firmas','servicios.id','=','servicios_firmas.services_id')
+                                    ->join('servicios_gastos','servicios.id','=','servicios_gastos.services_id')
+                                    ->select('servicios.*','servicios_detalles.*','servicios_firmas.*','servicios_gastos.*')
+                                    ->find($id);
+                    ?>
                     <!-- Pantalla 1: Datos Generales -->
                     <div x-data="{ pantalla }">
                         <div x-show="pantalla === 1">
@@ -33,13 +43,13 @@
                                 <div>
                                     <x-input-label for="name" :value="__('Nombre del servicio')" />
                                     <x-text-input id="name" name="name" type="text" class="mt-1 w-full"
-                                        required autofocus autocomplete="name" />
+                                        required autofocus autocomplete="name"/>
                                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
                                 </div>
                                 <div>
                                     <x-input-label for="assigned_engineer" :value="__('Ingeniero asignado')" />
                                     <x-text-input id="assigned_engineer" name="assigned_engineer" type="text"
-                                        class="mt-1 w-full" required autofocus autocomplete="assigned_engineer" />
+                                        class="mt-1 w-full" required autofocus autocomplete="assigned_engineer" value='<?php echo "{$servicios->assigned_engineer}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('assigned_engineer')" />
                                 </div>
                                 <div>
@@ -67,7 +77,7 @@
                                 <div>
                                     <x-input-label for="active_model" :value="__('Modelo activo')" />
                                     <x-text-input id="active_model" name="active_model" type="text"
-                                        class="mt-1 w-full" required autofocus autocomplete="active_model" />
+                                        class="mt-1 w-full" required autofocus autocomplete="active_model" value='<?php echo "{$servicios->active_model}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('active_model')" />
                                 </div>
                                 <div>
@@ -102,7 +112,7 @@
                                         class="mt-1 block w-full" required autofocus autocomplete="supplier_id" />
 
                                     <x-text-input id="supplier_name" name="supplier_name" type="text"
-                                        class="mt-1 block w-full" required autofocus autocomplete="supplier_name"
+                                        class="mt-1 block w-full" required autofocus autocomplete="supplier_name" value='<?php echo "{$servicios->supplier_name}"; ?>'
                                         x-on:click.prevent="$dispatch('open-modal', 'show_table_prov')" readonly />
                                     @include('layouts.modal-proveedores-table')
                                     <x-input-error class="mt-2" :messages="$errors->get('supplier_name')" />
@@ -112,7 +122,7 @@
                                     <x-text-input id="active_id" name="active_id" type="hidden"
                                         class="mt-1 block w-full" required autofocus autocomplete="active_id" />
                                     <x-text-input id="type" name="type" type="text" class="mt-1 block w-full"
-                                        required autofocus autocomplete="type"
+                                        required autofocus autocomplete="type" value='<?php echo "{$servicios->active_name}"; ?>'
                                         x-on:click.prevent="$dispatch('open-modal', 'show_table_activos_prov')"
                                         readonly />
                                     @include('layouts.modal-activos-prov-table')
@@ -121,19 +131,19 @@
                                 <div>
                                     <x-input-label for="foil" :value="__('Folio')" />
                                     <x-text-input id="foil" name="foil" type="text" class="mt-1 w-full"
-                                        required autofocus autocomplete="foil" />
+                                        required autofocus autocomplete="foil" value='<?php echo "{$servicios->foil}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('foil')" />
                                 </div>
                                 <div>
                                     <x-input-label for="origin" :value="__('Origen')" />
                                     <x-text-input id="origin" name="origin" type="text" class="mt-1 w-full"
-                                        required autofocus autocomplete="origin" />
+                                        required autofocus autocomplete="origin" value='<?php echo "{$servicios->origin}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('origin')" />
                                 </div>
                                 <div>
                                     <x-input-label for="reference" :value="__('Referencia')" />
                                     <x-text-input id="reference" name="reference" type="text" class="mt-1 w-full"
-                                        required autofocus autocomplete="reference" />
+                                        required autofocus autocomplete="reference" value='<?php echo "{$servicios->reference}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('reference')" />
                                 </div>
                             </div>
@@ -145,7 +155,7 @@
                                 <div>
                                     <x-input-label for="assigned_enginier" :value="__('Ingeniero asignado del servicio')" />
                                     <x-text-input id="assigned_enginier" name="assigned_enginier" type="text"
-                                        class="mt-1 w-full" required autofocus autocomplete="assigned_enginier" />
+                                        class="mt-1 w-full" required autofocus autocomplete="assigned_enginier" value='<?php echo "{$servicios->assigned_enginier}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('assigned_enginier')" />
                                 </div>
                             </div>
@@ -153,38 +163,39 @@
                                 <div>
                                     <x-input-label for="start_date" :value="__('Fecha de inicio')" />
                                     <input id="start_date" name="start_date" type="date" class="mt-1 w-full"
-                                        required autofocus autocomplete="start_date" />
+                                        required autofocus autocomplete="start_date" value='<?php echo "{$servicios->start_date}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('start_date')" />
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div>
+                                    <x-input-label for="hours" :value="__('Hora de inicio')" />
+                                    <input id="hours" name="hours" type="time" class="mt-1 w-full" required
+                                        autofocus autocomplete="hours" value='<?php echo "{$servicios->hours}"; ?>'/>
+                                    <x-input-error class="mt-2" :messages="$errors->get('hours')" />
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-6">
                                 <div>
                                     <x-input-label for="end_date" :value="__('Fecha final')" />
                                     <input id="end_date" name="end_date" type="date" class="mt-1 w-full"
-                                        required autofocus autocomplete="end_date" />
+                                        required autofocus autocomplete="end_date" value='<?php echo "{$servicios->end_date}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('end_date')" />
                                 </div>
                             </div>
+
                             <div class="grid grid-cols-2 gap-6">
                                 <div>
-                                    <x-input-label for="hours" :value="__('Horas')" />
-                                    <input id="hours" name="hours" type="time" class="mt-1 w-full" required
-                                        autofocus autocomplete="hours" />
-                                    <x-input-error class="mt-2" :messages="$errors->get('hours')" />
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 gap-6">
-                                <div>
-                                    <x-input-label for="minutes" :value="__('Minutos')" />
+                                    <x-input-label for="minutes" :value="__('Hora de termino')" />
                                     <input id="minutes" name="minutes" type="time" class="mt-1 w-full" required
-                                        autofocus autocomplete="minutes" step="60" />
+                                        autofocus autocomplete="minutes" step="60" value='<?php echo "{$servicios->minutes}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('minutes')" />
                                 </div>
                             </div>
                             <div>
                                 <x-input-label for="summary" :value="__('Resumen')" />
                                 <x-text-input id="summary" name="summary" type="text" class="mt-1 w-full"
-                                    required autofocus autocomplete="summary" />
+                                    required autofocus autocomplete="summary" value='<?php echo "{$servicios->summary}"; ?>'/>
                                 <x-input-error class="mt-2" :messages="$errors->get('summary')" />
                             </div>
                         </div>
@@ -197,7 +208,7 @@
                                     <canvas id="serviceHeadSignatureCanvas" class="mt-1 w-full"
                                         style="border: 1px solid #000;"></canvas>
                                     <input type="hidden" id="service_head_signature"
-                                        name="service_head_signature" />
+                                        name="service_head_signature" value='<?php echo "{$servicios->service_head_signature}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('service_head_signature')" />
 
                                     <!-- Botón para limpiar la firma -->
@@ -212,9 +223,9 @@
                                     <x-input-label for="service_enigieer_signature" :value="__('Firma del ingeniero de servicio')" />
                                     <canvas id="serviceEngineerSignatureCanvas" class="mt-1 w-full"
                                         style="border: 1px solid #000;"></canvas>
-                                    <input type="hidden" id="service_engineer_signature"
-                                        name="service_engineer_signature" />
-                                    <x-input-error class="mt-2" :messages="$errors->get('service_engineer_signature')" />
+                                    <input type="hidden" id="service_enigieer_signature"
+                                        name="service_enigieer_signature" value='<?php echo "{$servicios->service_enigieer_signature}"; ?>'/>
+                                    <x-input-error class="mt-2" :messages="$errors->get('service_enigieer_signature')" />
 
                                     <!-- Botón para limpiar la firma -->
                                     <button type="button" id="clearServiceEngineerSignatureButton"
@@ -228,7 +239,7 @@
                                     <x-input-label for="last_user_signature" :value="__('Firma del último usuario')" />
                                     <canvas id="lastUserSignatureCanvas" class="mt-1 w-full"
                                         style="border: 1px solid #000;"></canvas>
-                                    <input type="hidden" id="last_user_signature" name="last_user_signature" />
+                                    <input type="hidden" id="last_user_signature" name="last_user_signature" value='<?php echo "{$servicios->last_user_signature}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('last_user_signature')" />
 
                                     <!-- Botón para limpiar la firma -->
@@ -304,7 +315,7 @@
                                 <div>
                                     <x-input-label for="service_expense" :value="__('Gastos de servicios')" />
                                     <x-text-input id="service_expense" name="service_expense" type="text"
-                                        class="mt-1 w-full" required autofocus autocomplete="service_expense" />
+                                        class="mt-1 w-full" required autofocus autocomplete="service_expense" value='<?php echo "{$servicios->service_expense}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('service_expense')" />
                                 </div>
                             </div>
@@ -312,7 +323,7 @@
                                 <div>
                                     <x-input-label for="parts_expense" :value="__('Gastos de partes')" />
                                     <x-text-input id="parts_expense" name="parts_expense" type="text"
-                                        class="mt-1 w-full" required autofocus autocomplete="parts_expense" />
+                                        class="mt-1 w-full" required autofocus autocomplete="parts_expense" value='<?php echo "{$servicios->parts_expense}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('parts_expense')" />
                                 </div>
                             </div>
@@ -320,16 +331,25 @@
                                 <div>
                                     <x-input-label for="total" :value="__('Total')" />
                                     <x-text-input id="total" name="total" type="text" class="mt-1 w-full"
-                                        required autofocus autocomplete="total" />
+                                        required autofocus autocomplete="total"
+                                        :value="old('total', $servicios->parts_expense + $servicios->service_expense)" readonly />
                                     <x-input-error class="mt-2" :messages="$errors->get('total')" />
                                 </div>
                             </div>
-                            <div class="grid grid-cols-1 gap-6">
-                                <div>
-                                    <x-input-label for="annex" :value="__('Anexo')" />
-                                    <x-text-input id="annex" name="annex" type="text" class="mt-1 w-full"
-                                        required autofocus autocomplete="annex" />
-                                    <x-input-error class="mt-2" :messages="$errors->get('annex')" />
+
+
+                            <div>
+                                <label for="annex" style="color: white;">Anexo</label>
+                                <input id="annex" name="annex" type="file" class="mt-1 w-full"
+                                    required value='<?php echo "{$servicios->annex}"; ?>'/>
+                                <x-input-error class="mt-2" :messages="$errors->get('annex')" />
+
+                                <!-- Para mostrar la vista previa de la factura -->
+                                <div id="annex-preview-container">
+                                    <label for="annex">Vista previa del documento:</label>
+                                    <br>
+                                    <embed id="annex-document-preview" type="application/pdf" width="100%"
+                                        height="300px" />
                                 </div>
                             </div>
                         </div>
@@ -346,12 +366,22 @@
                                     class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
                             </div>
                         </div>
-                        
+
                     </div>
                 </form>
             </div>
         </section>
     </x-app-layout>
+
+    <script>
+    <?php
+    $properties = ["status", "services_type", "active_sublocation", "service_type"];
+    foreach ($properties as $property) {
+        echo "selectData(\"{$servicios->{$property}}\", \"$property\");\n";
+    }
+    ?>
+    </script>
+
     <script>
         let pantalla = 1;
 
