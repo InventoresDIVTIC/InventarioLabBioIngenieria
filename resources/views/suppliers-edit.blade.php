@@ -19,14 +19,16 @@
                     style="color: #d1d5db; font-size: 1.8rem; text-align: center; text-transform: uppercase; padding-bottom: 5px;">
                     Editar Proveedor</h2>
                 <p class="screen-title" style="color: #d1d5db;"></p>
-                <form id="form-inventario" class="space-y-6 w-full sm:w-96">
-                    <?php
-                        $id = $_GET['id'];
-                        $proveedor = DB::table('proveedores')
-                                        ->select('proveedores.*')
-                                        ->find($id);
+                <?php
+                $id = $_GET['id'];
+                $proveedor = DB::table('proveedores')
+                                ->select('proveedores.*')
+                                ->find($id);
 
-                    ?>
+                 ?>
+                    <form id="form-inventario" action="{{ route('suppliers.edit', ['id' => $proveedor->id]) }}" method="POST" class="space-y-6 w-full sm:w-96">
+                        @csrf
+                        @method('PATCH')
                     <!-- Pantalla 1: Datos Generales -->
                     <div>
                         <div>

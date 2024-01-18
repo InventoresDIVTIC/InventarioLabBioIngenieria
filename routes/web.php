@@ -83,6 +83,7 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/guardar-activo', [ActivesController::class, 'guardar'])->name('guardarActivo');
 Route::post('/guardar-proveedor', [SuppliersController::class, 'save'])->name('guardarProveedor');
+Route::patch('/editar-proveedor/{id}', [SuppliersController::class, 'edit_suppliers'])->name('suppliers.edit');
 Route::post('/guardar-ticket', [TicketsController::class, 'saveTicket'])->name('guardarTicket');
 Route::post('/guardar-servicios', [ServicesController::class, 'guardarServicios'])->name('guardar-servicios');
 
