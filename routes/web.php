@@ -82,10 +82,13 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/guardar-activo', [ActivesController::class, 'guardar'])->name('guardarActivo');
+Route::patch('/editar-activo/{id}', [ActivesController::class, 'edit_actives'])->name('actives.edit');
 Route::post('/guardar-proveedor', [SuppliersController::class, 'save'])->name('guardarProveedor');
 Route::patch('/editar-proveedor/{id}', [SuppliersController::class, 'edit_suppliers'])->name('suppliers.edit');
 Route::post('/guardar-ticket', [TicketsController::class, 'saveTicket'])->name('guardarTicket');
+Route::patch('/editar-ticket/{id}', [TicketsController::class, 'edit_tickets'])->name('tickets.edit');
 Route::post('/guardar-servicios', [ServicesController::class, 'guardarServicios'])->name('guardar-servicios');
+Route::patch('/editar-servicios/{id}', [ServicesController::class, 'edit_services'])->name('services.edit');
 
 
 require __DIR__.'/auth.php';
