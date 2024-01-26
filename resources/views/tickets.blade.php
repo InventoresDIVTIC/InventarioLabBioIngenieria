@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TICKETS | DEV LAB DE BIOINGENIERIA</title>
-    <meta name="keywords" content="">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/tickets.css">
 </head>
@@ -98,7 +97,7 @@
                                 foreach ($tickets as $tickets) { ?>
                                 <td>
                                     <div class="idtickets">
-                                        <a href="{{ route('tickets-edit') }}">
+                                        <a href="{{ route('tickets-edit', ['id' => $tickets->id]) }}">
                                             <div title="Editar este Ticket" class="editicon">
                                                 <svg style="float: left;" xmlns="http://www.w3.org/2000/svg"
                                                     fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -113,7 +112,6 @@
                                     </div>
                                 </td>
                                 <?php
-                                    // Obtén el nombre del usuario desde la tabla "users"
                                     $usuario = \App\Models\User::where('id', $tickets->user_id)->orderBy('name', 'desc')->pluck('name')->first();
                                     echo "<td>{$usuario}</td>";
                                     echo "<td>{$tickets->type}</td>";
@@ -146,13 +144,12 @@
     </div>
 </x-app-layout>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-
-<!-- Archivo de idioma en español -->
-<script src="https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
-<script src="https://bioingenieria.inventores.org/js/tickets.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <!-- Archivo de idioma en español -->
+    <script src="https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
+    <script src="https://bioingenieria.inventores.org/js/tickets.js"></script>
 
 </body>
 </html>

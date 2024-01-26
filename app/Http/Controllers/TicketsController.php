@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Tickets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 
 class TicketsController extends Controller
 {
@@ -31,7 +33,7 @@ class TicketsController extends Controller
         $ticket->request = $request->input('request');
         $ticket->type_request = $request->input('type_request');
         $ticket->priority = $request->input('priority');
-        $ticket->status = "pendiente";
+        $ticket->status = "Pendiente";
 
         // Guardar el Ticket en la base de datos
         $ticket->save();
@@ -39,4 +41,31 @@ class TicketsController extends Controller
         // Redireccionar o realizar otras acciones según tus necesidades
         return redirect()->back()->with('status', 'Ticket guardado exitosamente');
     }
+
+    public function edit_tickets($id, Request $request)
+    {
+        // Obtener el ticket existente por ID
+        $ticket = Tickets::find($id);
+
+        // Verificar si el ticket existe
+        if (!$ticket) {
+            return redirect()->back()->with('error', 'Ticket no encontrado');
+        }
+
+        // Actualizar los datos del ticket con los valores del formulario
+        $ticket->type = $request->type;
+        $ticket->type_request = $request->type_request;
+        $ticket->priority = $request->priority;
+        $ticket->status = $request->status;
+        $ticket->last_editor = $request->last_editor;
+        $ticket->solution = $request->solution;
+        //$ticket->commets = $request->comments;
+
+        // Guardar los cambios en la base de datos
+        $ticket->save();
+
+        // Redireccionar o realizar otras acciones según tus necesidades
+        return redirect()->back()->with('status', 'Ticket actualizado exitosamente');
+    }
+
 }
