@@ -21,45 +21,50 @@
                 <div class="flex items-center justify-center mt-4 screen-indicator">
                     <!-- Indicador de pantallas -->
                     <template x-for="screen in 4" :key="screen">
-                        <div x-bind:class="{ 'indicator active': pantalla === screen, 'indicator': pantalla !== screen }">
+                        <div
+                            x-bind:class="{ 'indicator active': pantalla === screen, 'indicator': pantalla !== screen }">
                         </div>
                     </template>
                 </div>
                 <p class="screen-title" x-text="'Pantalla ' + pantallaTitulo" style="color: #d1d5db;"></p>
-                <form id="form-inventario" class="space-y-6 w-full sm:w-96">
-                    <?php
-                        $id = $_GET['id']; 
-                        $activo = DB::table('activos')
-                                    ->join('activos_finanzas','activos.id','=','activos_finanzas.activo_id')
-                                    ->join('activos_proveeduria','activos.id','=','activos_proveeduria.activo_id')
-                                    ->join('activos_servicios','activos.id','=','activos_servicios.activo_id')
-                                    ->select('activos.*','activos_finanzas.*','activos_proveeduria.*','activos_servicios.*')
-                                    ->find($id);
-                    ?>
-                    <!-- Pantalla 1: Datos Generales -->
-                    <div x-data="{ pantalla }">
-                        <div x-show="pantalla === 1">
+                <?php
+                    $id = $_GET['id'];
+                    $activo = DB::table('activos')
+                        ->join('activos_finanzas', 'activos.id', '=', 'activos_finanzas.id')
+                        ->join('activos_proveeduria', 'activos.id', '=', 'activos_proveeduria.id')
+                        ->join('activos_servicios', 'activos.id', '=', 'activos_servicios.id')
+                        ->select('activos.*', 'activos_finanzas.*', 'activos_proveeduria.*', 'activos_servicios.*')
+                        ->where('activos.id', '=', $id)
+                        ->first();   
+                ?>
+                <!-- Pantalla 1: Datos Generales -->
+                <div x-data="{ pantalla }">
+
+                    <div x-show="pantalla === 1">
+                        <form id="form-inventario" action="{{ route('actives.edit', ['id' => $id]) }}"
+                            method="POST" class="space-y-6 w-full sm:w-96">
+                            @csrf
+                            @method('PATCH')
                             <div class="grid grid-cols-3 gap-6">
 
                                 <div>
-                                    <x-input-label for="name" :value="__('Nombre del artículo')" />
-                                    <x-text-input id="name" name="name" type="text" class="mt-1 w-full"
-                                        required autofocus autocomplete="name" value='<?php echo "{$activo->type}"; ?>'/>
-                                    <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                                    <x-input-label for="type" :value="__('Nombre del artículo')" />
+                                    <x-text-input id="type" name="type" type="text" class="mt-1 w-full"
+                                        value='<?php echo "{$activo->type}"; ?>' />
+                                    <x-input-error class="mt-2" :messages="$errors->get('type')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="description" :value="__('Descripción')" />
                                     <x-text-input id="description" name="description" type="text" class="mt-1 w-full"
-                                        required autocomplete="description" value='<?php echo "{$activo->description}"; ?>' />
+                                        value='<?php echo "{$activo->description}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('description')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="category" :value="__('Categoría')" />
                                     <select id="category" name="category"
-                                        class="mt-1 block w-full bg-gray-800 text-white" required autofocus
-                                        autocomplete="category">
+                                        class="mt-1 block w-full bg-gray-800 text-white">
                                         <option value="Equipo Médico">Equipo Médico</option>
                                         <option value="Equipo de medición / Simulacion">Equipo de medición / Simulacion
                                         </option>
@@ -84,29 +89,28 @@
                                 <div>
                                     <x-input-label for="brand" :value="__('Marca')" />
                                     <x-text-input id="brand" name="brand" type="text" class="mt-1 w-full"
-                                        required autocomplete="brand" value='<?php echo "{$activo->brand}"; ?>'/>
+                                        value='<?php echo "{$activo->brand}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('brand')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="model" :value="__('Modelo')" />
                                     <x-text-input id="model" name="model" type="text" class="mt-1 w-full"
-                                        required autocomplete="model" value='<?php echo "{$activo->model}"; ?>'/>
+                                        value='<?php echo "{$activo->model}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('model')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="serial" :value="__('No. de serie')" />
                                     <x-text-input id="serial" name="serial" type="text" class="mt-1 w-full"
-                                        required autofocus autocomplete="serial" value='<?php echo "{$activo->serial}"; ?>'/>
+                                        value='<?php echo "{$activo->serial}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('serial')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="location" :value="__('Ubicación')" />
                                     <select id="location" name="location"
-                                        class="mt-1 block w-full bg-gray-800 text-white" required autofocus
-                                        autocomplete="location">
+                                        class="mt-1 block w-full bg-gray-800 text-white">
                                         <option value="Ubicación 1">Ubicación 1</option>
                                         <option value="Ubicación 2">Ubicación 2</option>
                                         <option value="Ubicación 3">Ubicación 3</option>
@@ -117,8 +121,7 @@
                                 <div>
                                     <x-input-label for="sublocation" :value="__('Ubicación')" />
                                     <select id="sublocation" name="sublocation"
-                                        class="mt-1 block w-full bg-gray-800 text-white" required autofocus
-                                        autocomplete="sublocation">
+                                        class="mt-1 block w-full bg-gray-800 text-white">
                                         <option value="Sub Ubicación 1">Sub Ubicación 1</option>
                                         <option value="Sub Ubicación 2">Sub Ubicación 2</option>
                                         <option value="Sub Ubicación 3">Sub Ubicación 3</option>
@@ -129,8 +132,7 @@
                                 <div>
                                     <x-input-label for="status" :value="__('Estado')" />
                                     <select id="status" name="status"
-                                        class="mt-1 block w-full bg-gray-800 text-white" required autofocus
-                                        autocomplete="status">
+                                        class="mt-1 block w-full bg-gray-800 text-white">
                                         <option value="Funcional">Funcional</option>
                                         <option value="No funcional">No funcional</option>
                                         <option value="En mantenimiento">En mantenimiento</option>
@@ -142,11 +144,9 @@
                                     <x-input-error class="mt-2" :messages="$errors->get('status')" />
                                 </div>
                                 <div>
-
                                     <x-input-label for="hierarchy" :value="__('Jerarquia')" />
                                     <select id="hierarchy" name="hierarchy"
-                                        class="mt-1 block w-full bg-gray-800 text-white" required autofocus
-                                        autocomplete="hierarchy">
+                                        class="mt-1 block w-full bg-gray-800 text-white">
                                         <option value="Individual">Individual</option>
                                         <option value="Principal">Principal</option>
                                         <option value="Secundario">Secundario</option>
@@ -157,8 +157,7 @@
                                 <div>
                                     <x-input-label for="criticality" :value="__('Criticalidad')" />
                                     <select id="criticality" name="criticality"
-                                        class="mt-1 block w-full bg-gray-800 text-white" required autofocus
-                                        autocomplete="criticality">
+                                        class="mt-1 block w-full bg-gray-800 text-white">
                                         <option value="Por definir">Por definir</option>
                                         <option value="Alta">Alta</option>
                                         <option value="Media">Media</option>
@@ -166,16 +165,12 @@
                                     </select>
                                 </div>
                                 <div>
-
                                     <x-input-label for="risk" :value="__('Riesgo')" />
                                     <select id="risk" name="risk"
-                                        class="mt-1 block w-full bg-gray-800 text-white" required autofocus
-                                        autocomplete="risk">
+                                        class="mt-1 block w-full bg-gray-800 text-white">
                                         <option value="Por definir">Por definir</option>
-                                        <option value="Posible muerte del paciente">Posible muerte del paciente
-                                        </option>
-                                        <option value="Posible lesion o muerte del paciente">Posible lesion o muerte
-                                            del paciente</option>
+                                        <option value="Posible muerte del paciente">Posible muerte del paciente</option>
+                                        <option value="Posible lesion o muerte del paciente">Posible lesion o muerte del paciente</option>
                                         <option value="Baja">Baja</option>
                                     </select>
                                     <x-input-error class="mt-2" :messages="$errors->get('risk')" />
@@ -183,36 +178,40 @@
 
                                 <div>
                                     <x-input-label for="ing_assigned" :value="__('Ingeniero asignado')" />
-                                    <x-text-input id="ing_assigned" name="ing_assigned" type="text" class="mt-1 w-full"
-                                        required autocomplete="ing_assigned" value='<?php echo "{$activo->ing_assigned}"; ?>'/>
+                                    <x-text-input id="ing_assigned" name="ing_assigned" type="text"
+                                        class="mt-1 w-full"
+                                        value='<?php echo "{$activo->ing_assigned}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('ing_assigned')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="last_editor" :value="__('Ultimo editor')" />
                                     <x-text-input id="last_editor" name="last_editor" type="text"
-                                        class="mt-1 w-full" required autofocus autocomplete="last_editor" value='<?php echo "{$activo->last_editor}"; ?>'/>
+                                        class="mt-1 w-full"
+                                        readonly="readonly" value='<?php echo "{$activo->last_editor}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('last_editor')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="software_ver" :value="__('Version de software')" />
                                     <x-text-input id="software_ver" name="software_ver" type="text"
-                                        class="mt-1 w-full" required autocomplete="software_ver" value='<?php echo "{$activo->software_ver}"; ?>'/>
+                                        class="mt-1 w-full"
+                                        value='<?php echo "{$activo->software_ver}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('software_ver')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="so" :value="__('Sistema operativo')" />
                                     <x-text-input id="so" name="so" type="text" class="mt-1 w-full"
-                                        required autocomplete="so" value='<?php echo "{$activo->so}"; ?>'/>
+                                        value='<?php echo "{$activo->so}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('so')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="firmware_ver" :value="__('Verción de firmware')" />
                                     <x-text-input id="firmware_ver" name="firmware_ver" type="text"
-                                        class="mt-1 w-full" required autofocus autocomplete="firmware_ver" value='<?php echo "{$activo->firmware_ver}"; ?>'/>
+                                        class="mt-1 w-full"
+                                        value='<?php echo "{$activo->firmware_ver}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('firmware_ver')" />
                                 </div>
 
@@ -221,44 +220,57 @@
                                         <x-input-label for="comments" :value="__('Comentarios')" />
                                         <textarea id="comments" name="comments"
                                             class="mt-1 {{ $errors->has('comments') ? 'border-red-500' : 'border-gray-300' }} rounded-md shadow-sm focus:ring focus:ring-opacity-50 textarea-wide"
-                                            required autocomplete="comments" rows="3"><?php echo "{$activo->comments}"; ?></textarea>
+                                            rows="3"><?php echo "{$activo->comments}"; ?></textarea>
                                         <x-input-error class="mt-2" :messages="$errors->get('comments')" />
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Pantalla 2: Datos de Facturas -->
-                        <div x-show="pantalla === 2">
+                            <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
+                                <div>
+                                    <button type="button" id="btn-siguiente" x-show="pantalla < 4" @click="pantalla += 1"
+                                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
+                                <button type="submit" form="form-inventario"
+                                    class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
+                                </div> 
+                            </div>
+                        </form>
+                    </div>
+                    
+                    
+                    <!-- Pantalla 2: Datos de Facturas -->
+                    <div x-show="pantalla === 2">
+                        <form id="form-inventario-2" action="{{ route('actives.finanzas', ['id' => $id]) }}"
+                            method="POST" class="space-y-6 w-full sm:w-96">
+                            @csrf
+                            @method('PATCH')
                             <div class="grid grid-cols-2 gap-6">
                                 <div>
                                     <x-input-label for="bill_number" :value="__('Numero de la factura')" />
-                                    <x-text-input id="bill_number" name="bill_number" type="text"
-                                        class="mt-1 w-full" required autocomplete="bill_number" value='<?php echo "{$activo->bill_number}"; ?>'/>
+                                    <x-text-input id="bill_number" name="bill_number" type="text" class="mt-1 w-full"
+                                        value='<?php echo "{$activo->bill_number}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('bill_number')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="acquisition_date" :value="__('Fecha de adquisicion')" />
                                     <input type="date" id="acquisition_date" name="acquisition_date"
-                                        class="mt-1 block w-full" required autofocus
-                                        autocomplete="acquisition_date" value='<?php echo "{$activo->acquisition_date}"; ?>'/>
+                                        class="mt-1 block w-full"
+                                        value='<?php echo "{$activo->acquisition_date}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('acquisition_date')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="installation_date" :value="__('Fecha de instalacion')" />
                                     <input type="date" id="installation_date" name="installation_date"
-                                        class="mt-1 block w-full" required autofocus
-                                        autocomplete="installation_date" value='<?php echo "{$activo->installation_date}"; ?>'/>
+                                        class="mt-1 block w-full"
+                                        value='<?php echo "{$activo->installation_date}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('installation_date')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="divisa" :value="__('Divisa')" />
                                     <select id="divisa" name="divisa"
-                                        class="mt-1 block w-full bg-gray-800 text-white" required autofocus
-                                        autocomplete="divisa">
+                                        class="mt-1 block w-full bg-gray-800 text-white">
                                         <option value="Por definir">Por definir</option>
                                         <option value="MX">MX</option>
                                         <option value="USD">USD</option>
@@ -270,28 +282,29 @@
                                 <div>
                                     <x-input-label for="price" :value="__('Precio')" />
                                     <x-text-input id="price" name="price" type="text" class="mt-1 w-full"
-                                        required autocomplete="price" value='<?php echo "{$activo->price}"; ?>'/>
+                                        value='<?php echo "{$activo->price}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('price')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="warranty_start" :value="__('Inicio de la garantía')" />
                                     <input type="date" id="warranty_start" name="warranty_start"
-                                        class="mt-1 block w-full" required autofocus autocomplete="warranty_start" value='<?php echo "{$activo->warranty_start}"; ?>'/>
+                                        class="mt-1 block w-full"
+                                        value='<?php echo "{$activo->warranty_start}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('warranty_start')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="warranty_end" :value="__('Fin de la garantía')" />
                                     <input type="date" id="warranty_end" name="warranty_end"
-                                        class="mt-1 block w-full" required autofocus autocomplete="warranty_end" value='<?php echo "{$activo->warranty_end}"; ?>'/>
+                                        class="mt-1 block w-full"
+                                        value='<?php echo "{$activo->warranty_end}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('warranty_end')" />
                                 </div>
 
                                 <div>
                                     <label for="bill" style="color: white;">Factura</label>
-                                    <input id="bill" name="bill" type="file" class="mt-1 w-full"
-                                        required />
+                                    <input id="bill" name="bill" type="file" class="mt-1 w-full"/>
                                     <x-input-error class="mt-2" :messages="$errors->get('bill')" />
 
                                     <!-- Para mostrar la vista previa de la factura -->
@@ -306,7 +319,7 @@
                                 <div>
                                     <label for="warranty_letter" style="color: white;">Carta de garantía</label>
                                     <input id="warranty_letter" name="warranty_letter" type="file"
-                                        class="mt-1 w-full" required />
+                                        class="mt-1 w-full"/>
                                     <x-input-error class="mt-2" :messages="$errors->get('warranty_letter')" />
 
                                     <!-- Para mostrar la vista previa de la carta de garantía -->
@@ -321,7 +334,7 @@
                                 <div>
                                     <label for="health_registration" style="color: white;">Registro sanitario</label>
                                     <input id="health_registration" name="health_registration" type="file"
-                                        class="mt-1 w-full" required />
+                                        class="mt-1 w-full"/>
                                     <x-input-error class="mt-2" :messages="$errors->get('health_registration')" />
 
                                     <!-- Para mostrar la vista previa del registro sanitario -->
@@ -373,54 +386,68 @@
                                 <div>
                                     <x-input-label for="import" :value="__('Importe')" />
                                     <x-text-input id="import" name="import" type="text" class="mt-1 w-full"
-                                        required autocomplete="import" value='<?php echo "{$activo->import}"; ?>'/>
+                                        value='<?php echo "{$activo->import}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('import')" />
                                 </div>
                             </div>
-                        </div>
+                            <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
+                                <div>
+                                    <button type="button" id="btn-anterior" x-show="pantalla > 1" @click="pantalla -= 1"
+                                        class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
+                                    <button type="button" id="btn-siguiente" x-show="pantalla < 3" @click="pantalla += 1"
+                                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
+                                    <button type="submit" form="form-inventario-2"
+                                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
+                                </div> 
+                            </div>
+                        </form>
+                    </div>
 
-                        <!-- Pantalla 3: Datos de registro y mantenimiento -->
-                        <div x-show="pantalla === 3">
+                    <!-- Pantalla 3: Datos de registro y mantenimiento -->
+                    <div x-show="pantalla === 3">
+                        <form id="form-inventario-3" action="{{ route('actives.proveeduria', ['id' => $id]) }}"
+                            method="POST" class="space-y-6 w-full sm:w-96">
+                            @csrf
+                            @method('PATCH')
                             <div class="grid grid-cols-3 gap-6">
                                 <div>
                                     <x-input-label for="belonging" :value="__('Pertenencia')" />
                                     <x-text-input id="belonging" name="belonging" type="text" class="mt-1 w-full"
-                                        required autocomplete="belonging" value='<?php echo "{$activo->belonging}"; ?>'/>
+                                        value='<?php echo "{$activo->belonging}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('belonging')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="owner" :value="__('Propietario')" />
                                     <x-text-input id="owner" name="owner" type="text" class="mt-1 w-full"
-                                        required autocomplete="owner" value='<?php echo "{$activo->owner}"; ?>'/>
+                                        value='<?php echo "{$activo->owner}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('owner')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="sold_by" :value="__('Vendido por')" />
                                     <x-text-input id="sold_by" name="sold_by" type="text" class="mt-1 w-full"
-                                        required autocomplete="sold_by" value='<?php echo "{$activo->sold_by}"; ?>'/>
+                                        value='<?php echo "{$activo->sold_by}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('sold_by')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="guarder_by" :value="__('Resguardado por')" />
-                                    <x-text-input id="guarder_by" name="guarder_by" type="text"
-                                        class="mt-1 w-full" required autocomplete="guarder_by" value='<?php echo "{$activo->guarder_by}"; ?>'/>
+                                    <x-text-input id="guarder_by" name="guarder_by" type="text" class="mt-1 w-full"
+                                        value='<?php echo "{$activo->guarder_by}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('guarder_by')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="frecuency_mprev" :value="__('Frecuencia de Mantenimiento Preventivo')" />
                                     <select id="frecuency_mprev" name="frecuency_mprev"
-                                        class="mt-1 block w-full bg-gray-800 text-white" required autofocus
-                                        autocomplete="frecuency_mprev">
+                                        class="mt-1 block w-full bg-gray-800 text-white">
                                         <option value="" selected disabled>Seleccione una opción</option>
-                                        <option value="anual">Anual</option>
-                                        <option value="semestral">Semestral</option>
-                                        <option value="trimestral">Trimestral</option>
-                                        <option value="mensual">Mensual</option>
-                                        <option value="semanal">Semanal</option>
+                                        <option value="Anual">Anual</option>
+                                        <option value="Semestral">Semestral</option>
+                                        <option value="Trimestral">Trimestral</option>
+                                        <option value="Mensual">Mensual</option>
+                                        <option value="Semanal">Semanal</option>
                                     </select>
                                     <x-input-error class="mt-2" :messages="$errors->get('frecuency_mprev')" />
                                 </div>
@@ -428,39 +455,57 @@
                                 <div>
                                     <x-input-label for="service_provider" :value="__('Proveedor del servicio')" />
                                     <x-text-input id="service_provider" name="service_provider" type="text"
-                                        class="mt-1 w-full" required autocomplete="service_provider" value='<?php echo "{$activo->service_provider}"; ?>'/>
+                                        class="mt-1 w-full"
+                                        value='<?php echo "{$activo->service_provider}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('service_provider')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="last_mprev" :value="__('Ultimo mantenimiento preventivo')" />
-                                    <x-text-input id="last_mprev" name="last_mprev" type="text"
-                                        class="mt-1 w-full" required autocomplete="last_mprev" value='<?php echo "{$activo->last_mprev}"; ?>'/>
+                                    <x-text-input id="last_mprev" name="last_mprev" type="text" class="mt-1 w-full"
+                                        value='<?php echo "{$activo->last_mprev}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('last_mprev')" />
                                 </div>
                                 <div>
                                     <x-input-label for="next_mprev" :value="__('Siguiente mantenimiento preventivo')" />
-                                    <x-text-input id="next_mprev" name="next_mprev" type="text"
-                                        class="mt-1 w-full" required autocomplete="next_mprev" value='<?php echo "{$activo->next_mprev}"; ?>'/>
+                                    <x-text-input id="next_mprev" name="next_mprev" type="text" class="mt-1 w-full"
+                                        value='<?php echo "{$activo->next_mprev}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('next_mprev')" />
                                 </div>
                             </div>
-                        </div>
+                            <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
+                                <div>
+                                    <button type="button" id="btn-anterior" x-show="pantalla > 1" @click="pantalla -= 1"
+                                        class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
+                                    <button type="button" id="btn-siguiente" x-show="pantalla < 4" @click="pantalla += 1"
+                                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
+                                    <button type="submit" form="form-inventario-3"
+                                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
+                                </div> 
+                            </div>
+                        </form>
+                    </div>
 
-                        <!-- Pantalla 4: Datos de eliminacion -->
-                        <div x-show="pantalla === 4">
+                    <!-- Pantalla 4: Datos de eliminacion -->
+                    <div x-show="pantalla === 4">
+                        <form id="form-inventario-4" action="{{ route('actives.delete', ['id' => $id]) }}" 
+                            method="POST" class="space-y-6 w-full sm:w-96">
+                            @csrf
+                            @method('PATCH')
                             <div class="grid grid-cols-1 gap-6">
                                 <div>
                                     <x-input-label for="leaving_date" :value="__('Fecha de baja')" />
                                     <x-text-input id="leaving_date" name="leaving_date" type="text"
-                                        class="mt-1 w-full" required autocomplete="leaving_date" value='<?php echo "{$activo->leaving_date}"; ?>'/>
+                                        class="mt-1 w-full" readonly="readonly"
+                                        value='<?php echo "{$activo->leaving_date}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('leaving_date')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="leaving_comments" :value="__('Comentarios de la eliminacion')" />
                                     <x-text-input id="leaving_comments" name="leaving_comments" type="text"
-                                        class="mt-1 w-full" required autocomplete="leaving_comments" value='<?php echo "{$activo->leaving_comments}"; ?>'/>
+                                        class="mt-1 w-full"
+                                        value='<?php echo "{$activo->leaving_comments}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('leaving_comments')" />
                                 </div>
 
@@ -474,33 +519,26 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-
-                        <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
-                            <div>
-                                <button type="button" id="btn-anterior" x-show="pantalla > 1"
-                                    @click="pantalla -= 1"
-                                    class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
-                                <button type="button" id="btn-siguiente" x-show="pantalla < 4"
-                                    @click="pantalla += 1"
-                                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
-                                <button type="submit" x-show="pantalla > 0"
-                                    class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
+                            <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
+                                <div>
+                                    <button type="button" id="btn-anterior" x-show="pantalla > 1" @click="pantalla -= 1"
+                                        class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
+                                    <button type="submit" form="form-inventario-4"
+                                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
+                                </div> 
                             </div>
-                        </div>
+                        </form>
                     </div>
-            </div>
-            </form>
+                </div>
             </div>
         </section>
     </x-app-layout>
     <script>
         <?php
-            $properties = ["category", "location", "sublocation", "status", "hierarchy", "criticality", "risk", "divisa", "frecuency_mprev"];
-            foreach ($properties as $property) {
-                echo "selectData('{$activo->{$property}}', '$property');";
-            }
+        $properties = ['category', 'location', 'sublocation', 'status', 'hierarchy', 'criticality', 'risk', 'divisa', 'frecuency_mprev'];
+        foreach ($properties as $property) {
+            echo "selectData('{$activo->{$property}}', '$property');";
+        }
         ?>
     </script>
     <script>
