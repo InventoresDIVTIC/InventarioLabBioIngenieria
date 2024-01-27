@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('activos_servicios', function (Blueprint $table) {
-            $table->unsignedInteger('activo_id')->primary();
+            $table->unsignedInteger('id')->primary();
             $table->string('frecuency_mprev', 45)->nullable();
             $table->string('service_provider')->nullable();
             $table->date('last_mprev')->nullable();

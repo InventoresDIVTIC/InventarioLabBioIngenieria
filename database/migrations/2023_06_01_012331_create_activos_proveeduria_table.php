@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('activos_proveeduria', function (Blueprint $table) {
-            $table->unsignedInteger('activo_id')->primary();
+            $table->unsignedInteger('id')->primary();
             $table->string('belonging', 45)->nullable();
             $table->string('owner', 45)->nullable();
             $table->string('sold_by', 45)->nullable();

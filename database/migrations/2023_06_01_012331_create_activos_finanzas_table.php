@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('activos_finanzas', function (Blueprint $table) {
-            $table->unsignedInteger('activo_id')->primary();
+            $table->unsignedInteger('id')->primary();
             $table->string('bill_number', 45)->nullable();
             $table->date('acquisition_date')->nullable();
             $table->date('installation_date')->nullable();
