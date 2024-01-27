@@ -52,12 +52,15 @@ class TicketsController extends Controller
             return redirect()->back()->with('error', 'Ticket no encontrado');
         }
 
+        // Obtener el Nombre del usuario que esta editando
+        $user_name = Auth::user()->name;
+
         // Actualizar los datos del ticket con los valores del formulario
         $ticket->type = $request->type;
         $ticket->type_request = $request->type_request;
         $ticket->priority = $request->priority;
         $ticket->status = $request->status;
-        $ticket->last_editor = $request->last_editor;
+        $ticket->last_editor = $user_name;
         $ticket->solution = $request->solution;
         //$ticket->commets = $request->comments;
 

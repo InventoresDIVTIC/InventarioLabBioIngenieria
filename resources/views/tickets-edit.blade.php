@@ -36,20 +36,19 @@
                                 <div>
                                     <x-input-label for="type" :value="__('Nombre del artículo')" />
                                     <x-text-input id="type" name="type" type="text" class="mt-1 w-full"
-                                        required autocomplete="type" value='<?php echo "{$ticket->type}"; ?>'/>
+                                        value='<?php echo "{$ticket->type}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('type')" />
                                 </div>
                                 <div>
                                     <x-input-label for="type_request" :value="__('Tipo de peticion')" />
                                     <x-text-input id="type_request" name="type_request" type="text"
-                                        class="mt-1 w-full" required autocomplete="type_request" value='<?php echo "{$ticket->type_request}"; ?>'/>
+                                        class="mt-1 w-full" value='<?php echo "{$ticket->type_request}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('type_request')" />
                                 </div>
                                 <div>
                                     <x-input-label for="priority" :value="__('Prioridad')" />
                                     <select id="priority" name="priority"
-                                        class="mt-1 block w-full bg-gray-800 text-white" required autofocus
-                                        autocomplete="priority">
+                                        class="mt-1 block w-full bg-gray-800 text-white">
                                         <option value="Por definir">Por definir</option>
                                         <option value="Baja">Baja</option>
                                         <option value="Media">Media</option>
@@ -62,8 +61,7 @@
                                 <div>
                                     <x-input-label for="status" :value="__('Estatus')" />
                                     <select id="status" name="status"
-                                        class="mt-1 block w-full bg-gray-800 text-white" required autofocus
-                                        autocomplete="status">
+                                        class="mt-1 block w-full bg-gray-800 text-white">
                                         <option value="Por definir">Por definir</option>
                                         <option value="Abierto">Abierto</option>
                                         <option value="En proceso">En proceso</option>
@@ -75,8 +73,8 @@
                                 </div>
                                 <div>
                                     <x-input-label for="last_editor" :value="__('Ultimo editor')" />
-                                    <x-text-input id="last_editor" name="last_editor" type="text" class="mt-1 w-full" 
-                                        required autocomplete="last_editor" value='<?php echo "{$ticket->last_editor}"; ?>'/>
+                                    <x-text-input id="last_editor" name="last_editor" type="text" class="mt-1 w-full" readonly="readonly" 
+                                        value='<?php echo "{$ticket->last_editor}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('last_editor')" />
                                 </div>
                                 <div class="flex justify-center">
@@ -84,7 +82,7 @@
                                         <x-input-label for="solution" :value="__('Motivo')" />
                                         <textarea id="solution" name="solution"
                                             class="mt-1 {{ $errors->has('solution') ? 'border-red-500' : 'border-gray-300' }} rounded-md shadow-sm focus:ring focus:ring-opacity-50 textarea-wide"
-                                            required autocomplete="solution" rows="3"><?php echo "{$ticket->solution}"; ?></textarea>
+                                            rows="3"><?php echo "{$ticket->solution}"; ?></textarea>
                                         <x-input-error class="mt-2" :messages="$errors->get('solution')" />
                                     </div>
                                 </div>
@@ -94,7 +92,7 @@
                                         <x-input-label for="comments" :value="__('Comentarios')" />
                                         <textarea id="comments" name="comments"
                                             class="mt-1 {{ $errors->has('comments') ? 'border-red-500' : 'border-gray-300' }} rounded-md shadow-sm focus:ring focus:ring-opacity-50 textarea-wide"
-                                            required autocomplete="comments" rows="3"><?php // echo "{$ticket->comments}"; ?></textarea>
+                                            rows="3"><?php // echo "{$ticket->comments}"; ?></textarea>
                                         <x-input-error class="mt-2" :messages="$errors->get('comments')" />
                                     </div>
                                 </div>
