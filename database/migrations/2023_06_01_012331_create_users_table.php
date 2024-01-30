@@ -27,6 +27,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('photo')->default('Profile-img/user.png');
+            $table->timestamp('last_seen')->nullable();
             $table->date('delete_date')->nullable();
             $table->string('reason', 45)->nullable();
             $table->string('delete_comments', 45)->nullable();
