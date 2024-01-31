@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/edit-perfil.css">
   <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <title>MI PERFIL</title>
+  <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
 </head>
 <body>
     <x-app-layout>

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/inventory.css">
     <script src="https://bioingenieria.inventores.org/js/select-edit.js"></script>
     <title>DEV LAB DE BIOINGENIERIA</title>
+    <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
 </head>
 
 <body>

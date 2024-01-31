@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/wellcome.css">
     <title>DEV LAB DE BIOINGENIERIA</title>
+    <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
     </head>
     <body>
      <section>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>INVENTARIO | DEV LAB DE BIOINGENIERIA</title>
+    <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
     <meta name="keywords" content="">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/inventory.css">
