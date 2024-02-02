@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('servicios_gastos', function (Blueprint $table) {
-            $table->unsignedInteger('services_id')->primary();
+            $table->unsignedInteger('id')->primary();
             $table->string('service_expense', 45)->nullable();
             $table->string('parts_expense', 45)->nullable();
             $table->string('total', 45)->nullable();

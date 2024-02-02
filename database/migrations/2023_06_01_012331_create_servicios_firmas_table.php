@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('servicios_firmas', function (Blueprint $table) {
-            $table->unsignedInteger('services_id')->primary();
+            $table->unsignedInteger('id')->primary();
             $table->string('service_head_signature')->nullable();
             $table->string('service_enigieer_signature')->nullable();
             $table->string('last_user_signature')->nullable();

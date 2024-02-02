@@ -4,11 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="/ruta/hacia/signature-pad.js"></script>
-    <link rel="stylesheet" href="/ruta/hacia/signature-pad.css">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/inventory.css">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/modal-table.css">
-    <script src="https://bioingenieria.inventores.org/js/inventory-edit.js"></script>
+    <script src="https://bioingenieria.inventores.org/js/select-edit.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
     <title>DEV LAB DE BIOINGENIERIA</title>
 </head>
@@ -25,27 +23,25 @@
                         <div x-bind:class="{ 'indicator active': pantalla === screen, 'indicator': pantalla !== screen }"></div>
                     </template>
                 </div>
+                <?php
+                    $id = $_GET['id'];
+                    $servicios = DB::table('servicios')
+                        ->join('servicios_detalles', 'servicios.id', '=', 'servicios_detalles.id')
+                        ->join('servicios_firmas', 'servicios.id', '=', 'servicios_firmas.id')
+                        ->join('servicios_gastos', 'servicios.id', '=', 'servicios_gastos.id')
+                        ->select('servicios.*', 'servicios_detalles.*', 'servicios_firmas.*', 'servicios_gastos.*')
+                        ->where('servicios.id', '=', $id)
+                        ->first();
+                ?>
+                <!-- Pantalla-->
                 <p class="screen-title" x-text="'Pantalla ' + pantallaTitulo" style="color: #d1d5db;"></p>
-                <form id="form-inventario" class="space-y-6 w-full sm:w-96">
-                    <?php
-                        $id = $_GET['id'];
-                        $servicios = DB::table('servicios')
-                                    ->join('servicios_detalles','servicios.id','=','servicios_detalles.services_id')
-                                    ->join('servicios_firmas','servicios.id','=','servicios_firmas.services_id')
-                                    ->join('servicios_gastos','servicios.id','=','servicios_gastos.services_id')
-                                    ->select('servicios.*','servicios_detalles.*','servicios_firmas.*','servicios_gastos.*')
-                                    ->find($id);
-                    ?>
+                <form id="form-services-1" action="{{ route('services.edit', ['id' => $servicios->id]) }}" method="POST" class="space-y-6 w-full sm:w-96">
+                    @csrf
+                    @method('PATCH')
                     <!-- Pantalla 1: Datos Generales -->
                     <div x-data="{ pantalla }">
                         <div x-show="pantalla === 1">
                             <div class="grid grid-cols-2 gap-6">
-                                <div>
-                                    <x-input-label for="name" :value="__('Nombre del servicio')" />
-                                    <x-text-input id="name" name="name" type="text" class="mt-1 w-full"
-                                        required autofocus autocomplete="name"/>
-                                    <x-input-error class="mt-2" :messages="$errors->get('name')" />
-                                </div>
                                 <div>
                                     <x-input-label for="assigned_engineer" :value="__('Ingeniero asignado')" />
                                     <x-text-input id="assigned_engineer" name="assigned_engineer" type="text"
@@ -75,9 +71,9 @@
                                     <x-input-error class="mt-2" :messages="$errors->get('services_type')" />
                                 </div>
                                 <div>
-                                    <x-input-label for="active_model" :value="__('Modelo activo')" />
-                                    <x-text-input id="active_model" name="active_model" type="text"
-                                        class="mt-1 w-full" required autofocus autocomplete="active_model" value='<?php echo "{$servicios->active_model}"; ?>' />
+                                    <x-input-label for="model" :value="__('Modelo activo')" />
+                                    <x-text-input id="model" name="model" type="text"
+                                        class="mt-1 w-full" required autofocus autocomplete="model" value='<?php echo "{$servicios->active_model}"; ?>' readonly/>
                                     <x-input-error class="mt-2" :messages="$errors->get('active_model')" />
                                 </div>
                                 <div>
@@ -96,31 +92,29 @@
                                 <div>
                                     <x-input-label for="service_type" :value="__('Tipo de servicio')" />
                                     <div>
-                                        <select id="services_type" name="services_type"
+                                        <select id="service_type" name="service_type"
                                             class="mt-1 block w-full bg-gray-800 text-white" required autofocus
-                                            autocomplete="services_type">
+                                            autocomplete="service_type">
                                             <option value="Servicio 1">Servicio 1</option>
                                         </select>
                                     </div>
-                                    <x-input-error class="mt-2" :messages="$errors->get('services_type')" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('service_type')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="supplier_name" :value="__('Proveedor')" />
-
                                     <x-text-input id="supplier_id" name="supplier_id" type="hidden"
-                                        class="mt-1 block w-full" required autofocus autocomplete="supplier_id" />
-
+                                        class="mt-1 block w-full" required autofocus autocomplete="supplier_id" value='<?php echo "{$servicios->supplier_id}"; ?>'/>
                                     <x-text-input id="supplier_name" name="supplier_name" type="text"
                                         class="mt-1 block w-full" required autofocus autocomplete="supplier_name" value='<?php echo "{$servicios->supplier_name}"; ?>'
                                         x-on:click.prevent="$dispatch('open-modal', 'show_table_prov')" readonly />
                                     @include('layouts.modal-proveedores-table')
-                                    <x-input-error class="mt-2" :messages="$errors->get('supplier_name')" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('supplier_id')" />
                                 </div>
                                 <div>
                                     <x-input-label for="type" :value="__('Activo')" />
                                     <x-text-input id="active_id" name="active_id" type="hidden"
-                                        class="mt-1 block w-full" required autofocus autocomplete="active_id" />
+                                        class="mt-1 block w-full" required autofocus autocomplete="active_id" value='<?php echo "{$servicios->active_id}"; ?>'/>
                                     <x-text-input id="type" name="type" type="text" class="mt-1 block w-full"
                                         required autofocus autocomplete="type" value='<?php echo "{$servicios->active_name}"; ?>'
                                         x-on:click.prevent="$dispatch('open-modal', 'show_table_activos_prov')"
@@ -146,11 +140,24 @@
                                         required autofocus autocomplete="reference" value='<?php echo "{$servicios->reference}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('reference')" />
                                 </div>
+                                <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
+                                    <div>
+                                        <button type="button" id="btn-siguiente" x-show="pantalla < 4"
+                                            @click="pantalla += 1"
+                                            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
+                                        <button type="submit" x-show="pantalla > 0"
+                                            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </form>
 
                         <!-- Pantalla 2: Datos de las Facturas -->
                         <div x-show="pantalla === 2">
+                        <form id="form-services-2" action="{{ route('services.edit.detalles', ['id' => $servicios->id]) }}" method="POST" class="space-y-6 w-full sm:w-96">
+                                @csrf
+                                @method('PATCH')
                             <div class="grid grid-cols-2 gap-6">
                                 <div>
                                     <x-input-label for="assigned_enginier" :value="__('Ingeniero asignado del servicio')" />
@@ -169,10 +176,10 @@
                             </div>
                             <div class="grid grid-cols-2 gap-6">
                                 <div>
-                                    <x-input-label for="hours" :value="__('Hora de inicio')" />
-                                    <input id="hours" name="hours" type="time" class="mt-1 w-full" required
-                                        autofocus autocomplete="hours" value='<?php echo "{$servicios->hours}"; ?>'/>
-                                    <x-input-error class="mt-2" :messages="$errors->get('hours')" />
+                                    <x-input-label for="starting_hour" :value="__('Hora de inicio')" />
+                                    <input id="starting_hour" name="starting_hour" type="time" class="mt-1 w-full" required
+                                        autofocus autocomplete="starting_hour" value='<?php echo "{$servicios->starting_hour}"; ?>'/>
+                                    <x-input-error class="mt-2" :messages="$errors->get('starting_hour')" />
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-6">
@@ -186,10 +193,10 @@
 
                             <div class="grid grid-cols-2 gap-6">
                                 <div>
-                                    <x-input-label for="minutes" :value="__('Hora de termino')" />
-                                    <input id="minutes" name="minutes" type="time" class="mt-1 w-full" required
-                                        autofocus autocomplete="minutes" step="60" value='<?php echo "{$servicios->minutes}"; ?>'/>
-                                    <x-input-error class="mt-2" :messages="$errors->get('minutes')" />
+                                    <x-input-label for="end_hour" :value="__('Hora de termino')" />
+                                    <input id="end_hour" name="end_hour" type="time" class="mt-1 w-full" required
+                                        autofocus autocomplete="end_hour" step="60" value='<?php echo "{$servicios->end_hour}"; ?>'/>
+                                    <x-input-error class="mt-2" :messages="$errors->get('end_hour')" />
                                 </div>
                             </div>
                             <div>
@@ -198,10 +205,56 @@
                                     required autofocus autocomplete="summary" value='<?php echo "{$servicios->summary}"; ?>'/>
                                 <x-input-error class="mt-2" :messages="$errors->get('summary')" />
                             </div>
+                            <div>
+                                <x-input-label for="description" :value="__('Descripcion')" />
+                                <x-text-input id="description" name="description" type="text" class="mt-1 w-full"
+                                    required autofocus autocomplete="description" value='<?php echo "{$servicios->description}"; ?>'/>
+                                <x-input-error class="mt-2" :messages="$errors->get('description')" />
+                            </div>
+                            <div>
+                                <x-input-label for="conclusions" :value="__('Conclusiones')" />
+                                <x-text-input id="conclusions" name="conclusions" type="text" class="mt-1 w-full"
+                                    required autofocus autocomplete="conclusions" value='<?php echo "{$servicios->conclusions}"; ?>'/>
+                                <x-input-error class="mt-2" :messages="$errors->get('conclusions')" />
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-6">
+                                <div>
+                                    <x-input-label for="created_at" :value="__('Fecha de creación')" />
+                                    <input id="created_at" name="created_at" type="date" class="mt-1 w-full"
+                                        required autofocus autocomplete="created_at" value='<?php echo "{$servicios->created_at}"; ?>' readonly/>
+                                    <x-input-error class="mt-2" :messages="$errors->get('created_at')" />
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-6">
+                                <div>
+                                    <x-input-label for="updated_at" :value="__('Fecha de edicion')" />
+                                    <input id="updated_at" name="updated_at" type="date" class="mt-1 w-full"
+                                        required autofocus autocomplete="updated_at" value='<?php echo "{$servicios->updated_at}"; ?>' readonly/>
+                                    <x-input-error class="mt-2" :messages="$errors->get('updated_at')" />
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
+                                <div>
+                                    <button type="button" id="btn-anterior" x-show="pantalla > 1"
+                                        @click="pantalla -= 1"
+                                        class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
+                                    <button type="button" id="btn-siguiente" x-show="pantalla < 4"
+                                        @click="pantalla += 1"
+                                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
+                                    <button type="submit" x-show="pantalla > 0"
+                                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
+                                </div>
+                            </div>
                         </div>
+                    </form>
 
                         <!-- Pantalla 3: Datos de registro y mantenimiento -->
-                        <div x-show="pantalla === 3">
+                <div x-show="pantalla === 3">
+                    <form id="form-services-3" action="{{ route('services.edit.firmas', ['id' => $servicios->id]) }}" method="POST" class="space-y-6 w-full sm:w-96">
+                            @csrf
+                            @method('PATCH')
                             <div class="grid grid-cols-2 gap-6">
                                 <div>
                                     <x-input-label for="service_head_signature" :value="__('Firma del jefe de servicio')" />
@@ -307,9 +360,25 @@
                                     }
                                 });
                             </script>
+                            <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
+                                <div>
+                                   <button type="button" id="btn-anterior" x-show="pantalla > 1"
+                                   @click="pantalla -= 1"
+                                   class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
+                                   <button type="button" id="btn-siguiente" x-show="pantalla < 4"
+                                   @click="pantalla += 1"
+                                   class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
+                                  <button type="submit" x-show="pantalla > 0"
+                                  class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
+                              </div>
+                           </div>
                         </div>
+                    </form>
 
                         <!-- Pantalla 4: Datos de eliminacion -->
+                    <form id="form-services-4" action="{{ route('services.edit.gastos', ['id' => $servicios->id]) }}" method="POST" enctype="multipart/form-data" class="space-y-6 w-full sm:w-96">
+                        @csrf
+                        @method('PATCH')
                         <div x-show="pantalla === 4">
                             <div class="grid grid-cols-1 gap-6">
                                 <div>
@@ -337,36 +406,57 @@
                                 </div>
                             </div>
 
-
                             <div>
                                 <label for="annex" style="color: white;">Anexo</label>
-                                <input id="annex" name="annex" type="file" class="mt-1 w-full"
-                                    required value='<?php echo "{$servicios->annex}"; ?>'/>
+                                <input id="annex" name="annex" type="file" accept=".pdf" class="mt-1 w-full" onchange="previewAnnex()" />
                                 <x-input-error class="mt-2" :messages="$errors->get('annex')" />
 
-                                <!-- Para mostrar la vista previa de la factura -->
+                                <!-- Para mostrar la vista previa del documento existente -->
                                 <div id="annex-preview-container">
                                     <label for="annex">Vista previa del documento:</label>
                                     <br>
-                                    <embed id="annex-document-preview" type="application/pdf" width="100%"
-                                        height="300px" />
+                                    @if($servicios->annex)
+                                        <embed id="annex-document-preview" type="application/pdf" width="100%" height="300px" src="{{ asset($servicios->annex) }}" />
+                                    @else
+                                        <p>No hay anexo existente.</p>
+                                    @endif
+                                </div>
+                            </div>
+                            <script>
+                                function previewAnnex() {
+                                    var input = document.getElementById('annex');
+                                    var preview = document.getElementById('annex-document-preview');
+
+                                    if (input.files && input.files.length > 0) {
+                                        var reader = new FileReader();
+
+                                        reader.onload = function (e) {
+                                            preview.src = e.target.result;
+                                        }
+
+                                        reader.readAsDataURL(input.files[0]);
+                                    } else {
+                                        preview.src = ''; // Establecer preview.src en blanco
+                                    }
+                                }
+                            </script>
+
+
+
+                            <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
+                                <div>
+                                    <button type="button" id="btn-anterior" x-show="pantalla > 1"
+                                        @click="pantalla -= 1"
+                                        class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
+                                    <button type="button" id="btn-siguiente" x-show="pantalla < 4"
+                                        @click="pantalla += 1"
+                                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
+                                    <button type="submit" x-show="pantalla > 0"
+                                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
-                            <div>
-                                <button type="button" id="btn-anterior" x-show="pantalla > 1"
-                                    @click="pantalla -= 1"
-                                    class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
-                                <button type="button" id="btn-siguiente" x-show="pantalla < 4"
-                                    @click="pantalla += 1"
-                                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
-                                <button type="submit" x-show="pantalla > 0"
-                                    class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
-                            </div>
-                        </div>
-
+                    </form>
                     </div>
                 </form>
             </div>

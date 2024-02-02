@@ -80,24 +80,6 @@
                             x-on:click.prevent="$dispatch('open-modal', 'show_table_activos_prov')" readonly />
                         @include('layouts.modal-activos-prov-table')
                         <x-input-error class="mt-2" :messages="$errors->get('active_id')" />
-
-
-                        <!--
-                        <div x-data="customSelect()">
-                            <select id="active_name" name="active_name" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="active_name" @change="selectOption($event)">
-                                <?php
-                                // Obtener los nombres de los proveedores desde la base de datos o alguna otra fuente de datos
-                                //$activos = DB::table('activos')->pluck('type');
-
-                                // Iterar sobre los nombres de los proveedores y crear las opciones
-                                //foreach ($activos as $activo) {
-                                  //  echo "<option value=\"$activo\">$activo</option>";
-                                //}
-                                ?>
-                            </select>
-                            <input type="hidden" name="active_name_selected" x-bind:value="selectedValue">
-                        </div>
-                         -->
                     </div>
 
                     <div>
@@ -173,15 +155,6 @@
 
                         const selectedValueFieldType = document.querySelector('input[name="services_type_selected"]');
                         selectedValueFieldType.value = customSelect().selectedValue;
-
-                        //const selectedValueFieldSupplier = document.querySelector('input[name="supplier_name_selected"]');
-                        //selectedValueFieldSupplier.value = customSelect().selectedValue;
-                        //const supplierId = selectedSupplier.options[selectedSupplier.selectedIndex].getAttribute('data-id');
-                        //document.querySelector('input[name="supplier_id"]').value = supplierId;
-                        //const selectedValueFieldActives = document.querySelector('input[name="active_name_selected"]');
-                        //selectedValueFieldActives.value = customSelect().selectedValue;
-                        //const supplierId = selectedSupplier.options[selectedSupplier.selectedIndex].getAttribute('data-id');
-                        //document.querySelector('input[name="supplier_id"]').value = supplierId;
                     });
                 </script>
             </form>

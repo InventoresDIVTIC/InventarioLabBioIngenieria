@@ -92,6 +92,8 @@ Route::post('/guardar-ticket', [TicketsController::class, 'saveTicket'])->name('
 Route::patch('/editar-ticket/{id}', [TicketsController::class, 'edit_tickets'])->name('tickets.edit');
 Route::post('/guardar-servicios', [ServicesController::class, 'guardarServicios'])->name('guardar-servicios');
 Route::patch('/editar-servicios/{id}', [ServicesController::class, 'edit_services'])->name('services.edit');
-
+Route::patch('/editar-servicios-detalles/{id}', [ServicesController::class, 'edit_services_detalles'])->name('services.edit.detalles');
+Route::patch('/editar-servicios-firmas/{id}', [ServicesController::class, 'edit_services_firmas'])->name('services.edit.firmas');
+Route::patch('/editar-servicios-gastos/{id}', [ServicesController::class, 'edit_services_gastos'])->name('services.edit.gastos');
 
 require __DIR__.'/auth.php';
