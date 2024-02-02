@@ -19,6 +19,7 @@
                         <x-input-label for="category" :value="__('Categoría')"/>
                         <div x-data="customSelect()">
                         <select id="category" name="category" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="category"  @change="selectOption($event)">
+                            <option value="Por definir">Por definir</option>
                             <option value="Equipo Médico">Equipo Médico</option>
                             <option value="Equipo de medición / Simulacion">Equipo de medición / Simulacion</option>
                             <option value="Equipo de imagenologia">Equipo de imagenologia</option>
@@ -26,7 +27,7 @@
                             <option value="Equipo de esterilizacion">Equipo de esterilizacion</option>
                             <option value="Mobiliario médico">Mobiliario médico</option>
                             <option value="Equipo de traslado">Equipo de traslado</option>
-                            <option value="Equipo de computo/TI">Equipo de computo/TI</option>
+                            <option value="Equipo de computo / TI">Equipo de computo / TI</option>
                             <option value="Equipo de rehabilitacion">Equipo de rehabilitacion</option>
                             <option value="Equipo de minima invasión">Equipo de minima invasión</option>
                             <option value="Equipo industrial">Equipo industrial</option>
@@ -69,6 +70,7 @@
                         <x-input-label for="location" :value="__('Ubicación')" />
                         <div x-data="customSelect()">
                         <select id="location" name="location" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="location"  @change="selectOption($event)">
+                            <option value="Por definir">Por definir</option>
                             <option value="Ubicación 1">Ubicación 1</option>
                             <option value="Ubicación 2">Ubicación 2</option>
                             <option value="Ubicación 3">Ubicación 3</option>
@@ -79,9 +81,10 @@
                     </div>
 
                     <div>
-                        <x-input-label for="sublocation" :value="__('Ubicación')" />
+                        <x-input-label for="sublocation" :value="__('Sub ubicación')" />
                         <div x-data="customSelect()">
                         <select id="sublocation" name="sublocation" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="sublocation"  @change="selectOption($event)">
+                            <option value="Por definir">Por definir</option>
                             <option value="Sub Ubicación 1">Sub Ubicación 1</option>
                             <option value="Sub Ubicación 2">Sub Ubicación 2</option>
                             <option value="Sub Ubicación 3">Sub Ubicación 3</option>
@@ -95,6 +98,7 @@
                         <x-input-label for="status" :value="__('Estado')" />
                         <div x-data="customSelect()">
                         <select id="status" name="status" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="status"  @change="selectOption($event)">
+                            <option value="Por definir">Por definir</option>
                             <option value="Funcional">Funcional</option>
                             <option value="No funcional">No funcional</option>
                             <option value="En mantenimiento">En mantenimiento</option>
@@ -112,6 +116,7 @@
                         <x-input-label for="hierarchy" :value="__('Jerarquia')" />
                         <div x-data="customSelect()">
                         <select id="hierarchy" name="hierarchy" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="hierarchy"  @change="selectOption($event)">
+                            <option value="Por definir">Por definir</option>
                             <option value="Individual">Individual</option>
                             <option value="Principal">Principal</option>
                             <option value="Secundario">Secundario</option>
@@ -125,6 +130,7 @@
                         <x-input-label for="belonging" :value="__('Pertenencia')" />
                         <div x-data="customSelect()">
                         <select id="belonging" name="belonging" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="belonging"  @change="selectOption($event)">
+                            <option value="Por definir">Por definir</option>
                             <option value="Propio">Propio</option>
                             <option value="Renta">Renta</option>
                             <option value="Comodato">Comodato</option>
