@@ -143,10 +143,103 @@ class ServicesController extends Controller
             return redirect()->back()->with('error', 'Servicio no encontrado');
         }
 
-        // Decodificar y asignar las firmas
-        $service->service_head_signature = base64_decode($request->service_head_signature);
-        $service->service_enigieer_signature = base64_decode($request->service_enigieer_signature); // Corregir el nombre del campo
-        $service->last_user_signature = base64_decode($request->last_user_signature);
+        // Verificar si se proporcionó una firma nueva
+        if ($request->hasFile('service_head_signature')) {
+            $request->validate([
+                'service_head_signature' => ['mimes:txt,TXT,pdf,PDF', 'max:10240'],
+            ]);
+
+            // Eliminar el documento existente si hay uno
+            if ($service->service_head_signature) {
+                // Asegúrate de que el documento existente tenga una ruta válida
+                if (file_exists(public_path($service->service_head_signature))) {
+                    unlink(public_path($service->service_head_signature));
+                }
+            }
+
+            $service_head_signature_File = $request->file('service_head_signature');
+
+            // Asegúrate de que la carpeta de destino exista
+            $destinationFolder = public_path('Services-doc-signature');
+            if (!file_exists($destinationFolder)) {
+                mkdir($destinationFolder, 0755, true);
+            }
+
+            // Genera un nombre único para el archivo
+            $documentName = uniqid() . '_' . $service_head_signature_File->getClientOriginalName();
+
+            // Mueve el archivo a la carpeta de destino con el nuevo nombre
+            $service_head_signature_File->move($destinationFolder, $documentName);
+
+            // Guarda la ruta relativa del nuevo documento en la base de datos
+            $service->service_head_signature = 'Services-doc-signature/' . $documentName;
+        }
+
+
+        // Verificar si se proporcionó una nueva firma
+        if ($request->hasFile('service_enigieer_signature')) {
+            $request->validate([
+                'service_enigieer_signature' => ['mimes:txt,TXT,pdf,PDF', 'max:10240'],
+            ]);
+
+            // Eliminar el documento existente si hay uno
+            if ($service->service_enigieer_signature) {
+                // Asegúrate de que el documento existente tenga una ruta válida
+                if (file_exists(public_path($service->service_enigieer_signature))) {
+                    unlink(public_path($service->service_enigieer_signature));
+                }
+            }
+
+            $service_enigieer_signature_File = $request->file('service_enigieer_signature');
+
+            // Asegúrate de que la carpeta de destino exista
+            $destinationFolder = public_path('Services-doc-signature');
+            if (!file_exists($destinationFolder)) {
+                mkdir($destinationFolder, 0755, true);
+            }
+
+            // Genera un nombre único para el archivo
+            $documentName = uniqid() . '_' . $service_enigieer_signature_File->getClientOriginalName();
+
+            // Mueve el archivo a la carpeta de destino con el nuevo nombre
+            $service_enigieer_signature_File->move($destinationFolder, $documentName);
+
+            // Guarda la ruta relativa del nuevo documento en la base de datos
+            $service->service_enigieer_signature = 'Services-doc-signature/' . $documentName;
+        }
+
+        // Verificar si se proporcionó una nueva firma
+        if ($request->hasFile('last_user_signature')) {
+            $request->validate([
+                'last_user_signature' => ['mimes:txt,TXT,pdf,PDF', 'max:10240'],
+            ]);
+
+            // Eliminar el documento existente si hay uno
+            if ($service->last_user_signature) {
+                // Asegúrate de que el documento existente tenga una ruta válida
+                if (file_exists(public_path($service->last_user_signature))) {
+                    unlink(public_path($service->last_user_signature));
+                }
+            }
+
+            $last_user_signature_File = $request->file('last_user_signature');
+
+            // Asegúrate de que la carpeta de destino exista
+            $destinationFolder = public_path('Services-doc-signature');
+            if (!file_exists($destinationFolder)) {
+                mkdir($destinationFolder, 0755, true);
+            }
+
+            // Genera un nombre único para el archivo
+            $documentName = uniqid() . '_' . $last_user_signature_File->getClientOriginalName();
+
+            // Mueve el archivo a la carpeta de destino con el nuevo nombre
+            $last_user_signature_File->move($destinationFolder, $documentName);
+
+            // Guarda la ruta relativa del nuevo documento en la base de datos
+            $service->last_user_signature = 'Services-doc-signature/' . $documentName;
+        }
+
 
         // Guardar los cambios en la base de datos
         $service->save();
@@ -154,6 +247,8 @@ class ServicesController extends Controller
         // Redireccionar o realizar otras acciones según tus necesidades
         return redirect()->back()->with('status', 'Servicio actualizado exitosamente');
     }
+
+
 
 
 

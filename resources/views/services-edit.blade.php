@@ -252,113 +252,114 @@
 
                         <!-- Pantalla 3: Datos de registro y mantenimiento -->
                 <div x-show="pantalla === 3">
-                    <form id="form-services-3" action="{{ route('services.edit.firmas', ['id' => $servicios->id]) }}" method="POST" class="space-y-6 w-full sm:w-96">
+                    <form id="form-services-3" action="{{ route('services.edit.firmas', ['id' => $servicios->id]) }}" method="POST" enctype="multipart/form-data" class="space-y-6 w-full sm:w-96">
                             @csrf
                             @method('PATCH')
-                            <div class="grid grid-cols-2 gap-6">
-                                <div>
-                                    <x-input-label for="service_head_signature" :value="__('Firma del jefe de servicio')" />
-                                    <canvas id="serviceHeadSignatureCanvas" class="mt-1 w-full"
-                                        style="border: 1px solid #000;"></canvas>
-                                    <input type="hidden" id="service_head_signature"
-                                        name="service_head_signature" value='<?php echo "{$servicios->service_head_signature}"; ?>'/>
-                                    <x-input-error class="mt-2" :messages="$errors->get('service_head_signature')" />
 
-                                    <!-- Botón para limpiar la firma -->
-                                    <button type="button" id="clearServiceHeadSignatureButton"
-                                        class="mt-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Limpiar
-                                        Firma</button>
+                            <div>
+                                <label for="service_head_signature" style="color: white;">Firma del jefe de servicio</label>
+                                <input id="service_head_signature" name="service_head_signature" type="file" accept=".pdf" class="mt-1 w-full" onchange="previewService_head_signature()" />
+                                <x-input-error class="mt-2" :messages="$errors->get('service_head_signature')" />
+
+                                <!-- Para mostrar la vista previa del documento existente -->
+                                <div id="service_head_signature-preview-container">
+                                    <label for="service_head_signature">Vista previa del documento:</label>
+                                    <br>
+                                    @if($servicios->service_head_signature)
+                                        <embed id="service_head_signature-document-preview" type="application/pdf" width="100%" height="300px" src="{{ asset($servicios->service_head_signature) }}" />
+                                    @else
+                                        <p>No hay firma existente.</p>
+                                    @endif
                                 </div>
                             </div>
-
-                            <div class="grid grid-cols-2 gap-6">
-                                <div>
-                                    <x-input-label for="service_enigieer_signature" :value="__('Firma del ingeniero de servicio')" />
-                                    <canvas id="serviceEngineerSignatureCanvas" class="mt-1 w-full"
-                                        style="border: 1px solid #000;"></canvas>
-                                    <input type="hidden" id="service_enigieer_signature"
-                                        name="service_enigieer_signature" value='<?php echo "{$servicios->service_enigieer_signature}"; ?>'/>
-                                    <x-input-error class="mt-2" :messages="$errors->get('service_enigieer_signature')" />
-
-                                    <!-- Botón para limpiar la firma -->
-                                    <button type="button" id="clearServiceEngineerSignatureButton"
-                                        class="mt-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Limpiar
-                                        Firma</button>
-                                </div>
-                            </div>
-
-                            <div class="grid grid-cols-2 gap-6">
-                                <div>
-                                    <x-input-label for="last_user_signature" :value="__('Firma del último usuario')" />
-                                    <canvas id="lastUserSignatureCanvas" class="mt-1 w-full"
-                                        style="border: 1px solid #000;"></canvas>
-                                    <input type="hidden" id="last_user_signature" name="last_user_signature" value='<?php echo "{$servicios->last_user_signature}"; ?>'/>
-                                    <x-input-error class="mt-2" :messages="$errors->get('last_user_signature')" />
-
-                                    <!-- Botón para limpiar la firma -->
-                                    <button type="button" id="clearLastUserSignatureButton"
-                                        class="mt-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Limpiar
-                                        Firma</button>
-                                </div>
-                            </div>
-
                             <script>
-                                // Inicializa Signature Pad en los canvas
-                                var serviceHeadCanvas = document.getElementById('serviceHeadSignatureCanvas');
-                                var serviceHeadSignaturePad = new SignaturePad(serviceHeadCanvas, {
-                                    backgroundColor: 'white',
-                                    penColor: 'black'
-                                });
+                                function previewService_head_signature() {
+                                    var input = document.getElementById('service_head_signature');
+                                    var preview = document.getElementById('service_head_signature-document-preview');
 
-                                var serviceEngineerCanvas = document.getElementById('serviceEngineerSignatureCanvas');
-                                var serviceEngineerSignaturePad = new SignaturePad(serviceEngineerCanvas, {
-                                    backgroundColor: 'white',
-                                    penColor: 'black'
-                                });
+                                    if (input.files && input.files.length > 0) {
+                                        var reader = new FileReader();
 
-                                var lastUserCanvas = document.getElementById('lastUserSignatureCanvas');
-                                var lastUserSignaturePad = new SignaturePad(lastUserCanvas, {
-                                    backgroundColor: 'white',
-                                    penColor: 'black'
-                                });
+                                        reader.onload = function (e) {
+                                            preview.src = e.target.result;
+                                        }
 
-                                // Almacenar las firmas en los campos ocultos al enviar el formulario
-                                var serviceHeadSignatureInput = document.getElementById('service_head_signature');
-                                var serviceEngineerSignatureInput = document.getElementById('service_engineer_signature');
-                                var lastUserSignatureInput = document.getElementById('last_user_signature');
-                                var form = document.querySelector('form');
-
-                                // Botones para limpiar las firmas
-                                var clearServiceHeadSignatureButton = document.getElementById('clearServiceHeadSignatureButton');
-                                var clearServiceEngineerSignatureButton = document.getElementById('clearServiceEngineerSignatureButton');
-                                var clearLastUserSignatureButton = document.getElementById('clearLastUserSignatureButton');
-
-                                clearServiceHeadSignatureButton.addEventListener('click', function() {
-                                    serviceHeadSignaturePad.clear();
-                                    serviceHeadSignatureInput.value = '';
-                                });
-
-                                clearServiceEngineerSignatureButton.addEventListener('click', function() {
-                                    serviceEngineerSignaturePad.clear();
-                                    serviceEngineerSignatureInput.value = '';
-                                });
-
-                                clearLastUserSignatureButton.addEventListener('click', function() {
-                                    lastUserSignaturePad.clear();
-                                    lastUserSignatureInput.value = '';
-                                });
-
-                                form.addEventListener('submit', function(event) {
-                                    if (serviceHeadSignaturePad.isEmpty() || serviceEngineerSignaturePad.isEmpty() || lastUserSignaturePad
-                                        .isEmpty()) {
-                                        alert('Por favor, firme en todos los campos antes de enviar el formulario.');
-                                        event.preventDefault();
+                                        reader.readAsDataURL(input.files[0]);
                                     } else {
-                                        serviceHeadSignatureInput.value = serviceHeadSignaturePad.toDataURL();
-                                        serviceEngineerSignatureInput.value = serviceEngineerSignaturePad.toDataURL();
-                                        lastUserSignatureInput.value = lastUserSignaturePad.toDataURL();
+                                        preview.src = ''; // Establecer preview.src en blanco
                                     }
-                                });
+                                }
+                            </script>
+
+
+                            <div>
+                                <label for="service_enigieer_signature" style="color: white;">Firma del ingeniero asignado</label>
+                                <input id="service_enigieer_signature" name="service_enigieer_signature" type="file" accept=".pdf" class="mt-1 w-full" onchange="previewService_enigieer_signature()" />
+                                <x-input-error class="mt-2" :messages="$errors->get('service_enigieer_signature')" />
+
+                                <!-- Para mostrar la vista previa del documento existente -->
+                                <div id="service_enigieer_signature-preview-container">
+                                    <label for="service_enigieer_signature">Vista previa del documento:</label>
+                                    <br>
+                                    @if($servicios->service_enigieer_signature)
+                                        <embed id="service_enigieer_signature-document-preview" type="application/pdf" width="100%" height="300px" src="{{ asset($servicios->service_enigieer_signature) }}" />
+                                    @else
+                                        <p>No hay firma existente.</p>
+                                    @endif
+                                </div>
+                            </div>
+                            <script>
+                                function previewService_enigieer_signature() {
+                                    var input = document.getElementById('service_enigieer_signature');
+                                    var preview = document.getElementById('service_enigieer_signature-document-preview');
+
+                                    if (input.files && input.files.length > 0) {
+                                        var reader = new FileReader();
+
+                                        reader.onload = function (e) {
+                                            preview.src = e.target.result;
+                                        }
+
+                                        reader.readAsDataURL(input.files[1]);
+                                    } else {
+                                        preview.src = ''; // Establecer preview.src en blanco
+                                    }
+                                }
+                            </script>
+
+                            <div>
+                                <label for="last_user_signature" style="color: white;">Firma del usuario</label>
+                                <input id="last_user_signature" name="last_user_signature" type="file" accept=".pdf" class="mt-1 w-full" onchange="previewLast_user_signature()" />
+                                <x-input-error class="mt-2" :messages="$errors->get('last_user_signature')" />
+
+                                <!-- Para mostrar la vista previa del documento existente -->
+                                <div id="last_user_signature-preview-container">
+                                    <label for="last_user_signature">Vista previa del documento:</label>
+                                    <br>
+                                    @if($servicios->last_user_signature)
+                                        <embed id="last_user_signature-document-preview" type="application/pdf" width="100%" height="300px" src="{{ asset($servicios->last_user_signature) }}" />
+                                    @else
+                                        <p>No hay firma existente.</p>
+                                    @endif
+                                </div>
+                            </div>
+                            <script>
+                                function previewLast_user_signature() {
+                                    var input = document.getElementById('last_user_signature');
+                                    var preview = document.getElementById('last_user_signature-document-preview');
+
+                                    if (input.files && input.files.length > 0) {
+                                        var reader = new FileReader();
+
+                                        reader.onload = function (e) {
+                                            preview.src = e.target.result;
+                                        }
+
+                                        reader.readAsDataURL(input.files[0]);
+                                    } else {
+                                        preview.src = ''; // Establecer preview.src en blanco
+                                    }
+                                }
                             </script>
                             <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
                                 <div>
