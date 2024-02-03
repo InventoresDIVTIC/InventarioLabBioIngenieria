@@ -35,7 +35,7 @@
                     <div>
                         <div>
                             <div class="grid grid-cols-2 gap-6">
-                                <div>
+                                <div title="Cambiar Activo">
                                     <x-input-label for="type" :value="__('Nombre del activo')" />
                                     <x-text-input id="active_id" name="active_id" type="hidden" class="mt-1 block w-full" required
                                     autofocus autocomplete="active_id" />
@@ -45,13 +45,19 @@
                                     @include('layouts.modal-activos-table')
                                     <x-input-error class="mt-2" :messages="$errors->get('active_id')" />
                                 </div>
-                                <div>
-                                    <x-input-label for="type_request" :value="__('Tipo de petición')" />
+                                <div title="Modifica la descripción de la solicitud">
+                                    <x-input-label for="request" :value="__('Solicitud')" />
+                                    <x-text-input id="request" name="request" type="text"
+                                        class="mt-1 w-full" value='<?php echo "{$ticket->request}"; ?>'/>
+                                    <x-input-error class="mt-2" :messages="$errors->get('request')" />
+                                </div>
+                                <div title="Modifica el Tipo de Solicitud del ticket">
+                                    <x-input-label for="type_request" :value="__('Tipo de Solicitud')" />
                                     <x-text-input id="type_request" name="type_request" type="text"
                                         class="mt-1 w-full" value='<?php echo "{$ticket->type_request}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('type_request')" />
                                 </div>
-                                <div>
+                                <div title="Modifica el Nivel de Prioridad del Ticket">
                                     <x-input-label for="priority" :value="__('Prioridad')" />
                                     <select id="priority" name="priority"
                                         class="mt-1 block w-full bg-gray-800 text-white">
@@ -64,7 +70,7 @@
                                     </select>
                                     <x-input-error class="mt-2" :messages="$errors->get('priority')" />
                                 </div>
-                                <div>
+                                <div title="Modifica el Estatus del Ticket">
                                     <x-input-label for="status" :value="__('Estatus')" />
                                     <select id="status" name="status"
                                         class="mt-1 block w-full bg-gray-800 text-white">
@@ -77,13 +83,13 @@
                                     </select>
                                     <x-input-error class="mt-2" :messages="$errors->get('status')" />
                                 </div>
-                                <div>
+                                <div title="Último usuario en Editar este Ticket">
                                     <x-input-label for="last_editor" :value="__('Último editor')" />
                                     <x-text-input id="last_editor" name="last_editor" type="text" class="mt-1 w-full" readonly="readonly" 
                                         value='<?php echo "{$ticket->last_editor}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('last_editor')" />
                                 </div>
-                                <div class="flex justify-center">
+                                <div class="flex justify-center" title="Agrega o modifica el Motivo del Ticket">
                                     <div class="max-w-full">
                                         <x-input-label for="solution" :value="__('Motivo')" />
                                         <textarea id="solution" name="solution"

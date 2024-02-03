@@ -19,7 +19,7 @@
                         <x-input-label for="status" :value="__('Estatus')" />
                         <div x-data="customSelect()">
                         <select id="status" name="status" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="status"  @change="selectOption($event)">
-                            <option value="Estatus 1">Estatus 2</option>
+                            <option value="Planeado">Planeado</option>
                         </select>
                             <input type="hidden" name="status_selected" x-bind:value="selectedValue">
                         </div>
@@ -30,7 +30,7 @@
                         <x-input-label for="services_type" :value="__('Tipo de servicio')" />
                         <div x-data="customSelect()">
                         <select id="services_type" name="services_type" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="services_type"  @change="selectOption($event)">
-                            <option value="Servicio 1">Servicio 1</option>
+                            <option value="Mantenimiento Preventivo">Mantenimiento Preventivo</option>
                         </select>
                             <input type="hidden" name="services_type_selected" x-bind:value="selectedValue">
                         </div>

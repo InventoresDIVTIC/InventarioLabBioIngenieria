@@ -57,6 +57,7 @@ class TicketsController extends Controller
 
         // Actualizar los datos del ticket con los valores del formulario
         $ticket->type = $request->type;
+        $ticket->request = $request->get('request');
         $ticket->type_request = $request->type_request;
         $ticket->priority = $request->priority;
         $ticket->status = $request->status;

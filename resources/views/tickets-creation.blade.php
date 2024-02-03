@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/dashboard.css">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/tickets.css">
-    <title>DEV LAB DE BIOINGENIERIA</title>
+    <title>CREAR TICKET | DEV LAB DE BIOINGENIERIA</title>
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
 </head>
 
@@ -22,7 +22,7 @@
                 <form method="post" action="{{ route('guardarTicket') }}" class="space-y-6">
                     @csrf
 
-                    <div>
+                    <div title="Selecciona un Activo">
                         <x-input-label for="type" :value="__('Activo')" />
                         <x-text-input id="active_id" name="active_id" type="hidden" class="mt-1 block w-full" required
                         autofocus autocomplete="active_id"/>
@@ -33,27 +33,29 @@
                         <x-input-error class="mt-2" :messages="$errors->get('active_id')" />
                     </div>
 
-                    <div>
+                    <div title="Describe la Solicitud a Realizar">
                         <x-input-label for="request" :value="__('Solicitud')" />
                         <x-text-input id="request" name="request" type="text" class="mt-1 block w-full" required
                             autofocus autocomplete="request" />
                         <x-input-error class="mt-2" :messages="$errors->get('request')" />
                     </div>
 
-                    <div>
+                    <div title="Selecciona el Tipo de Solicitud que se realizará">
                         <x-input-label for="type_request" :value="__('Tipo de solicitud')" />
                         <x-text-input id="type_request" name="type_request" type="text" class="mt-1 block w-full"
                             required autofocus autocomplete="type_request" />
                         <x-input-error class="mt-2" :messages="$errors->get('type_request')" />
                     </div>
 
-                    <div>
+                    <div title="Selecciona el Nivel de Prioridad del ticket">
                         <x-input-label for="priority" :value="__('Prioridad')" />
                         <select id="priority" name="priority" class="priority" required autofocus autocomplete="priority">
                             <option value="Por definir">Por definir</option>
                             <option value="Alta">Alta</option>
                             <option value="Media">Media</option>
                             <option value="Baja">Baja</option>
+                            <option value="Urgente">Urgente</option>
+                            <option value="Crítica">Crítica</option>
                         </select>
                         <x-input-error class="mt-2" :messages="$errors->get('priority')" />
                     </div>
