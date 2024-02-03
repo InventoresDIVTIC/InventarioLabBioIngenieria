@@ -36,7 +36,7 @@
                         ->join('activos_servicios', 'activos.id', '=', 'activos_servicios.id')
                         ->select('activos.*', 'activos_finanzas.*', 'activos_proveeduria.*', 'activos_servicios.*')
                         ->where('activos.id', '=', $id)
-                        ->first();   
+                        ->first();
                 ?>
                 <!-- Pantalla 1: Datos Generales -->
                 <div x-data="{ pantalla }">
@@ -46,8 +46,13 @@
                             method="POST" class="space-y-6 w-full sm:w-96">
                             @csrf
                             @method('PATCH')
+                            <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
+                                <div class="hidden-print text-center">
+                                    <x-input-label for="QR" :value="__('Escanea este código QR para acceder a este activo')" />
+                                    <img src="data:image/svg+xml;utf8,{!! rawurlencode(QrCode::size(350)->format('svg')->generate('https://bioingenieria.inventores.org/inventory-edit?id=' . $activo->id)) !!}" alt="Código QR">
+                                </div>
+                            </div>
                             <div class="grid grid-cols-3 gap-6">
-
                                 <div>
                                     <x-input-label for="type" :value="__('Nombre del artículo')" />
                                     <x-text-input id="type" name="type" type="text" class="mt-1 w-full"
@@ -237,12 +242,12 @@
                                 class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
                                 <button type="submit" form="form-inventario"
                                     class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
-                                </div> 
+                                </div>
                             </div>
                         </form>
                     </div>
-                    
-                    
+
+
                     <!-- Pantalla 2: Datos de Facturas -->
                     <div x-show="pantalla === 2">
                         <form id="form-inventario-2" action="{{ route('actives.finanzas', ['id' => $id]) }}"
@@ -404,7 +409,7 @@
                                         class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
                                     <button type="submit" form="form-inventario-2"
                                         class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
-                                </div> 
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -487,14 +492,14 @@
                                         class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
                                     <button type="submit" form="form-inventario-3"
                                         class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
-                                </div> 
+                                </div>
                             </div>
                         </form>
                     </div>
 
                     <!-- Pantalla 4: Datos de eliminacion -->
                     <div x-show="pantalla === 4">
-                        <form id="form-inventario-4" action="{{ route('actives.delete', ['id' => $id]) }}" 
+                        <form id="form-inventario-4" action="{{ route('actives.delete', ['id' => $id]) }}"
                             method="POST" class="space-y-6 w-full sm:w-96">
                             @csrf
                             @method('PATCH')
@@ -531,7 +536,7 @@
                                         class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
                                     <button type="submit" form="form-inventario-4"
                                         class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
-                                </div> 
+                                </div>
                             </div>
                         </form>
                     </div>
