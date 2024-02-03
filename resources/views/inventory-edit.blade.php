@@ -46,12 +46,12 @@
                             method="POST" class="space-y-6 w-full sm:w-96">
                             @csrf
                             @method('PATCH')
-                            <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
+                            <!--<div class="flex items-center gap-4 mt-4" style="justify-content: center;">
                                 <div class="hidden-print text-center">
                                     <x-input-label for="QR" :value="__('Escanea este código QR para acceder a este activo')" />
-                                    <img src="data:image/svg+xml;utf8,{!! rawurlencode(QrCode::size(350)->format('svg')->generate('https://bioingenieria.inventores.org/inventory-edit?id=' . $activo->id)) !!}" alt="Código QR">
+                                    <img src="data:image/svg+xml;utf8,{//!! rawurlencode(QrCode::size(350)->format('svg')->generate('https://bioingenieria.inventores.org/inventory-edit?id=' . $activo->id)) !!}" alt="Código QR">
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="grid grid-cols-3 gap-6">
                                 <div>
                                     <x-input-label for="type" :value="__('Nombre del artículo')" />
