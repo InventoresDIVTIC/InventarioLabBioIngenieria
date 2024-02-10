@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/inventory.css">
     <script src="https://bioingenieria.inventores.org/js/select-edit.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
     <title>DEV LAB DE BIOINGENIERIA</title>
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
 </head>
@@ -47,19 +49,39 @@
                             method="POST" class="space-y-6 w-full sm:w-96">
                             @csrf
                             @method('PATCH')
-                            <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
-                                <div id="qrcode"></div>
+
+                            <!-- Etiqueta QR -->
+                            <div id="qr"class="flex items-center gap-4 mt-4" style="justify-content: center; background-color: white;">
+                                <div class="grid grid-flow-col justify-stretch px-4 py-4">
+                                    <div id="qrcode" class=""></div>
+                                    <div class="grid grid-rows-5 justify-stretch pl-4">
+                                        <div>
+                                            <label>Nombre del artículo:</label>
+                                            <label><?php echo "{$activo->type}";?></label>
+                                        </div>
+                                        <div>
+                                            <label>Categoría:</label>
+                                            <label><?php echo "{$activo->category}";?></label>
+                                        </div>
+                                        <div>
+                                            <label>Marca:</label>
+                                            <label><?php echo "{$activo->brand}";?></label>
+                                        </div>
+                                        <div>
+                                            <label>Modelo:</label>
+                                            <label><?php echo "{$activo->model}";?></label>
+                                        </div>
+                                        <div>
+                                            <label>No. de serie:</label>
+                                            <label><?php echo "{$activo->serial}";?></label>
+                                        </div>
+                                    </div>
+                                </div>                            
                             </div>
-                            <script>
-                                var qrcode = new QRCode("qrcode",
-                                "https://bioingenieria.inventores.org/inventory-edit?id=<?php echo "{$activo->id}"; ?>");
-                            </script>
-                            <!--<div class="flex items-center gap-4 mt-4" style="justify-content: center;">
-                                <div class="hidden-print text-center">
-                                    <x-input-label for="QR" :value="__('Escanea este código QR para acceder a este activo')" />
-                                    <img src="data:image/svg+xml;utf8,{//!! rawurlencode(QrCode::size(350)->format('svg')->generate('https://bioingenieria.inventores.org/inventory-edit?id=' . $activo->id)) !!}" alt="Código QR">
-                                </div>
-                            </div>-->
+                            
+                            <!-- Generar Etiqueta QR -->
+                            <button type="button" onclick="genQR()" class="hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Generar etiqueta QR</button>
+
                             <div class="grid grid-cols-3 gap-6">
                                 <div>
                                     <x-input-label for="type" :value="__('Nombre del artículo')" />
@@ -552,6 +574,48 @@
             </div>
         </section>
     </x-app-layout>
+
+    <script>
+        function genQR() {
+            var pdf = new jsPDF('p', 'pt', 'letter');
+            source = document.getElementById("qr");
+
+            specialElementHandlers = {
+                '#bypassme': function (element, renderer) {
+                    return true
+                }
+            };
+            margins = {
+                top: 80,
+                bottom: 60,
+                left: 40,
+                width: 522
+            };
+
+            pdf.fromHTML(
+                source, 
+                margins.left, // x coord
+                margins.top, { // y coord
+                    'width': margins.width, 
+                    'elementHandlers': specialElementHandlers
+                },
+
+                function (dispose) {
+                    pdf.save("QR_ID_<?php echo "{$activo->id}"; ?>.pdf");
+                }, margins
+            );
+        }
+    </script>
+
+    <script>
+        var qrcode = new QRCode("qrcode",{
+        text: "https://bioingenieria.inventores.org/inventory-edit?id=<?php echo "{$activo->id}"; ?>",
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        //correctLevel : QRCode.CorrectLevel.H
+        });
+    </script>
+
     <script>
         <?php
         $properties = ['category', 'location', 'sublocation', 'status', 'hierarchy', 'criticality', 'risk', 'divisa', 'frecuency_mprev'];
@@ -560,6 +624,7 @@
         }
         ?>
     </script>
+
     <script>
         let pantalla = 1;
 
