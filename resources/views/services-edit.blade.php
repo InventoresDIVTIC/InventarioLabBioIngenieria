@@ -143,8 +143,8 @@
                                 </div>
                                 <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
                                     <div>
-                                        <button type="button" id="btn-siguiente" x-show="pantalla < 4"
-                                            @click="pantalla += 1"
+                                        <button type="button" id="btn-siguiente-1" x-show="pantalla < 4"
+                                            @click="pantalla = 2"
                                             class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
                                         <button type="submit" x-show="pantalla > 0"
                                             class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
@@ -238,11 +238,11 @@
                             </div>
                             <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
                                 <div>
-                                    <button type="button" id="btn-anterior" x-show="pantalla > 1"
-                                        @click="pantalla -= 1"
+                                    <button type="button" id="btn-anterior-2" x-show="pantalla > 1"
+                                        @click="pantalla = 1"
                                         class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
-                                    <button type="button" id="btn-siguiente" x-show="pantalla < 4"
-                                        @click="pantalla += 1"
+                                    <button type="button" id="btn-siguiente-2" x-show="pantalla < 4"
+                                        @click="pantalla = 3"
                                         class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
                                     <button type="submit" x-show="pantalla > 0"
                                         class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
@@ -364,11 +364,11 @@
                             </script>
                             <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
                                 <div>
-                                   <button type="button" id="btn-anterior" x-show="pantalla > 1"
-                                   @click="pantalla -= 1"
+                                   <button type="button" id="btn-anterior-3" x-show="pantalla > 1"
+                                   @click="pantalla = 2"
                                    class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
-                                   <button type="button" id="btn-siguiente" x-show="pantalla < 4"
-                                   @click="pantalla += 1"
+                                   <button type="button" id="btn-siguiente-3" x-show="pantalla < 4"
+                                   @click="pantalla = 4"
                                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
                                   <button type="submit" x-show="pantalla > 0"
                                   class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
@@ -447,12 +447,9 @@
 
                             <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
                                 <div>
-                                    <button type="button" id="btn-anterior" x-show="pantalla > 1"
-                                        @click="pantalla -= 1"
+                                    <button type="button" id="btn-anterior-4" x-show="pantalla > 1"
+                                        @click="pantalla = 3"
                                         class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
-                                    <button type="button" id="btn-siguiente" x-show="pantalla < 4"
-                                        @click="pantalla += 1"
-                                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
                                     <button type="submit" x-show="pantalla > 0"
                                         class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
                                 </div>
@@ -510,35 +507,84 @@
             }
         }
 
-        // Asignar evento click a los botones Anterior y Siguiente
-        // Asignar evento click a los botones Anterior y Siguiente
-        const btnAnterior = document.querySelector('#btn-anterior');
-        const btnSiguiente = document.querySelector('#btn-siguiente');
+        // Asignar el nombre de la pantalla actual
         const pantallaTitleElement = document.querySelector('.screen-title');
+        // Asignar evento click a los botones Anterior y Siguiente del segundo formulario
+        const btnSiguiente1 = document.querySelector('#btn-siguiente-1');
+        // Asignar evento click a los botones Anterior y Siguiente del segundo formulario
+        const btnAnterior2 = document.querySelector('#btn-anterior-2');
+        const btnSiguiente2 = document.querySelector('#btn-siguiente-2');
+        // Asignar evento click a los botones Anterior y Siguiente del tercer formulario
+        const btnAnterior3 = document.querySelector('#btn-anterior-3');
+        const btnSiguiente3 = document.querySelector('#btn-siguiente-3');
+        // Asignar evento click a los botones Anterior y Siguiente del cuarto formulario
+        const btnAnterior4 = document.querySelector('#btn-anterior-4');
 
-        btnAnterior.addEventListener('click', () => {
-            if (pantalla > 1) {
-                pantalla -= 1;
-                updateIndicator();
-                pantallaTitleElement.textContent = getPantallaTitulo(); // Actualiza el título de la pantalla
-                window.scrollTo(0, 0);
-            }
-        });
+            // Asignar evento click a los botones Anterior y Siguiente del primer formulario
 
-        btnSiguiente.addEventListener('click', () => {
-            if (pantalla < 4) {
-                pantalla += 1;
-                updateIndicator();
-                pantallaTitleElement.textContent = getPantallaTitulo(); // Actualiza el título de la pantalla
-                window.scrollTo(0, 0);
-            }
-        });
+            btnSiguiente1.addEventListener('click', () => {
+                if (pantalla = 1) {
+                    pantalla += 1;
+                    updateIndicator();
+                    pantallaTitleElement.textContent = getPantallaTitulo(); // Actualiza el título de la pantalla
+                    window.scrollTo(0, 0);
+                }
+            });
 
-        // Activar el primer círculo al cargar el documento
+
+            btnAnterior2.addEventListener('click', () => {
+                if (pantalla = 2) {
+                    pantalla -= 1;
+                    updateIndicator();
+                    pantallaTitleElement.textContent = getPantallaTitulo(); // Actualiza el título de la pantalla
+                    window.scrollTo(0, 0);
+                }
+            });
+
+            btnSiguiente2.addEventListener('click', () => {
+                if (pantalla = 2) {
+                    pantalla += 1;
+                    updateIndicator();
+                    pantallaTitleElement.textContent = getPantallaTitulo(); // Actualiza el título de la pantalla
+                    window.scrollTo(0, 0);
+                }
+            });
+
+            btnAnterior3.addEventListener('click', () => {
+                if (pantalla = 3) {
+                    pantalla -= 1;
+                    updateIndicator();
+                    pantallaTitleElement.textContent = getPantallaTitulo(); // Actualiza el título de la pantalla
+                    window.scrollTo(0, 0);
+                }
+            });
+
+            btnSiguiente3.addEventListener('click', () => {
+                if (pantalla = 3) {
+                    pantalla += 1;
+                    updateIndicator();
+                    pantallaTitleElement.textContent = getPantallaTitulo(); // Actualiza el título de la pantalla
+                    window.scrollTo(0, 0);
+                }
+            });
+
+            btnAnterior4.addEventListener('click', () => {
+                if (pantalla = 4) {
+                    pantalla -= 1;
+                    updateIndicator();
+                    pantallaTitleElement.textContent = getPantallaTitulo(); // Actualiza el título de la pantalla
+                    window.scrollTo(0, 0);
+                }
+            });
+
+
         document.addEventListener('DOMContentLoaded', () => {
+            // Activar el primer círculo al cargar el documento
             activateFirstCircle();
             pantallaTitleElement.textContent = getPantallaTitulo(); // Actualiza el título de la pantalla
         });
+
+
 
 
         // Variable reactiva para almacenar el título de la pantalla actual
