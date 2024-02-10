@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/inventory.css">
     <script src="https://bioingenieria.inventores.org/js/select-edit.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <title>DEV LAB DE BIOINGENIERIA</title>
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
 </head>
@@ -46,6 +47,13 @@
                             method="POST" class="space-y-6 w-full sm:w-96">
                             @csrf
                             @method('PATCH')
+                            <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
+                                <div id="qrcode"></div>
+                            </div>
+                            <script>
+                                var qrcode = new QRCode("qrcode",
+                                "https://bioingenieria.inventores.org/inventory-edit?id=<?php echo "{$activo->id}"; ?>");
+                            </script>
                             <!--<div class="flex items-center gap-4 mt-4" style="justify-content: center;">
                                 <div class="hidden-print text-center">
                                     <x-input-label for="QR" :value="__('Escanea este código QR para acceder a este activo')" />
