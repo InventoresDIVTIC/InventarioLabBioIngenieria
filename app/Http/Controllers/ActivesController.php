@@ -57,14 +57,14 @@ class ActivesController extends Controller
         // Crear un nuevo registro de activoFinanzas relacionado
         $activoFinanzas = new ActivoFinanzas();
         $activoFinanzas->id = $activo->id;
-        
+
         // Guardar el activoFinanzas en la base de datos
         $activoFinanzas->save();
 
         // Crear un nuevo registro de activoServicios relacionado
         $activoServicios = new ActivoServicios();
         $activoServicios->id = $activo->id;
-            
+
         // Guardar el activoServicios en la base de datos
         $activoServicios->save();
 
@@ -122,6 +122,102 @@ class ActivesController extends Controller
             return redirect()->back()->with('error', 'Activo no encontrado');
         }
 
+         // Verificar si se proporcionó una firma nueva
+         if ($request->hasFile('warranty_letter')) {
+            $request->validate([
+                'warranty_letter' => ['mimes:txt,TXT,pdf,PDF', 'max:10240'],
+            ]);
+
+            // Eliminar el documento existente si hay uno
+            if ($activo->warranty_letter) {
+                // Asegúrate de que el documento existente tenga una ruta válida
+                if (file_exists(public_path($activo->warranty_letter))) {
+                    unlink(public_path($activo->warranty_letter));
+                }
+            }
+
+            $warranty_letter_File = $request->file('warranty_letter');
+
+            // Asegúrate de que la carpeta de destino exista
+            $destinationFolder = public_path('Activos-doc-signature');
+            if (!file_exists($destinationFolder)) {
+                mkdir($destinationFolder, 0755, true);
+            }
+
+            // Genera un nombre único para el archivo
+            $documentName = uniqid() . '_' . $warranty_letter_File->getClientOriginalName();
+
+            // Mueve el archivo a la carpeta de destino con el nuevo nombre
+            $warranty_letter_File->move($destinationFolder, $documentName);
+
+            // Guarda la ruta relativa del nuevo documento en la base de datos
+            $activo->warranty_letter = 'Activos-doc-signature/' . $documentName;
+        }
+
+        // Verificar si se proporcionó una firma nueva
+        if ($request->hasFile('health_registration')) {
+            $request->validate([
+                'health_registration' => ['mimes:txt,TXT,pdf,PDF', 'max:10240'],
+            ]);
+
+            // Eliminar el documento existente si hay uno
+            if ($activo->health_registration) {
+            // Asegúrate de que el documento existente tenga una ruta válida
+            if (file_exists(public_path($activo->health_registration))) {
+                    unlink(public_path($activo->health_registration));
+                }
+            }
+
+            $health_registration_File = $request->file('health_registration');
+
+            // Asegúrate de que la carpeta de destino exista
+            $destinationFolder = public_path('Activos-doc-signature');
+            if (!file_exists($destinationFolder)) {
+                mkdir($destinationFolder, 0755, true);
+            }
+
+            // Genera un nombre único para el archivo
+            $documentName = uniqid() . '_' . $health_registration_File->getClientOriginalName();
+
+            // Mueve el archivo a la carpeta de destino con el nuevo nombre
+            $health_registration_File->move($destinationFolder, $documentName);
+
+            // Guarda la ruta relativa del nuevo documento en la base de datos
+            $activo->health_registration = 'Activos-doc-signature/' . $documentName;
+        }
+
+        // Verificar si se proporcionó una firma nueva
+        if ($request->hasFile('bill')) {
+            $request->validate([
+                'bill' => ['mimes:txt,TXT,pdf,PDF', 'max:10240'],
+            ]);
+
+            // Eliminar el documento existente si hay uno
+            if ($activo->bill) {
+            // Asegúrate de que el documento existente tenga una ruta válida
+            if (file_exists(public_path($activo->bill))) {
+                    unlink(public_path($activo->bill));
+                }
+            }
+
+            $bill_File = $request->file('bill');
+
+            // Asegúrate de que la carpeta de destino exista
+            $destinationFolder = public_path('Activos-doc-signature');
+            if (!file_exists($destinationFolder)) {
+                mkdir($destinationFolder, 0755, true);
+            }
+
+            // Genera un nombre único para el archivo
+            $documentName = uniqid() . '_' . $bill_File->getClientOriginalName();
+
+            // Mueve el archivo a la carpeta de destino con el nuevo nombre
+            $bill_File->move($destinationFolder, $documentName);
+
+            // Guarda la ruta relativa del nuevo documento en la base de datos
+            $activo->bill = 'Activos-doc-signature/' . $documentName;
+        }
+
         // Actualizar los datos del proveedor con los valores del formulario
         $activo->bill_number = $request->bill_number;
         $activo->acquisition_date = $request->acquisition_date;
@@ -130,9 +226,6 @@ class ActivesController extends Controller
         $activo->price = $request->price;
         $activo->warranty_start = $request->warranty_start;
         $activo->warranty_end = $request->warranty_end;
-        $activo->bill = $request->bill;
-        $activo->warranty_letter = $request->warranty_letter;
-        $activo->health_registration = $request->health_registration;
         $activo->import = $request->import;
 
         // Guardar los cambios en la base de datos

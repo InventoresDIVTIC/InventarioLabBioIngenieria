@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('activos_proveeduria', function (Blueprint $table) {
             $table->unsignedInteger('id')->primary();
-            $table->string('belonging', 45)->nullable();
-            $table->string('owner', 45)->nullable();
-            $table->string('sold_by', 45)->nullable();
-            $table->string('guarder_by', 45)->nullable();
+            $table->string('belonging', 100)->nullable();
+            $table->string('owner', 100)->nullable();
+            $table->string('sold_by', 100)->nullable();
+            $table->string('guarder_by', 100)->nullable();
             $table->date('created_at')->nullable();
             $table->date('updated_at')->nullable();
         });

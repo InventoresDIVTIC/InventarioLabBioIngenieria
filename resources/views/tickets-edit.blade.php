@@ -15,9 +15,9 @@
 <body>
     <x-app-layout>
         <section>
-            <div class="max-w-9xl mx-auto p-6 sm:p-8 sm:rounded-lg shadow-lg" 
+            <div class="max-w-9xl mx-auto p-6 sm:p-8 sm:rounded-lg shadow-lg"
                 style="background: linear-gradient(to left, #205397, #27374D); margin: 1rem; margin-top: 3rem;">
-                <h2 
+                <h2
                     style="color: #d1d5db; font-size: 1.8rem; text-align: center; text-transform: uppercase; padding-bottom: 5px;">
                     Editar Ticket</h2>
                 <p class="screen-title" style="color: #d1d5db;"></p>
@@ -85,7 +85,7 @@
                                 </div>
                                 <div title="Último usuario en Editar este Ticket">
                                     <x-input-label for="last_editor" :value="__('Último editor')" />
-                                    <x-text-input id="last_editor" name="last_editor" type="text" class="mt-1 w-full" readonly="readonly" 
+                                    <x-text-input id="last_editor" name="last_editor" type="text" class="mt-1 w-full" readonly="readonly"
                                         value='<?php echo "{$ticket->last_editor}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('last_editor')" />
                                 </div>
@@ -93,22 +93,21 @@
                                     <div class="max-w-full">
                                         <x-input-label for="solution" :value="__('Motivo')" />
                                         <textarea id="solution" name="solution"
-                                            class="mt-1 {{ $errors->has('solution') ? 'border-red-500' : 'border-gray-300' }} rounded-md shadow-sm focus:ring focus:ring-opacity-50 textarea-wide"
+                                            class="mt-1 {{ $errors->has('solution') ? 'border-red-500' : 'border-gray-400' }} rounded-md shadow-sm focus:ring focus:ring-opacity-50 textarea-wide"
                                             rows="3"><?php echo "{$ticket->solution}"; ?></textarea>
                                         <x-input-error class="mt-2" :messages="$errors->get('solution')" />
                                     </div>
                                 </div>
-                                <!-- COMENTARIOS 
                                 <div class="flex justify-center">
                                     <div class="max-w-full">
                                         <x-input-label for="comments" :value="__('Comentarios')" />
                                         <textarea id="comments" name="comments"
-                                            class="mt-1 {{ $errors->has('comments') ? 'border-red-500' : 'border-gray-300' }} rounded-md shadow-sm focus:ring focus:ring-opacity-50 textarea-wide"
-                                            rows="3"><?php // echo "{$ticket->comments}"; ?></textarea>
+                                            class="mt-1 {{ $errors->has('comments') ? 'border-red-500' : 'border-gray-400' }} rounded-md shadow-sm focus:ring focus:ring-opacity-50 textarea-wide"
+                                            rows="3"><?php echo "{$ticket->comments}"; ?></textarea>
                                         <x-input-error class="mt-2" :messages="$errors->get('comments')" />
                                     </div>
                                 </div>
-                                -->
+
                             </div>
                         </div>
                         <div class="flex items-center gap-4 mt-4" style="justify-content: center;">

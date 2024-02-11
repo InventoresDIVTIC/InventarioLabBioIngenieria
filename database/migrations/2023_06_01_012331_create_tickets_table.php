@@ -25,7 +25,8 @@ return new class extends Migration
             $table->date('updated_at')->nullable();
             $table->string('status', 45)->nullable();
             $table->string('last_editor', 45)->nullable();
-            $table->string('solution', 45)->nullable();
+            $table->string('solution', 500)->nullable();
+            $table->string('comments', 500)->nullable();
         });
     }
 

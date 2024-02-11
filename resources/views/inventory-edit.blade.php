@@ -26,7 +26,7 @@
                     <!-- Indicador de pantallas -->
                     <template x-for="screen in 4" :key="screen">
                         <div
-                            x-bind:class="{ 'indicator active': pantalla === screen, 'indicator': pantalla !== screen }">
+                            x-bind:class="{ 'indicator active': pantalla === screen, 'indicator': pantalla !== screen }" x-on:click="pantalla = screen">
                         </div>
                     </template>
                 </div>
@@ -280,8 +280,7 @@
 
                     <!-- Pantalla 2: Datos de Facturas -->
                     <div x-show="pantalla === 2">
-                        <form id="form-inventario-2" action="{{ route('actives.finanzas', ['id' => $id]) }}"
-                            method="POST" class="space-y-6 w-full sm:w-96">
+                        <form id="form-inventario-2" action="{{ route('actives.finanzas', ['id' => $id]) }}" method="POST" enctype="multipart/form-data" class="space-y-6 w-full sm:w-96">
                             @csrf
                             @method('PATCH')
                             <div class="grid grid-cols-2 gap-6">
@@ -345,85 +344,109 @@
 
                                 <div>
                                     <label for="bill" style="color: white;">Factura</label>
-                                    <input id="bill" name="bill" type="file" class="mt-1 w-full"/>
+                                    <input id="bill" name="bill" type="file" accept=".pdf" class="mt-1 w-full" onchange="previewBill()" />
                                     <x-input-error class="mt-2" :messages="$errors->get('bill')" />
 
-                                    <!-- Para mostrar la vista previa de la factura -->
+                                    <!-- Para mostrar la vista previa del documento existente -->
                                     <div id="bill-preview-container">
                                         <label for="bill">Vista previa del documento:</label>
                                         <br>
-                                        <embed id="bill-document-preview" type="application/pdf" width="100%"
-                                            height="300px" />
+                                        @if($activo->warranty_letter)
+                                            <embed id="bill-document-preview" type="application/pdf" width="100%" height="300px" src="{{ asset($activo->bill) }}" />
+                                        @else
+                                            <p>No hay firma existente.</p>
+                                        @endif
                                     </div>
                                 </div>
+                                <script>
+                                    function previewBill() {
+                                        var input = document.getElementById('bill');
+                                        var preview = document.getElementById('bill-document-preview');
+
+                                        if (input.files && input.files.length > 0) {
+                                            var reader = new FileReader();
+
+                                            reader.onload = function (e) {
+                                                preview.src = e.target.result;
+                                            }
+
+                                            reader.readAsDataURL(input.files[0]);
+                                        } else {
+                                            preview.src = ''; // Establecer preview.src en blanco
+                                        }
+                                    }
+                                </script>
 
                                 <div>
-                                    <label for="warranty_letter" style="color: white;">Carta de garantía</label>
-                                    <input id="warranty_letter" name="warranty_letter" type="file"
-                                        class="mt-1 w-full"/>
+                                    <label for="warranty_letter" style="color: white;">Garantía</label>
+                                    <input id="warranty_letter" name="warranty_letter" type="file" accept=".pdf" class="mt-1 w-full" onchange="previewWarranty_letter()" />
                                     <x-input-error class="mt-2" :messages="$errors->get('warranty_letter')" />
 
-                                    <!-- Para mostrar la vista previa de la carta de garantía -->
-                                    <div id="warranty-letter-preview-container">
-                                        <label for="warranty_letter">Vista previa de la carta de garantía:</label>
+                                    <!-- Para mostrar la vista previa del documento existente -->
+                                    <div id="warranty_letter-preview-container">
+                                        <label for="warranty_letter">Vista previa del documento:</label>
                                         <br>
-                                        <embed id="warranty-letter-document-preview" type="application/pdf"
-                                            width="100%" height="300px" />
+                                        @if($activo->warranty_letter)
+                                            <embed id="warranty_letter-document-preview" type="application/pdf" width="100%" height="300px" src="{{ asset($activo->warranty_letter) }}" />
+                                        @else
+                                            <p>No hay firma existente.</p>
+                                        @endif
                                     </div>
                                 </div>
+                                <script>
+                                    function previewWarranty_letter() {
+                                        var input = document.getElementById('warranty_letter');
+                                        var preview = document.getElementById('warranty_letter-document-preview');
+
+                                        if (input.files && input.files.length > 0) {
+                                            var reader = new FileReader();
+
+                                            reader.onload = function (e) {
+                                                preview.src = e.target.result;
+                                            }
+
+                                            reader.readAsDataURL(input.files[0]);
+                                        } else {
+                                            preview.src = ''; // Establecer preview.src en blanco
+                                        }
+                                    }
+                                </script>
 
                                 <div>
-                                    <label for="health_registration" style="color: white;">Registro sanitario</label>
-                                    <input id="health_registration" name="health_registration" type="file"
-                                        class="mt-1 w-full"/>
+                                    <label for="health_registration" style="color: white;">Registro de sanidad</label>
+                                    <input id="health_registration" name="health_registration" type="file" accept=".pdf" class="mt-1 w-full" onchange="previewHealth_registration()" />
                                     <x-input-error class="mt-2" :messages="$errors->get('health_registration')" />
 
-                                    <!-- Para mostrar la vista previa del registro sanitario -->
-                                    <div id="health-registration-preview-container">
-                                        <label for="health_registration">Vista previa del registro sanitario:</label>
+                                    <!-- Para mostrar la vista previa del documento existente -->
+                                    <div id="health_registration-preview-container">
+                                        <label for="health_registration">Vista previa del documento:</label>
                                         <br>
-                                        <embed id="health-registration-document-preview" type="application/pdf"
-                                            width="100%" height="300px" />
+                                        @if($activo->health_registration)
+                                            <embed id="health_registration-document-preview" type="application/pdf" width="100%" height="300px" src="{{ asset($activo->health_registration) }}" />
+                                        @else
+                                            <p>No hay firma existente.</p>
+                                        @endif
                                     </div>
                                 </div>
-
                                 <script>
-                                    // Función para mostrar la vista previa del documento
-                                    function showPreview(fileInputId, previewId) {
-                                        const fileInput = document.getElementById(fileInputId);
-                                        const preview = document.getElementById(previewId);
+                                    function previewHealth_registration() {
+                                        var input = document.getElementById('health_registration');
+                                        var preview = document.getElementById('health_registration-document-preview');
 
-                                        // Limpiar la vista previa si no hay archivo seleccionado
-                                        if (!fileInput.files || fileInput.files.length === 0) {
-                                            preview.src = '';
-                                            return;
+                                        if (input.files && input.files.length > 0) {
+                                            var reader = new FileReader();
+
+                                            reader.onload = function (e) {
+                                                preview.src = e.target.result;
+                                            }
+
+                                            reader.readAsDataURL(input.files[0]);
+                                        } else {
+                                            preview.src = ''; // Establecer preview.src en blanco
                                         }
-
-                                        const file = fileInput.files[0];
-                                        const fileReader = new FileReader();
-
-                                        // Cargar el archivo como URL para la vista previa
-                                        fileReader.onload = function(e) {
-                                            preview.src = e.target.result;
-                                        };
-
-                                        // Leer el archivo como una URL
-                                        fileReader.readAsDataURL(file);
                                     }
-
-                                    // Agregar eventos para mostrar las vistas previas cuando se seleccionan los archivos
-                                    document.getElementById('bill').addEventListener('change', function() {
-                                        showPreview('bill', 'bill-document-preview');
-                                    });
-
-                                    document.getElementById('warranty_letter').addEventListener('change', function() {
-                                        showPreview('warranty_letter', 'warranty-letter-document-preview');
-                                    });
-
-                                    document.getElementById('health_registration').addEventListener('change', function() {
-                                        showPreview('health_registration', 'health-registration-document-preview');
-                                    });
                                 </script>
+
                                 <div>
                                     <x-input-label for="import" :value="__('Importe')" />
                                     <x-text-input id="import" name="import" type="text" class="mt-1 w-full"
@@ -502,14 +525,17 @@
                                 </div>
 
                                 <div>
-                                    <x-input-label for="last_mprev" :value="__('Ultimo mantenimiento preventivo')" />
-                                    <x-text-input id="last_mprev" name="last_mprev" type="text" class="mt-1 w-full"
+                                    <x-input-label for="last_mprev" :value="__('Inicio de la garantía')" />
+                                    <input type="date" id="last_mprev" name="last_mprev"
+                                        class="mt-1 block w-full"
                                         value='<?php echo "{$activo->last_mprev}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('last_mprev')" />
                                 </div>
+
                                 <div>
-                                    <x-input-label for="next_mprev" :value="__('Siguiente mantenimiento preventivo')" />
-                                    <x-text-input id="next_mprev" name="next_mprev" type="text" class="mt-1 w-full"
+                                    <x-input-label for="next_mprev" :value="__('Inicio de la garantía')" />
+                                    <input type="date" id="next_mprev" name="next_mprev"
+                                        class="mt-1 block w-full"
                                         value='<?php echo "{$activo->next_mprev}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('next_mprev')" />
                                 </div>
@@ -536,8 +562,8 @@
                             <div class="grid grid-cols-1 gap-6">
                                 <div>
                                     <x-input-label for="leaving_date" :value="__('Fecha de baja')" />
-                                    <x-text-input id="leaving_date" name="leaving_date" type="text"
-                                        class="mt-1 w-full" readonly="readonly"
+                                    <input type="date" id="leaving_date" name="leaving_date"
+                                        class="mt-1 block w-full" readonly="readonly"
                                         value='<?php echo "{$activo->leaving_date}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('leaving_date')" />
                                 </div>

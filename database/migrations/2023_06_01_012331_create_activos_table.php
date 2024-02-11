@@ -28,16 +28,16 @@ return new class extends Migration
             $table->string('criticality', 45)->nullable();
             $table->string('risk', 45)->nullable();
             $table->string('ing_assigned', 45)->nullable();
-            $table->string('description')->nullable();
-            $table->string('comments')->nullable();
-            $table->string('last_editor', 45)->nullable();
+            $table->string('description', 100)->nullable();
+            $table->string('comments', 500)->nullable();
+            $table->string('last_editor', 100)->nullable();
             $table->date('created_at')->nullable();
             $table->date('updated_at')->nullable();
             $table->string('software_ver', 45)->nullable();
             $table->string('so', 45)->nullable();
             $table->string('firmware_ver', 45)->nullable();
             $table->date('leaving_date')->nullable();
-            $table->string('motive', 45)->nullable();
+            $table->string('motive', 100)->nullable();
             $table->string('leaving_comments')->nullable();
         });
     }

@@ -24,8 +24,8 @@ class TicketsController extends Controller
 
         // Obtener el ID del usuario autenticado
         $user_id = Auth::id();
-        
-        // Crear un nuevo registro de Ticket 	 	
+
+        // Crear un nuevo registro de Ticket
         $ticket = new Tickets();
         $ticket->user_id = $user_id;
         $ticket->active_id = intval($request->input('active_id'));
@@ -63,7 +63,7 @@ class TicketsController extends Controller
         $ticket->status = $request->status;
         $ticket->last_editor = $user_name;
         $ticket->solution = $request->solution;
-        //$ticket->commets = $request->comments;
+        $ticket->comments = $request->comments;
 
         // Guardar los cambios en la base de datos
         $ticket->save();
