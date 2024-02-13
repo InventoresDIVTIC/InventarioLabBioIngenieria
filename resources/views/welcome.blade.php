@@ -7,7 +7,7 @@
     <title>DEV LAB DE BIOINGENIERIA</title>
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
     </head>
-    <body>
+    <body class="min-w-full inline-block min-w-min md:min-w-0 md:inline">
      <section>
         <div class="Pincipal">
             @if (Route::has('login'))

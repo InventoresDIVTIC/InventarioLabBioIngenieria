@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
 </head>
 
-<body>
+<body class="min-w-full inline-block min-w-min md:min-w-0 md:inline">
     <x-app-layout>
         <section>
             <div>
@@ -20,10 +20,10 @@
                         <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                             <div
                                 class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
-                                <?php  
+                                <?php
                                     $users = DB::table('users')
                                     ->select('id','name', 'lastname', 'email', 'rol', 'area', 'last_seen')
-                                    ->get(); 
+                                    ->get();
                                 ?>
                                 <table class="min-w-full">
                                     <thead>
@@ -44,7 +44,7 @@
                                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                                 VISTO ULTIMA VEZ</th>
                                         </tr>
-                                           
+
                                     </thead>
                                     <tbody class="bg-white">
                                         <?php

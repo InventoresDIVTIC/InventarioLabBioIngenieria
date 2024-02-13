@@ -10,7 +10,7 @@
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/services.css">
 </head>
-<body class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
+<body class="bg-gray-100 text-gray-900 tracking-wider leading-normal min-w-full inline-block min-w-min md:min-w-0 md:inline">
     <x-app-layout>
         <section>
             <div>

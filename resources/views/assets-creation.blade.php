@@ -11,14 +11,13 @@
 <body>
     <x-app-layout>
         <section>
-            <div class="max-w-xl mx-auto p-6 sm:p-8 sm:rounded-lg shadow-lg" style="background: linear-gradient(to left, #205397, #27374D); margin: 1rem; margin-top: 3rem;">
+            <div class="max-w-xl mx-auto p-6 sm:p-8 sm:rounded-lg shadow-lg min-w-full inline-block min-w-min md:min-w-0 md:inline" style="background: linear-gradient(to left, #205397, #27374D); margin: 1rem; margin-top: 3rem;">
             <h2 style="color: #d1d5db; font-size: 1.8rem; text-align: center; text-transform: uppercase; padding-bottom: 5px;">Registro de Activo</h2>
             <form method="post" action="{{ route('guardarActivo') }}" class="space-y-6">
                     @csrf
                     <div>
                         <x-input-label for="category" :value="__('Categoría')"/>
-                        <div x-data="customSelect()">
-                        <select id="category" name="category" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="category"  @change="selectOption($event)">
+                        <select id="category" name="category" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="category">
                             <option value="Por definir">Por definir</option>
                             <option value="Equipo Médico">Equipo Médico</option>
                             <option value="Equipo de medición / Simulacion">Equipo de medición / Simulacion</option>
@@ -37,8 +36,6 @@
                             <option value="Instrumental medico">Instrumental medico</option>
                             <option value="Otro">Otro</option>
                         </select>
-                            <input type="hidden" name="category_selected" x-bind:value="selectedValue">
-                        </div>
                         <x-input-error class="mt-2" :messages="$errors->get('category')" />
                     </div>
 
@@ -68,36 +65,29 @@
 
                     <div>
                         <x-input-label for="location" :value="__('Ubicación')" />
-                        <div x-data="customSelect()">
-                        <select id="location" name="location" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="location"  @change="selectOption($event)">
+                        <select id="location" name="location" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="location">
                             <option value="Por definir">Por definir</option>
                             <option value="Ubicación 1">Ubicación 1</option>
                             <option value="Ubicación 2">Ubicación 2</option>
                             <option value="Ubicación 3">Ubicación 3</option>
                         </select>
-                        <input type="hidden" name="location_selected" x-bind:value="selectedValue">
-                        </div>
                         <x-input-error class="mt-2" :messages="$errors->get('location')" />
                     </div>
 
                     <div>
                         <x-input-label for="sublocation" :value="__('Sub ubicación')" />
-                        <div x-data="customSelect()">
-                        <select id="sublocation" name="sublocation" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="sublocation"  @change="selectOption($event)">
+                        <select id="sublocation" name="sublocation" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="sublocation">
                             <option value="Por definir">Por definir</option>
                             <option value="Sub Ubicación 1">Sub Ubicación 1</option>
                             <option value="Sub Ubicación 2">Sub Ubicación 2</option>
                             <option value="Sub Ubicación 3">Sub Ubicación 3</option>
                         </select>
-                        <input type="hidden" name="sublocation_selected" x-bind:value="selectedValue">
-                        </div>
                         <x-input-error class="mt-2" :messages="$errors->get('sublocation')" />
                     </div>
 
                     <div>
                         <x-input-label for="status" :value="__('Estado')" />
-                        <div x-data="customSelect()">
-                        <select id="status" name="status" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="status"  @change="selectOption($event)">
+                        <select id="status" name="status" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="status">
                             <option value="Por definir">Por definir</option>
                             <option value="Funcional">Funcional</option>
                             <option value="No funcional">No funcional</option>
@@ -107,29 +97,23 @@
                             <option value="En stock">En stock</option>
                             <option value="Baja">Baja</option>
                         </select>
-                        <input type="hidden" name="status_selected" x-bind:value="selectedValue">
-                        </div>
                         <x-input-error class="mt-2" :messages="$errors->get('status')" />
                     </div>
 
                     <div>
                         <x-input-label for="hierarchy" :value="__('Jerarquia')" />
-                        <div x-data="customSelect()">
-                        <select id="hierarchy" name="hierarchy" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="hierarchy"  @change="selectOption($event)">
+                        <select id="hierarchy" name="hierarchy" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="hierarchy">
                             <option value="Por definir">Por definir</option>
                             <option value="Individual">Individual</option>
                             <option value="Principal">Principal</option>
                             <option value="Secundario">Secundario</option>
                         </select>
-                        <input type="hidden" name="hierarchy_selected" x-bind:value="selectedValue">
-                        </div>
                         <x-input-error class="mt-2" :messages="$errors->get('hierarchy')" />
                     </div>
 
                     <div>
                         <x-input-label for="belonging" :value="__('Pertenencia')" />
-                        <div x-data="customSelect()">
-                        <select id="belonging" name="belonging" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="belonging"  @change="selectOption($event)">
+                        <select id="belonging" name="belonging" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="belonging">
                             <option value="Por definir">Por definir</option>
                             <option value="Propio">Propio</option>
                             <option value="Renta">Renta</option>
@@ -139,8 +123,6 @@
                             <option value="P. Salud">P. Salud</option>
                             <option value="Otro">Otro</option>
                         </select>
-                        <input type="hidden" name="belonging_selected" x-bind:value="selectedValue">
-                        </div>
                         <x-input-error class="mt-2" :messages="$errors->get('belonging')" />
                     </div>
 
@@ -158,33 +140,6 @@
                         @endif
                      </div>
                 </div>
-
-                <script>
-                    function customSelect() {
-                        return {
-                            selectedValue: '',
-                            selectOption(event) {
-                                this.selectedValue = event.target.value;
-                            },
-                        };
-                    }
-
-                    // Agrega una escucha al evento submit del formulario para enviar el valor seleccionado
-                    document.querySelector('form').addEventListener('submit', function() {
-                        const selectedValueField = document.querySelector('input[name="category_selected"]');
-                        selectedValueField.value = customSelect().selectedValue;
-                        const selectedValueField = document.querySelector('input[name="location_selected"]');
-                        selectedValueField.value = customSelect().selectedValue;
-                        const selectedValueField = document.querySelector('input[name="sublocation_selected"]');
-                        selectedValueField.value = customSelect().selectedValue;
-                        const selectedValueField = document.querySelector('input[name="status_selected"]');
-                        selectedValueField.value = customSelect().selectedValue;
-                        const selectedValueField = document.querySelector('input[name="hierarchy_selected"]');
-                        selectedValueField.value = customSelect().selectedValue;
-                        const selectedValueField = document.querySelector('input[name="belonging_selected"]');
-                        selectedValueField.value = customSelect().selectedValue;
-                    });
-                </script>
             </form>
             </div>
         </section>

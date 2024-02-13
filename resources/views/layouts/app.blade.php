@@ -58,7 +58,7 @@
                 });
             </script>
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center" style="background-color: #27374d;">
+            <div class="sm:flex sm:items-center" style="background-color: #27374d;">
 
                 <x-dropdown width="48" style="margin-right: 15px;">
                     <x-slot name="trigger">
@@ -125,7 +125,7 @@
 
 
         <!-- Page Content -->
-        <main id="content" class="h-full w-full" :class="isOpen ? 'slide-in-Content' : 'slide-out-Content'">
+        <main id="content" class="h-full w-full min-w-full inline-block min-w-min md:min-w-0 md:inline" :class="isOpen ? 'slide-in-Content' : 'slide-out-Content'">
             {{ $slot }}
 
             <!-- Footer -->

@@ -8,7 +8,7 @@
     <title>REGISTRO DE SERVICIOS | DEV LAB DE BIOINGENIERIA</title>
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
 </head>
-<body>
+<body class="min-w-full inline-block min-w-min md:min-w-0 md:inline">
     <x-app-layout>
         <section>
             <div class="max-w-xl mx-auto p-6 sm:p-8 sm:rounded-lg shadow-lg" style="background: linear-gradient(to left, #205397, #27374D); margin: 1rem; margin-top: 3rem;">
