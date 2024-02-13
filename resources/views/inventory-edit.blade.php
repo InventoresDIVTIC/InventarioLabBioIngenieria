@@ -14,7 +14,7 @@
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
 </head>
 
-<body>
+<body class="min-w-full inline-block min-w-min md:min-w-0 md:inline">
     <x-app-layout>
         <section>
             <div class="max-w-9xl mx-auto p-6 sm:p-8 sm:rounded-lg shadow-lg"

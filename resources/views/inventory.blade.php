@@ -13,7 +13,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
-<body class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
+<body class="bg-gray-100 text-gray-900 tracking-wider leading-normal min-w-full inline-block min-w-min md:min-w-0 md:inline">
     <x-app-layout>
         <section>
             <div>
