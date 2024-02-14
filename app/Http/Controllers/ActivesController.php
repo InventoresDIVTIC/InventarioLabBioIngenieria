@@ -290,4 +290,11 @@ class ActivesController extends Controller
         // Redireccionar o realizar otras acciones según tus necesidades
         return redirect()->back()->with('status', 'Activo actualizado exitosamente');
     }
+
+    public function Datotemp($data)
+    {
+        session()->put('id', $data);
+        $id = session()->get('id');
+        return redirect()->route('inventory-edit', ['id' => $id]); // Redirige a la ruta que muestra la vista de edición
+    }
 }

@@ -32,7 +32,7 @@
                 </div>
                 <p class="screen-title" x-text="'Pantalla ' + pantallaTitulo" style="color: #d1d5db;"></p>
                 <?php
-                    $id = $_GET['id'];
+                    $id = session()->get('id');
                     $activo = DB::table('activos')
                         ->join('activos_finanzas', 'activos.id', '=', 'activos_finanzas.id')
                         ->join('activos_proveeduria', 'activos.id', '=', 'activos_proveeduria.id')
@@ -45,7 +45,7 @@
                 <div x-data="{ pantalla }">
 
                     <div x-show="pantalla === 1">
-                        <form id="form-inventario" action="{{ route('actives.edit', ['id' => $id]) }}"
+                        <form id="form-inventario" action="{{ route('actives.edit', ['id' => $activo->id]) }}"
                             method="POST" class="space-y-6 w-full sm:w-96">
                             @csrf
                             @method('PATCH')
@@ -280,7 +280,7 @@
 
                     <!-- Pantalla 2: Datos de Facturas -->
                     <div x-show="pantalla === 2">
-                        <form id="form-inventario-2" action="{{ route('actives.finanzas', ['id' => $id]) }}" method="POST" enctype="multipart/form-data" class="space-y-6 w-full sm:w-96">
+                        <form id="form-inventario-2" action="{{ route('actives.finanzas', ['id' => $activo->id]) }}" method="POST" enctype="multipart/form-data" class="space-y-6 w-full sm:w-96">
                             @csrf
                             @method('PATCH')
                             <div class="grid grid-cols-2 gap-6">
@@ -469,7 +469,7 @@
 
                     <!-- Pantalla 3: Datos de registro y mantenimiento -->
                     <div x-show="pantalla === 3">
-                        <form id="form-inventario-3" action="{{ route('actives.proveeduria', ['id' => $id]) }}"
+                        <form id="form-inventario-3" action="{{ route('actives.proveeduria', ['id' => $activo->id]) }}"
                             method="POST" class="space-y-6 w-full sm:w-96">
                             @csrf
                             @method('PATCH')
@@ -555,7 +555,7 @@
 
                     <!-- Pantalla 4: Datos de eliminacion -->
                     <div x-show="pantalla === 4">
-                        <form id="form-inventario-4" action="{{ route('actives.delete', ['id' => $id]) }}"
+                        <form id="form-inventario-4" action="{{ route('actives.delete', ['id' => $activo->id]) }}"
                             method="POST" class="space-y-6 w-full sm:w-96">
                             @csrf
                             @method('PATCH')
