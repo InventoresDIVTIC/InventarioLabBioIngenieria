@@ -293,7 +293,7 @@ class ActivesController extends Controller
 
     public function Datotemp($data)
     {
-        session()->put('id', $data);
+        session()->flash('id', $data);
         $id = session()->get('id');
         return redirect()->route('inventory-edit', ['id' => $id]); // Redirige a la ruta que muestra la vista de edición
     }

@@ -32,9 +32,13 @@
                 </div>
                 <p class="screen-title" x-text="'Pantalla ' + pantallaTitulo" style="color: #d1d5db;"></p>
                 <?php
-                    $id = session()->get('id');
-                    if($id==NULL){
+                    if(session()->get('id')!=NULL){
+                        $id = session()->get('id');
+                        session()->flash('id', $id);
+                    }
+                    else{
                         $id = $_GET['id'];
+                        session()->flash('id', $id);  
                     }
                     $activo = DB::table('activos')
                         ->join('activos_finanzas', 'activos.id', '=', 'activos_finanzas.id')
