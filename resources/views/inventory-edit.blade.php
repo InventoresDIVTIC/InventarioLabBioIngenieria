@@ -33,6 +33,9 @@
                 <p class="screen-title" x-text="'Pantalla ' + pantallaTitulo" style="color: #d1d5db;"></p>
                 <?php
                     $id = session()->get('id');
+                    if($id==NULL){
+                        $id = $_GET['id'];
+                    }
                     $activo = DB::table('activos')
                         ->join('activos_finanzas', 'activos.id', '=', 'activos_finanzas.id')
                         ->join('activos_proveeduria', 'activos.id', '=', 'activos_proveeduria.id')
