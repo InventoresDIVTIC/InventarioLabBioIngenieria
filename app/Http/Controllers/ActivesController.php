@@ -297,4 +297,13 @@ class ActivesController extends Controller
         $id = session()->get('id');
         return redirect()->route('inventory-edit', ['id' => $id]); // Redirige a la ruta que muestra la vista de edición
     }
+
+    public function DatotempTickets($data)
+    {
+        session()->flash('idTicket', $data);
+        $id = session()->get('idTicket');
+        return redirect()->route('tickets-creation', ['id' => $id]); // Redirige a la ruta que muestra la vista de edición
+    }
+
+
 }

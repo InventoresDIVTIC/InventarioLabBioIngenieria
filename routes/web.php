@@ -96,6 +96,6 @@ Route::patch('/editar-servicios-detalles/{id}', [ServicesController::class, 'edi
 Route::patch('/editar-servicios-firmas/{id}', [ServicesController::class, 'edit_services_firmas'])->name('services.edit.firmas');
 Route::patch('/editar-servicios-gastos/{id}', [ServicesController::class, 'edit_services_gastos'])->name('services.edit.gastos');
 Route::get('/editar-Activos-new/{id}', [ActivesController::class, 'Datotemp'])->name('inventory.Datotemp');
-
+Route::get('/crear-ticket/{id}', [ActivesController::class, 'DatotempTickets'])->name('inventory.DatotempTickets');
 
 require __DIR__.'/auth.php';

@@ -18,7 +18,20 @@
                 style="background: linear-gradient(to left, #205397, #27374D); margin: 1rem; margin-top: 3rem;">
                 <h2
                     style="color: #d1d5db; font-size: 1.8rem; text-align: center; text-transform: uppercase; padding-bottom: 5px;">
-                    Registro de Tickets</h2>
+                    Registro de Tickets
+                </h2>
+                <?php
+                    if(session()->get('idTicket')!=NULL){
+                        $id = session()->get('idTicket');
+                        session()->flash('idTicket', $id);
+
+                        $activo = DB::table('activos')
+                        ->select('id','type')
+                        ->where('activos.id', '=', $id)
+                        ->first();
+                    }
+                    
+                ?>
                 <form method="post" action="{{ route('guardarTicket') }}" class="space-y-6">
                     @csrf
 
@@ -89,6 +102,14 @@
                 }
             }).columns.adjust().responsive.recalc();
         });
+    </script>
+
+    <script>
+        <?php
+            if(session()->get('idTicket')!=NULL){
+                echo "$('#active_id').val('$activo->id');\n";
+                echo "$('#type').val('$activo->type');";      
+        }?>     
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

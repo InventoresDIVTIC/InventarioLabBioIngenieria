@@ -606,6 +606,18 @@
                 </div>
             </div>
         </section>
+
+        <div style="text-align: center;">
+            <!-- Botón flotante para agregar tickets -->
+            <a href="{{ route('inventory.DatotempTickets', ['id' => $activo->id]) }}" class="floating-button">
+                <h2>+</h2>
+            </a>
+        </div>
+
+        <!-- Ventana flotante para mostrar el mensaje -->
+        <div class="floating-message">
+            Agregar tickets
+        </div>
     </x-app-layout>
 
     <script>
