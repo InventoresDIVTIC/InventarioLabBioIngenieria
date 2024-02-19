@@ -27,7 +27,7 @@ class RegisterRequest extends FormRequest
                 'name' => ['max:45', 'regex:/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/'],
                 'lastname' => ['max:45', 'regex:/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/'],
                 'code' => 'max:9|min:5',
-                'email' => ['required', 'email', 'regex:/(.*)@alumnos.udg.mx|@academicos.udg.mx$/i'],
+                'email' => ['required', 'email', 'regex:/(.*)@alumnos.udg.mx|@administrativos.udg.mx|@academicos.udg.mx$/i'],
                 'password' => ['required', 'max:16', 'min:8', 'confirmed', Password::defaults()],
         ];
     }
