@@ -25,38 +25,37 @@
                                 </div>
                                 <div class="p-4 text-right">
                                     <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Total de Gastos Mensuales</p>
-                                    <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">$5k</h4>
+                                    <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{{ $totalGastosMensualesFormateado }}</h4>
                                 </div>
                             </div>
                             <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md" style="display: inline-block;width: 32.5%;margin-left: 4px;margin-right: 4px;">
                                 <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
-                                <svg class="h-8 w-8 text-slate-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="9" cy="7" r="4" />  <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />  <path d="M16 3.13a4 4 0 0 1 0 7.75" />  <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg>
-                                </div>
-                                <div class="p-4 text-right">
-                                    <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Total de Usuarios</p>
-                                        <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">4</h4>
-                                </div>
-                            </div>
-                            <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md" style="display: inline-block;width: 32.5%;margin-left: 4px;">
-                                <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-purple-600 to-purple-400 text-white shadow-purple-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
-                                <svg class="h-8 w-8 text-slate-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />  <polyline points="13 2 13 9 20 9" /></svg>
-                                </div>
-                                <div class="p-4 text-right">
-                                    <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Total de Activos</p>
-                                        <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">16</h4>
-                                </div>
-                            </div>
-                            <!-- <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
-                                <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-orange-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-6 h-6 text-white">
-                                        <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z"></path>
+                                    <svg class="h-8 w-8 text-slate-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z"/>
+                                        <circle cx="9" cy="7" r="4" />
+                                        <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                        <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
                                     </svg>
                                 </div>
                                 <div class="p-4 text-right">
-                                    <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Datos de Activo</p>
-                                    <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">Cable adaptador</h4>
+                                    <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Total de Usuarios</p>
+                                    <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{{ $totalUsuarios }}</h4>
                                 </div>
-                            </div> -->
+                            </div>
+
+                            <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md" style="display: inline-block;width: 32.5%;margin-left: 4px;">
+                                <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-purple-600 to-purple-400 text-white shadow-purple-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+                                    <svg class="h-8 w-8 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
+                                        <polyline points="13 2 13 9 20 9" />
+                                    </svg>
+                                </div>
+                                <div class="p-4 text-right">
+                                    <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Total de Activos</p>
+                                    <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{{ $totalActivos }}</h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -89,7 +88,7 @@
                                                         <div class="flex items-center gap-4">
                                                             <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold">Cable adaptor de alimentación</p>
                                                         </div>
-                                                    </td>              
+                                                    </td>
 
                                                     <td class="py-3 px-5 border-b border-blue-gray-50">
                                                         <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">2024-08-28</p>
@@ -105,8 +104,8 @@
                                                     <td class="py-3 px-5 border-b border-blue-gray-50">
                                                         <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">2024-02-21</p>
                                                     </td>
-                                        
-                                                </tr>  
+
+                                                </tr>
                                                 <tr>
                                                     <td class="py-3 px-5 border-b border-blue-gray-50">
                                                         <div class="flex items-center gap-4">
@@ -116,7 +115,7 @@
                                                     <td class="py-3 px-5 border-b border-blue-gray-50">
                                                         <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">2024-03-02</p>
                                                     </td>
-                                            
+
                                                 </tr>
                                                 <tr>
                                                     <td class="py-3 px-5 border-b border-blue-gray-50">
@@ -127,7 +126,7 @@
                                                     <td class="py-3 px-5 border-b border-blue-gray-50">
                                                         <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">2024-06-06</p>
                                                     </td>
-                                            
+
                                                 </tr>
                                                 <tr>
                                                     <td class="py-3 px-5 border-b border-blue-gray-50">
@@ -138,7 +137,7 @@
                                                     <td class="py-3 px-5 border-b border-blue-gray-50">
                                                         <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">2024-12-12</p>
                                                     </td>
-                                            
+
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -184,11 +183,11 @@
                                                         </linearGradient>
                                                         </defs>
                                                     </svg>
-                                                </td>   
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="py-2">Mes actual</td>
-                                                
+
                                                 <td>
                                                     <svg class="w-16 ml-auto" viewBox="0 0 68 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <rect opacity="0.4" width="17" height="21" rx="1" fill="#e4e4f2"/>
@@ -203,10 +202,10 @@
                                                         </linearGradient>
                                                         </defs>
                                                     </svg>
-                                                </td>   
+                                                </td>
                                             </tr>
                                         </tbody>
-                                    </table>   
+                                    </table>
                                 </div>
                             </div>
                         </div>

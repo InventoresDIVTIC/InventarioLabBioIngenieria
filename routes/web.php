@@ -5,6 +5,7 @@ use App\Http\Controllers\ActivesController;
 use App\Http\Controllers\SuppliersController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -97,5 +98,6 @@ Route::patch('/editar-servicios-firmas/{id}', [ServicesController::class, 'edit_
 Route::patch('/editar-servicios-gastos/{id}', [ServicesController::class, 'edit_services_gastos'])->name('services.edit.gastos');
 Route::get('/editar-Activos-new/{id}', [ActivesController::class, 'Datotemp'])->name('inventory.Datotemp');
 Route::get('/crear-ticket/{id}', [ActivesController::class, 'DatotempTickets'])->name('inventory.DatotempTickets');
+Route::get('/dashboard', [DashboardController::class, 'MetricasDashboard'])->name('dashboard');
 
 require __DIR__.'/auth.php';
