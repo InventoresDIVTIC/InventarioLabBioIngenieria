@@ -19,6 +19,11 @@
                                 <div>NOMBRE</div>
                             </div>
                         </th>
+                        <th id="icon-menu-type" data-priority="3">
+                            <div class="orden">
+                                <div>INGENIERO</div>
+                            </div>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +38,7 @@
                         </div>
                         <?php
                                     echo "<td>{$proveedor->name}</td>";
+                                    echo "<td>{$proveedor->engineer}</td>";
                                     echo "</tr>";
 
                             }

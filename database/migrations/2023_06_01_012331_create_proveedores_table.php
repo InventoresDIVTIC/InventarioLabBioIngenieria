@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('support_email', 45)->nullable();
             $table->string('description')->nullable();
             $table->string('category', 45)->nullable();
-            $table->string('sub_category', 45)->nullable();
+            $table->string('engineer', 45)->nullable();
             $table->date('created_at')->nullable();
             $table->date('updated_at')->nullable();
         });

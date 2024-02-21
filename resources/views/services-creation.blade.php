@@ -17,22 +17,20 @@
                     @csrf
                     <div>
                         <x-input-label for="status" :value="__('Estatus')" />
-                        <div x-data="customSelect()">
-                        <select id="status" name="status" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="status"  @change="selectOption($event)">
+                        <div>
+                        <select id="status" name="status" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="status">
                             <option value="Planeado">Planeado</option>
                         </select>
-                            <input type="hidden" name="status_selected" x-bind:value="selectedValue">
                         </div>
                         <x-input-error class="mt-2" :messages="$errors->get('status')" />
                     </div>
 
                     <div>
                         <x-input-label for="services_type" :value="__('Tipo de servicio')" />
-                        <div x-data="customSelect()">
-                        <select id="services_type" name="services_type" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="services_type"  @change="selectOption($event)">
+                        <div>
+                        <select id="services_type" name="services_type" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="services_type">
                             <option value="Mantenimiento Preventivo">Mantenimiento Preventivo</option>
                         </select>
-                            <input type="hidden" name="services_type_selected" x-bind:value="selectedValue">
                         </div>
                         <x-input-error class="mt-2" :messages="$errors->get('services_type')" />
                     </div>
@@ -131,32 +129,11 @@
                     });
                 </script>
 
-                <script src="https://bioingenieria.inventores.org/js/services-creation.js"></script>
+                <script src="http://127.0.0.1:8000/js/services-creation.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
                 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
                 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-
-                <script>
-                    function customSelect() {
-                        return {
-                            selectedValue: '',
-                            selectOption(event) {
-                                this.selectedValue = event.target.value;
-                            },
-                        };
-                    }
-
-                    // Agrega una escucha al evento submit del formulario para enviar el valor seleccionado
-                    document.querySelector('form').addEventListener('submit', function() {
-
-                        const selectedValueFieldStatus = document.querySelector('input[name="status_selected"]');
-                        selectedValueFieldStatus.value = customSelect().selectedValue;
-
-                        const selectedValueFieldType = document.querySelector('input[name="services_type_selected"]');
-                        selectedValueFieldType.value = customSelect().selectedValue;
-                    });
-                </script>
             </form>
             </div>
         </section>

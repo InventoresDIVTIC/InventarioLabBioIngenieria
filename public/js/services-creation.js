@@ -12,6 +12,7 @@ function cleanTr() {
 window.onload = function() {
     var supplier_id = null;
     var supplier_name = null;
+    var assigned_engineer = null;
 
     var active_id = null;
     var active_name = null;
@@ -42,6 +43,7 @@ window.onload = function() {
                 $(this).addClass('row-selected')
                 supplier_id = $(this).find("td:eq(0)").text();
                 supplier_name = $(this).find("td:eq(1)").text();
+                assigned_engineer = $(this).find("td:eq(2)").text();
                 $('#select-proveedor').attr("disabled", false);
                 $('#select-proveedor').removeClass('disabled');
             }
@@ -69,6 +71,7 @@ window.onload = function() {
         $('#select-proveedor').click(function(e) {
             $('#supplier_id').val(supplier_id);
             $('#supplier_name').val(supplier_name);
+            $('#assigned_engineer').val(assigned_engineer);
             $('#select-active-prov').addClass('disabled');
         }) 
 

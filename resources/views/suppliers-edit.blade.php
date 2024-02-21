@@ -88,15 +88,6 @@
                                         class="mt-1 block w-full" required autofocus autocomplete="support_email" value='<?php echo "{$proveedor->support_email}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('support_email')" />
                                 </div>
-                                <div class="flex justify-center">
-                                    <div class="max-w-full">
-                                        <x-input-label for="description" :value="__('Descripción')" />
-                                        <textarea id="description" name="description"
-                                            class="mt-1 {{ $errors->has('description') ? 'border-red-500' : 'border-gray-300' }} rounded-md shadow-sm focus:ring focus:ring-opacity-50 textarea-wide"
-                                            required autocomplete="description" rows="3"><?php echo "{$proveedor->description}"; ?></textarea>
-                                        <x-input-error class="mt-2" :messages="$errors->get('description')" />
-                                    </div>
-                                </div>
                                 <div>
                                     <x-input-label for="category" :value="__('Servicio')" />
                                     <select id="category" name="category"
@@ -127,6 +118,21 @@
                                         <option value="Otros">Otros</option>
                                     </select>
                                     <x-input-error class="mt-2" :messages="$errors->get('category')" />
+                                </div>
+                                <div>
+                                    <x-input-label for="engineer" :value="__('Ingeniero')" />
+                                    <x-text-input id="engineer" name="engineer" type="text"
+                                        class="mt-1 block w-full" required autofocus autocomplete="engineer" value='<?php echo "{$proveedor->engineer}"; ?>'/>
+                                    <x-input-error class="mt-2" :messages="$errors->get('engineer')" />
+                                </div>
+                                <div>
+                                    <div class="max-w-full">
+                                        <x-input-label for="description" :value="__('Descripción')" />
+                                        <textarea id="description" name="description"
+                                            class="mt-1 {{ $errors->has('description') ? 'border-red-500' : 'border-gray-300' }} rounded-md shadow-sm focus:ring focus:ring-opacity-50 textarea-wide"
+                                            required autocomplete="description" rows="3"><?php echo "{$proveedor->description}"; ?></textarea>
+                                        <x-input-error class="mt-2" :messages="$errors->get('description')" />
+                                    </div>
                                 </div>
                             </div>
                         </div>

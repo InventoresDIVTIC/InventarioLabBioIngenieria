@@ -50,6 +50,7 @@ class SuppliersController extends Controller
         $proveedor->site_web = $request->site_web;
         $proveedor->business_email = $request->business_email;
         $proveedor->site_web = $request->site_web;
+        $proveedor->engineer = $request->engineer;
         $proveedor->support_email = $request->support_email;
         $proveedor->description = $request->description;
         $proveedor->category = $request->category;

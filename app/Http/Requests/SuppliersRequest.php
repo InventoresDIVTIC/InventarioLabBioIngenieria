@@ -23,7 +23,7 @@ class SuppliersRequest extends FormRequest
     {
         return [
             'name' => ['max:45', 'regex:/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/'],
-            'company_name' => ['max:45', 'regex:/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/'],
+            'company_name' =>  ['max:45', 'regex:/^[A-Za-záéíóúÁÉÍÓÚñÑ0-9\s.]+$/'],
             'city' => ['max:20', 'regex:/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/'],
             'state' => ['max:20', 'regex:/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/'],
             'country' => ['max:20', 'regex:/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/'],

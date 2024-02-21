@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('active_sublocation', 45)->nullable();
             $table->string('service_type', 45)->nullable();
             $table->string('supplier_name', 45)->nullable();
-            $table->string('active_name', 45)->nullable();
+            $table->string('active_name', 191)->nullable();
             $table->unsignedInteger('supplier_id')->nullable();
             $table->unsignedInteger('active_id')->nullable();
             $table->string('foil', 45)->nullable();
