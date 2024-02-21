@@ -38,7 +38,7 @@
                     }
                     else{
                         $id = $_GET['id'];
-                        session()->flash('id', $id);  
+                        session()->flash('id', $id);
                     }
                     $activo = DB::table('activos')
                         ->join('activos_finanzas', 'activos.id', '=', 'activos_finanzas.id')
@@ -256,7 +256,7 @@
                                 </div>
 
                                 <div>
-                                    <x-input-label for="firmware_ver" :value="__('Verción de firmware')" />
+                                    <x-input-label for="firmware_ver" :value="__('Versión de firmware')" />
                                     <x-text-input id="firmware_ver" name="firmware_ver" type="text"
                                         class="mt-1 w-full"
                                         value='<?php echo "{$activo->firmware_ver}"; ?>' />
@@ -532,7 +532,7 @@
                                 </div>
 
                                 <div>
-                                    <x-input-label for="last_mprev" :value="__('Inicio de la garantía')" />
+                                    <x-input-label for="last_mprev" :value="__('Ultimo mantenimiento preventivo')" />
                                     <input type="date" id="last_mprev" name="last_mprev"
                                         class="mt-1 block w-full"
                                         value='<?php echo "{$activo->last_mprev}"; ?>' />
@@ -540,7 +540,7 @@
                                 </div>
 
                                 <div>
-                                    <x-input-label for="next_mprev" :value="__('Inicio de la garantía')" />
+                                    <x-input-label for="next_mprev" :value="__('Proximo mantenimiento preventivo')" />
                                     <input type="date" id="next_mprev" name="next_mprev"
                                         class="mt-1 block w-full"
                                         value='<?php echo "{$activo->next_mprev}"; ?>' />
