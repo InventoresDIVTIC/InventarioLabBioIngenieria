@@ -10,7 +10,7 @@ class ActivoServicios extends Model
 
     protected $fillable = [
         'activo_id',
-        'last_mprev',  
+        'last_mprev',
     ];
 
     // Relación con la tabla "activos"

@@ -83,62 +83,19 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach ($mantenimientosProximos as $mantenimiento)
                                                 <tr>
                                                     <td class="py-3 px-5 border-b border-blue-gray-50">
                                                         <div class="flex items-center gap-4">
-                                                            <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold">Cable adaptor de alimentación</p>
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="py-3 px-5 border-b border-blue-gray-50">
-                                                        <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">2024-08-28</p>
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td class="py-3 px-5 border-b border-blue-gray-50">
-                                                        <div class="flex items-center gap-4">
-                                                            <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold">Transductor para Ultrasonido Doppler</p>
+                                                            <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold">{{ $mantenimiento->type }}</p>
                                                         </div>
                                                     </td>
                                                     <td class="py-3 px-5 border-b border-blue-gray-50">
-                                                        <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">2024-02-21</p>
+                                                        <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">{{ $mantenimiento->next_mprev }}</p>
                                                     </td>
-
                                                 </tr>
-                                                <tr>
-                                                    <td class="py-3 px-5 border-b border-blue-gray-50">
-                                                        <div class="flex items-center gap-4">
-                                                            <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold">Ventilador para Cuidados Intensivos</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="py-3 px-5 border-b border-blue-gray-50">
-                                                        <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">2024-03-02</p>
-                                                    </td>
+                                            @endforeach
 
-                                                </tr>
-                                                <tr>
-                                                    <td class="py-3 px-5 border-b border-blue-gray-50">
-                                                        <div class="flex items-center gap-4">
-                                                            <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold">Cable ECG Monitor Desfibrilador Cardiaco</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="py-3 px-5 border-b border-blue-gray-50">
-                                                        <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">2024-06-06</p>
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td class="py-3 px-5 border-b border-blue-gray-50">
-                                                        <div class="flex items-center gap-4">
-                                                            <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold">Monitor Desfibrilador Cardiaco</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="py-3 px-5 border-b border-blue-gray-50">
-                                                        <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">2024-12-12</p>
-                                                    </td>
-
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
