@@ -26,8 +26,8 @@ class RegisterRequest extends FormRequest
         return [
                 'name' => ['max:45', 'regex:/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/'],
                 'lastname' => ['max:45', 'regex:/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/'],
-                'code' => 'max:9|min:5',
-                'email' => ['required', 'email', 'regex:/(.*)@alumnos.udg.mx|@administrativos.udg.mx|@academicos.udg.mx$/i'],
+                'code' => ['max:9', 'min:5', 'unique:users,code'],
+                'email' => ['required', 'email', 'unique:users,email', 'regex:/(.*)@alumnos.udg.mx|@administrativos.udg.mx|@academicos.udg.mx$/i'],
                 'password' => ['required', 'max:16', 'min:8', 'confirmed', Password::defaults()],
         ];
     }
@@ -46,13 +46,15 @@ class RegisterRequest extends FormRequest
             'name.regex' => 'Este campo no debe incluir números.',
             'lastname.max' => 'Apellidos demasiado largos.',
             'lastname.regex' => 'Este campo no debe incluir números.',
-            'code.max' => 'El Código debe tener máximo 9 caracteres.',
-            'code.min' => 'El Código debe tener mínimo 5 caracteres.',
+            'code.max' => 'El código debe tener máximo 9 caracteres.',
+            'code.min' => 'El código debe tener mínimo 5 caracteres.',
+            'code.unique' => 'El código ya ha sido registrado.',
             'email.regex' => 'El correo debe ser Institucional UDG.',
-            'password.min' => 'Debe tener almenos 8 caracteres.',
-            'password.max' => 'Debe tener maximo 16 caracteres.',
-            'password_confirmation.min' => 'Debe tener almenos 8 caracteres.',
-            'password_confirmation.max' => 'Debe tener maximo 16 caracteres.',
+            'email.unique' => 'El correo ya ha sido registrado.',
+            'password.min' => 'Debe tener al menos 8 caracteres.',
+            'password.max' => 'Debe tener máximo 16 caracteres.',
+            'password_confirmation.min' => 'Debe tener al menos 8 caracteres.',
+            'password_confirmation.max' => 'Debe tener máximo 16 caracteres.',
         ];
     }
 }
