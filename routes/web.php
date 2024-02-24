@@ -23,10 +23,6 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::get('/inventory', function () {
     return view('inventory');
 })->middleware(['auth', 'verified'])->name('inventory');
@@ -80,24 +76,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/guardar-activo', [ActivesController::class, 'guardar'])->name('guardarActivo');
+    Route::patch('/editar-activo/{id}', [ActivesController::class, 'edit_actives'])->name('actives.edit');
+    Route::patch('/editar-finanzas/{id}', [ActivesController::class, 'edit_actives_finanzas'])->name('actives.finanzas');
+    Route::patch('/editar-proveeduria/{id}', [ActivesController::class, 'edit_actives_proveeduria'])->name('actives.proveeduria');
+    Route::patch('/editar-baja/{id}', [ActivesController::class, 'edit_actives_baja'])->name('actives.delete');
+    Route::post('/guardar-proveedor', [SuppliersController::class, 'save'])->name('guardarProveedor');
+    Route::patch('/editar-proveedor/{id}', [SuppliersController::class, 'edit_suppliers'])->name('suppliers.edit');
+    Route::post('/guardar-ticket', [TicketsController::class, 'saveTicket'])->name('guardarTicket');
+    Route::patch('/editar-ticket/{id}', [TicketsController::class, 'edit_tickets'])->name('tickets.edit');
+    Route::post('/guardar-servicios', [ServicesController::class, 'guardarServicios'])->name('guardar-servicios');
+    Route::patch('/editar-servicios/{id}', [ServicesController::class, 'edit_services'])->name('services.edit');
+    Route::patch('/editar-servicios-detalles/{id}', [ServicesController::class, 'edit_services_detalles'])->name('services.edit.detalles');
+    Route::patch('/editar-servicios-firmas/{id}', [ServicesController::class, 'edit_services_firmas'])->name('services.edit.firmas');
+    Route::patch('/editar-servicios-gastos/{id}', [ServicesController::class, 'edit_services_gastos'])->name('services.edit.gastos');
+    Route::get('/editar-Activos-new/{id}', [ActivesController::class, 'Datotemp'])->name('inventory.Datotemp');
+    Route::get('/crear-ticket/{id}', [ActivesController::class, 'DatotempTickets'])->name('inventory.DatotempTickets');
+    Route::get('/dashboard', [DashboardController::class, 'MetricasDashboard'])->name('dashboard');
 });
-
-Route::post('/guardar-activo', [ActivesController::class, 'guardar'])->name('guardarActivo');
-Route::patch('/editar-activo/{id}', [ActivesController::class, 'edit_actives'])->name('actives.edit');
-Route::patch('/editar-finanzas/{id}', [ActivesController::class, 'edit_actives_finanzas'])->name('actives.finanzas');
-Route::patch('/editar-proveeduria/{id}', [ActivesController::class, 'edit_actives_proveeduria'])->name('actives.proveeduria');
-Route::patch('/editar-baja/{id}', [ActivesController::class, 'edit_actives_baja'])->name('actives.delete');
-Route::post('/guardar-proveedor', [SuppliersController::class, 'save'])->name('guardarProveedor');
-Route::patch('/editar-proveedor/{id}', [SuppliersController::class, 'edit_suppliers'])->name('suppliers.edit');
-Route::post('/guardar-ticket', [TicketsController::class, 'saveTicket'])->name('guardarTicket');
-Route::patch('/editar-ticket/{id}', [TicketsController::class, 'edit_tickets'])->name('tickets.edit');
-Route::post('/guardar-servicios', [ServicesController::class, 'guardarServicios'])->name('guardar-servicios');
-Route::patch('/editar-servicios/{id}', [ServicesController::class, 'edit_services'])->name('services.edit');
-Route::patch('/editar-servicios-detalles/{id}', [ServicesController::class, 'edit_services_detalles'])->name('services.edit.detalles');
-Route::patch('/editar-servicios-firmas/{id}', [ServicesController::class, 'edit_services_firmas'])->name('services.edit.firmas');
-Route::patch('/editar-servicios-gastos/{id}', [ServicesController::class, 'edit_services_gastos'])->name('services.edit.gastos');
-Route::get('/editar-Activos-new/{id}', [ActivesController::class, 'Datotemp'])->name('inventory.Datotemp');
-Route::get('/crear-ticket/{id}', [ActivesController::class, 'DatotempTickets'])->name('inventory.DatotempTickets');
-Route::get('/dashboard', [DashboardController::class, 'MetricasDashboard'])->name('dashboard');
 
 require __DIR__.'/auth.php';
