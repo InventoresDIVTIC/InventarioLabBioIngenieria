@@ -111,13 +111,6 @@
              class="fixed top-0 left-0 z-20 flex-col flex-shrink-0 pt-16 w-60 h-full duration-200 lg:flex transition-width lg:w-60"
              :class="isOpen ? 'w-60 slide-in' : 'slide-out'">
                 <div class="w-full h-auto p-2 flex justify-center">
-                    <!-- Logo -->
-                    <div class="shrink-0 flex items-center">
-                        <a href="{{ route('dashboard') }}">
-                            <x-application-logo
-                                class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"/>
-                        </a>
-                    </div>
                 </div>
                 @include('layouts.navigation')
             </aside>
