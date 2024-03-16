@@ -37,14 +37,24 @@
                                         <th id="icon-menu-type" data-priority="2">
                                             <div class="orden">
                                                 <div>
-                                                    TIPO
+                                                    ACTIVO
+                                                </div>
+                                                <div id="icon-type" class="ordicon" title="Ordenar el Activo de manera descendente o ascendente">
+                                                    <svg style="float: right" class="w-4 h-4 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 10"> <path fill-rule="evenodd" d="M15.434 1.235A2 2 0 0 0 13.586 0H2.414A2 2 0 0 0 1 3.414L6.586 9a2 2 0 0 0 2.828 0L15 3.414a2 2 0 0 0 .434-2.179Z"/></svg>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <th id="icon-menu-type" data-priority="3">
+                                            <div class="orden">
+                                                <div>
+                                                    CATEGORÍA
                                                 </div>
                                                 <div id="icon-type" class="ordicon" title="Ordenar el Tipo de manera descendente o ascendente">
                                                     <svg style="float: right" class="w-4 h-4 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 10"> <path fill-rule="evenodd" d="M15.434 1.235A2 2 0 0 0 13.586 0H2.414A2 2 0 0 0 1 3.414L6.586 9a2 2 0 0 0 2.828 0L15 3.414a2 2 0 0 0 .434-2.179Z"/></svg>
                                                 </div>
                                             </div>
                                         </th>
-                                        <th id="icon-menu-brand" data-priority="3">
+                                        <th id="icon-menu-brand" data-priority="4">
                                             <div class="orden">
                                                 <div>
                                                     MARCA
@@ -54,7 +64,7 @@
                                                 </div>
                                             </div>
                                         </th>
-                                        <th id="icon-menu-model" data-priority="4">
+                                        <th id="icon-menu-model" data-priority="5">
                                             <div class="orden">
                                                 <div>
                                                     MODELO
@@ -64,7 +74,7 @@
                                                 </div>
                                             </div>
                                         </th>
-                                        <th id="icon-menu-serial" data-priority="5">
+                                        <th id="icon-menu-serial" data-priority="6">
                                             <div class="orden">
                                                 <div>
                                                     NO. SERIE
@@ -74,7 +84,7 @@
                                                 </div>
                                             </div>
                                         </th>
-                                        <th id="icon-menu-location" data-priority="6">
+                                        <th id="icon-menu-location" data-priority="7">
                                             <div class="orden">
                                                 <div>
                                                     UBICACIÓN
@@ -84,7 +94,7 @@
                                                 </div>
                                             </div>
                                         </th>
-                                        <th id="icon-menu-sublocation" data-priority="7">
+                                        <th id="icon-menu-sublocation" data-priority="8">
                                             <div class="orden">
                                                 <div>
                                                     SUB UBICACIÓN
@@ -94,7 +104,7 @@
                                                 </div>
                                             </div>
                                         </th>
-                                        <th id="icon-menu-status" data-priority="8">
+                                        <th id="icon-menu-status" data-priority="9">
                                             <div class="orden">
                                                 <div>
                                                     ESTADO
@@ -104,7 +114,7 @@
                                                 </div>
                                             </div>
                                         </th>
-                                        <th id="icon-menu-ultmprev" data-priority="9">
+                                        <th id="icon-menu-ultmprev" data-priority="10">
                                             <div class="orden">
                                                 <div>
                                                     ÚLTIMO MPREV
@@ -127,6 +137,7 @@
                                         </div></div>
                                         <?php
                                         echo "<td>{$activo->type}</td>";
+                                        echo "<td>{$activo->category}</td>";
                                         echo "<td>{$activo->brand}</td>";
                                         echo "<td>{$activo->model}</td>";
                                         echo "<td>{$activo->serial}</td>";
