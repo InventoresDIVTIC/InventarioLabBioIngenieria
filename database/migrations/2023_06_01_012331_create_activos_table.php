@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('activos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedInteger('id')->unique('id_unique');
             $table->unsignedInteger('user_id');
             $table->string('category', 45);
             $table->string('type');

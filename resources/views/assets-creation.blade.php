@@ -15,6 +15,13 @@
             <h2 style="color: #d1d5db; font-size: 1.8rem; text-align: center; text-transform: uppercase; padding-bottom: 5px;">Registro de Activo</h2>
             <form method="post" action="{{ route('guardarActivo') }}" class="space-y-6">
                     @csrf
+
+                    <div>
+                        <x-input-label for="id" :value="__('ID')" />
+                        <x-text-input id="id" name="id" type="text" class="mt-1 block w-full" required autofocus autocomplete="id" />
+                        <x-input-error class="mt-2" :messages="$errors->get('id')" />
+                    </div>
+
                     <div>
                         <x-input-label for="category" :value="__('Categoría')"/>
                         <select id="category" name="category" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="category">

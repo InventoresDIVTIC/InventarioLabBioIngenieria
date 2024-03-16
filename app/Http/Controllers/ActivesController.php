@@ -15,6 +15,8 @@ class ActivesController extends Controller
     {
         // Validar los datos del formulario si es necesario
         $validatedData = $request->validate([
+            'id' => 'required',
+            'id' => 'unique:activos,id',
             'category' => 'required',
             'type' => 'required',
             'brand' => 'required',
@@ -32,6 +34,7 @@ class ActivesController extends Controller
 
         // Crear un nuevo registro de Activo
         $activo = new Activo();
+        $activo->id = $validatedData['id'];
         $activo->user_id = $user_id;
         $activo->category = $validatedData['category'];
         $activo->type = $validatedData['type'];
@@ -49,21 +52,21 @@ class ActivesController extends Controller
         // Crear un nuevo registro de ActivoProveeduria relacionado
         $activoProveeduria = new ActivoProveeduria();
         $activoProveeduria->belonging = $validatedData['belonging'];
-        $activoProveeduria->id = $activo->id;
+        $activoProveeduria->id = $request->id; //usar request
 
         // Guardar el ActivoProveeduria en la base de datos
         $activoProveeduria->save();
 
         // Crear un nuevo registro de activoFinanzas relacionado
         $activoFinanzas = new ActivoFinanzas();
-        $activoFinanzas->id = $activo->id;
+        $activoFinanzas->id = $request->id;
 
         // Guardar el activoFinanzas en la base de datos
         $activoFinanzas->save();
 
         // Crear un nuevo registro de activoServicios relacionado
         $activoServicios = new ActivoServicios();
-        $activoServicios->id = $activo->id;
+        $activoServicios->id = $request->id;
 
         // Guardar el activoServicios en la base de datos
         $activoServicios->save();
