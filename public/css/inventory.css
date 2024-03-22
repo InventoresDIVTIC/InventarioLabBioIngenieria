@@ -304,6 +304,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
     transform: rotate(180deg);
 }
 
+#icon-category {
+    transition: transform 0.1s;
+}
+
+#icon-category.clicked {
+    transform: rotate(180deg);
+}
+
 #icon-brand {
     transition: transform 0.1s;
 }

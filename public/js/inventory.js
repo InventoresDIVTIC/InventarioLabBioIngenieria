@@ -19,9 +19,10 @@ $(document).ready(function() {
         }
     }).columns.adjust().responsive.recalc();
 });
-
+ 
 const thId = document.getElementById('icon-menu-id'); const idIcon = document.getElementById('icon-id');
 const thType = document.getElementById('icon-menu-type'); const typeIcon = document.getElementById('icon-type');
+const thCategory = document.getElementById('icon-menu-category'); const categoryIcon = document.getElementById('icon-category');
 const thBrand = document.getElementById('icon-menu-brand'); const brandIcon = document.getElementById('icon-brand');
 const thModel = document.getElementById('icon-menu-model'); const modelIcon = document.getElementById('icon-model');
 const thSerial = document.getElementById('icon-menu-serial'); const serialIcon = document.getElementById('icon-serial');
@@ -33,6 +34,7 @@ const thUltmprev = document.getElementById('icon-menu-ultmprev'); const ultmprev
 thId.addEventListener('click', () => {
     idIcon.classList.toggle('clicked');
     typeIcon.classList.remove('clicked');
+    categoryIcon.classList.remove('clicked');
     brandIcon.classList.remove('clicked');
     modelIcon.classList.remove('clicked');
     serialIcon.classList.remove('clicked');
@@ -44,6 +46,19 @@ thId.addEventListener('click', () => {
 thType.addEventListener('click', () => {
     typeIcon.classList.toggle('clicked');
     idIcon.classList.remove('clicked');
+    categoryIcon.classList.remove('clicked');
+    brandIcon.classList.remove('clicked');
+    modelIcon.classList.remove('clicked');
+    serialIcon.classList.remove('clicked');
+    locationIcon.classList.remove('clicked');
+    sublocationIcon.classList.remove('clicked');
+    statusIcon.classList.remove('clicked');
+    ultmprevIcon.classList.remove('clicked');
+});
+thCategory.addEventListener('click', () => {
+    categoryIcon.classList.toggle('clicked');
+    idIcon.classList.remove('clicked');
+    typeIcon.classList.remove('clicked');
     brandIcon.classList.remove('clicked');
     modelIcon.classList.remove('clicked');
     serialIcon.classList.remove('clicked');
@@ -56,6 +71,7 @@ thBrand.addEventListener('click', () => {
     brandIcon.classList.toggle('clicked');
     idIcon.classList.remove('clicked');
     typeIcon.classList.remove('clicked');
+    categoryIcon.classList.remove('clicked');
     modelIcon.classList.remove('clicked');
     serialIcon.classList.remove('clicked');
     locationIcon.classList.remove('clicked');
@@ -67,6 +83,7 @@ thModel.addEventListener('click', () => {
     modelIcon.classList.toggle('clicked');
     idIcon.classList.remove('clicked');
     typeIcon.classList.remove('clicked');
+    categoryIcon.classList.remove('clicked');
     brandIcon.classList.remove('clicked');
     serialIcon.classList.remove('clicked');
     locationIcon.classList.remove('clicked');
@@ -78,6 +95,7 @@ thSerial.addEventListener('click', () => {
     serialIcon.classList.toggle('clicked');
     idIcon.classList.remove('clicked');
     typeIcon.classList.remove('clicked');
+    categoryIcon.classList.remove('clicked');
     brandIcon.classList.remove('clicked');
     modelIcon.classList.remove('clicked');
     locationIcon.classList.remove('clicked');
@@ -89,6 +107,7 @@ thLocation.addEventListener('click', () => {
     locationIcon.classList.toggle('clicked');
     idIcon.classList.remove('clicked');
     typeIcon.classList.remove('clicked');
+    categoryIcon.classList.remove('clicked');
     brandIcon.classList.remove('clicked');
     modelIcon.classList.remove('clicked');
     serialIcon.classList.remove('clicked');
@@ -100,6 +119,7 @@ thSublocation.addEventListener('click', () => {
     sublocationIcon.classList.toggle('clicked');
     idIcon.classList.remove('clicked');
     typeIcon.classList.remove('clicked');
+    categoryIcon.classList.remove('clicked');
     brandIcon.classList.remove('clicked');
     modelIcon.classList.remove('clicked');
     serialIcon.classList.remove('clicked');
@@ -111,6 +131,7 @@ thStatus.addEventListener('click', () => {
     statusIcon.classList.toggle('clicked');
     idIcon.classList.remove('clicked');
     typeIcon.classList.remove('clicked');
+    categoryIcon.classList.remove('clicked');
     brandIcon.classList.remove('clicked');
     modelIcon.classList.remove('clicked');
     serialIcon.classList.remove('clicked');
@@ -122,6 +143,7 @@ thUltmprev.addEventListener('click', () => {
     ultmprevIcon.classList.toggle('clicked');
     idIcon.classList.remove('clicked');
     typeIcon.classList.remove('clicked');
+    categoryIcon.classList.remove('clicked');
     brandIcon.classList.remove('clicked');
     modelIcon.classList.remove('clicked');
     serialIcon.classList.remove('clicked');

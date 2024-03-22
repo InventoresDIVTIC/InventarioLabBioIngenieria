@@ -44,12 +44,12 @@
                                                 </div>
                                             </div>
                                         </th>
-                                        <th id="icon-menu-type" data-priority="3">
+                                        <th id="icon-menu-category" data-priority="3">
                                             <div class="orden">
                                                 <div>
                                                     CATEGORÍA
                                                 </div>
-                                                <div id="icon-type" class="ordicon" title="Ordenar el Tipo de manera descendente o ascendente">
+                                                <div id="icon-category" class="ordicon" title="Ordenar la Categoría de manera descendente o ascendente">
                                                     <svg style="float: right" class="w-4 h-4 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 10"> <path fill-rule="evenodd" d="M15.434 1.235A2 2 0 0 0 13.586 0H2.414A2 2 0 0 0 1 3.414L6.586 9a2 2 0 0 0 2.828 0L15 3.414a2 2 0 0 0 .434-2.179Z"/></svg>
                                                 </div>
                                             </div>
