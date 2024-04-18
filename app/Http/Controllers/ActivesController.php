@@ -6,8 +6,13 @@ use App\Models\Activo;
 use App\Models\ActivoProveeduria;
 use App\Models\ActivoFinanzas;
 use App\Models\ActivoServicios;
+use App\Models\Servicios;
+use App\Models\ServiciosDetalles;
+use App\Models\ServiciosFirmas;
+use App\Models\ServiciosGastos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ActivesController extends Controller
 {
@@ -64,10 +69,64 @@ class ActivesController extends Controller
         // Guardar el activoFinanzas en la base de datos
         $activoFinanzas->save();
 
+        $ultimoServicio = Servicios::orderBy('id', 'desc')->first();
+
+        // Verificar si existe al menos un servicio en la base de datos
+        if ($ultimoServicio) {
+            $nuevoIdServicio = $ultimoServicio->id + 1;
+        } else {
+            // Si no hay servicios en la base de datos, empezar desde 1
+            $nuevoIdServicio = 1;
+        }
+        $userId = Auth::user()->id;
+        $user_name = Auth::user()->name;
+        // Crear un nuevo registro de Servicio
+        $Servicios = new Servicios();
+        $Servicios->user_id = $userId;
+        $Servicios->user_name = $user_name;
+        $Servicios->id = $nuevoIdServicio;
+        $Servicios->active_name = $request->type;
+        $Servicios->active_model = $request->model;
+        $Servicios->active_sublocation = $request->sublocation;
+        $Servicios->status = "Generado automaticamente";
+
+        // Obtener la fecha actual
+        $fechaCreacion = Carbon::now();
+
+        // Agregar un año a la fecha de creación
+        $fechaMantenimiento = $fechaCreacion->copy()->addYear();
+
+        // Asignar la fecha de mantenimiento
+        $Servicios->scheduled_date = $fechaMantenimiento;
+
+        // Guardar el nuevo servicio en la base de datos
+        $Servicios->save();
+
+        // Crear un nuevo registro de ActivoProveeduria relacionado
+        $ServiciosDetalles = new ServiciosDetalles();
+        $ServiciosDetalles->id = $Servicios->id;
+
+        // Guardar el ActivoProveeduria en la base de datos
+        $ServiciosDetalles->save();
+
+        // Crear un nuevo registro de activoFinanzas relacionado
+        $ServiciosFirmas = new ServiciosFirmas();
+        $ServiciosFirmas->id = $Servicios->id;
+
+        // Guardar el activoFinanzas en la base de datos
+        $ServiciosFirmas->save();
+
+        // Crear un nuevo registro de activoServicios relacionado
+        $ServiciosGastos = new ServiciosGastos();
+        $ServiciosGastos->id = $Servicios->id;
+
+        // Guardar el activoServicios en la base de datos
+        $ServiciosGastos->save();
+
         // Crear un nuevo registro de activoServicios relacionado
         $activoServicios = new ActivoServicios();
         $activoServicios->id = $request->id;
-
+        $activoServicios->next_mprev = $fechaMantenimiento;
         // Guardar el activoServicios en la base de datos
         $activoServicios->save();
 
