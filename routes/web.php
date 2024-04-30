@@ -6,6 +6,7 @@ use App\Http\Controllers\SuppliersController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,10 @@ Route::get('/tickets', function () {
     return view('tickets');
 })->middleware(['auth', 'verified'])->name('tickets');
 
+Route::get('/users', function () {
+    return view('users');
+})->middleware(['auth', 'verified'])->name('users');
+
 Route::get('/assets-creation', function () {
     return view('assets-creation');
 })->middleware(['auth', 'verified'])->name('assets-creation');
@@ -71,6 +76,10 @@ Route::get('/services-edit', function () {
     return view('services-edit');
 })->middleware(['auth', 'verified'])->name('services-edit');
 
+Route::get('/users-edit', function () {
+    return view('users-edit');
+})->middleware(['auth', 'verified'])->name('users-edit');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -90,6 +99,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/editar-servicios-detalles/{id}', [ServicesController::class, 'edit_services_detalles'])->name('services.edit.detalles');
     Route::patch('/editar-servicios-firmas/{id}', [ServicesController::class, 'edit_services_firmas'])->name('services.edit.firmas');
     Route::patch('/editar-servicios-gastos/{id}', [ServicesController::class, 'edit_services_gastos'])->name('services.edit.gastos');
+    Route::patch('/editar-usuarios/{id}', [UserController::class, 'users_edit'])->name('users.edit');
+    Route::delete('/eliminar-usuarios/{id}', [UserController::class, 'users_destroy'])->name('users.destroy');
     Route::get('/editar-Activos-new/{id}', [ActivesController::class, 'Datotemp'])->name('inventory.Datotemp');
     Route::get('/crear-ticket/{id}', [ActivesController::class, 'DatotempTickets'])->name('inventory.DatotempTickets');
     Route::get('/dashboard', [DashboardController::class, 'MetricasDashboard'])->name('dashboard');
