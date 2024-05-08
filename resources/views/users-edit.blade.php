@@ -88,7 +88,7 @@
 
                             </div>
                         </div>
-                        <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
+                        <div class="flex items-center gap-4 mt-4" style="justify-content: left;">
                             <!-- Botón para Guardar -->
                             <div>
                                 <button type="submit"
