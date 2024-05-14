@@ -6,6 +6,9 @@ use Illuminate\Console\Command;
 use App\Models\Activo;
 use App\Models\Servicios;
 use App\Models\ActivoServicios;
+use App\Models\ServiciosDetalles;
+use App\Models\ServiciosFirmas;
+use App\Models\ServiciosGastos;
 use Carbon\Carbon;
 
 class GenerarServicios extends Command
@@ -15,42 +18,48 @@ class GenerarServicios extends Command
 
     public function handle()
     {
-        $activosServicios = ActivoServicios::all();
+    // Obtener todos los activos que requieren servicio
+        $activos = Activo::all();
 
-        foreach ($activosServicios as $activoServicio) {
-            $activo = new Activo();
+        foreach ($activos as $activo) {
+            // Obtener el activo_servicio relacionado
+            $activoServicio = ActivoServicios::where('id', $activo->id)->first();
 
-            if ($activo) {
-                $nextServiceDate = $this->calculateNextServiceDate($activoServicio);
+            if ($activoServicio) {
+                // Generar la fecha programada para el próximo servicio
+                $nextServiceDate = $activoServicio->next_mprev;
 
-                // Verificar si se necesita generar un servicio
-                //if ($nextServiceDate <= Carbon::now()) { // descomentar esto para aplicar la condición
-                    // Crear un nuevo registro de Servicio
-                    $userId = "0";
-                    $userName = "Generado automáticamente";
+            // Crear un nuevo servicio
+            $servicio = new Servicios();
+            $servicio->user_id = $activo->user_id;  // Suponiendo que el activo tiene un user_id
+            $servicio->user_name = $activo->user_name; // Suponiendo que el activo tiene un user_name
+            $servicio->active_name = $activo->type; // Ajusta según tus campos
+            $servicio->active_model = $activo->model; // Ajusta según tus campos
+            $servicio->active_sublocation = $activo->sublocation; // Ajusta según tus campos
+            $servicio->status = 'Generado automáticamente';
+            $servicio->scheduled_date = $nextServiceDate;
+            $servicio->save(); // Guardar primero el servicio para obtener su ID
 
-                    $servicio = new Servicios();
-                    $servicio->user_id = $userId;
-                    $servicio->user_name = $userName;
-                    $servicio->active_name = $activo->type; // Ajusta según tus campos
-                    $servicio->active_model = $activo->model; // Ajusta según tus campos
-                    $servicio->active_sublocation = $activo->sublocation; // Ajusta según tus campos
-                    $servicio->status = "Generado automáticamente";
-                    $servicio->scheduled_date = $nextServiceDate;
+            // Usar el ID generado del servicio para las otras tablas
+            $servicioId = $servicio->id;
 
-                    $servicio->save();
+            $ServiciosDetalles = new ServiciosDetalles();
+            $ServiciosDetalles->id = $servicioId; // Usar el ID del servicio
+            $ServiciosDetalles->save(); // Guardar los detalles del servicio
 
-                    // Actualizar el campo next_mprev en la tabla de activos_servicios
-                    $activoServicio->next_mprev = $nextServiceDate;
-                    $activoServicio->save();
-              //  }
-            //} else {
-                //$this->warn('El activo para el servicio no está definido.');
+            $ServiciosFirmas = new ServiciosFirmas();
+            $ServiciosFirmas->id = $servicioId; // Usar el ID del servicio
+            $ServiciosFirmas->save(); // Guardar las firmas del servicio
+
+            $ServiciosGastos = new ServiciosGastos();
+            $ServiciosGastos->id = $servicioId; // Usar el ID del servicio
+            $ServiciosGastos->save(); // Guardar los gastos del servicio
             }
         }
 
-        $this->info('Servicios generados exitosamente.');
+        $this->info('Servicios generados automáticamente.');
     }
+
 
     protected function calculateNextServiceDate($activoServicio)
     {
@@ -58,20 +67,20 @@ class GenerarServicios extends Command
 
         if ($activo) {
             $frequencyMprev = $activo->frequency_mprev;
-            $lastMprev = $activoServicio->last_mprev;
+            $scheduled_date = $activoServicio->scheduled_date;
 
-            if ($frequencyMprev && $lastMprev) {
+            if ($frequencyMprev && $scheduled_date) {
                 switch ($frequencyMprev) {
                     case 'Anual':
-                        return $lastMprev->copy()->addYear();
+                        return $scheduled_date->copy()->addYear();
                     case 'Mensual':
-                        return $lastMprev->copy()->addMonth();
+                        return $scheduled_date->copy()->addMonth();
                     case 'Semanal':
-                        return $lastMprev->copy()->addWeek();
+                        return $scheduled_date->copy()->addWeek();
                     case 'Trimestral':
-                        return $lastMprev->copy()->addMonths(3);
+                        return $scheduled_date->copy()->addMonths(3);
                     case 'Semestral':
-                        return $lastMprev->copy()->addMonths(6);
+                        return $scheduled_date->copy()->addMonths(6);
                     default:
                         return null;
                 }
