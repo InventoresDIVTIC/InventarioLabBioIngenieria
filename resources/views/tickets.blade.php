@@ -92,7 +92,7 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    // Obtén los datos de la tabla "tickets" de la base de datos
+                                    // Obtén los datos de la tabla "tickets" en la base de datos
                                     $tickets = \App\Models\Tickets::all();
 
                                     foreach ($tickets as $tickets) { ?>
