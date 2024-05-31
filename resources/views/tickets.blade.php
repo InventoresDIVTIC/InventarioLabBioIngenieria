@@ -15,6 +15,7 @@
         <section>
             <div>
                 <div>
+                    @hasanyrole('Web designer|Admin')
                     <div class="container w-full md:w-4/5 xl:w-3/5 mx-auto" style="margin-bottom: 1rem;">
                         <div id="recipientes" class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
                             <table id="tickets" class="stripe hover"
@@ -128,6 +129,7 @@
                             </table>
                         </div>
                     </div>
+                    @endhasanyrole
                 </div>
             </div>
         </section>
