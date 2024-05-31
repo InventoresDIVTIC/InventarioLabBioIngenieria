@@ -49,6 +49,7 @@
                 <span>Servicios</span>
             </a>
         </li>
+        @hasanyrole('Web designer|Admin')
         <li>
             <a class="label" href="{{ __('tickets') }}">
                 <div class="icon">
@@ -59,6 +60,7 @@
                 <span>Tickets</span>
             </a>
         </li>
+        @endhasanyrole
         <li>
             <a class="label" href="{{ route('users') }}"> <!-- Usa la función `route` para generar URLs -->
                 <div class="icon">

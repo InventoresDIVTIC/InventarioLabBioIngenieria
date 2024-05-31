@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -37,6 +38,10 @@ class UserController extends Controller
         $users->name = $request->name;
         $users->lastname = $request->lastname;
         $users->email = $request->email;
+        // Primero eliminar todos los roles actuales del usuario
+        $users->syncRoles([]);
+        // Luego asignar el nuevo rol
+        $users->assignRole($request->rol);
         $users->rol = $request->rol;
         $users->area = $request->area;
         $users->phone = $request->phone;
