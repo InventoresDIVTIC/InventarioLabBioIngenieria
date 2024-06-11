@@ -18,6 +18,7 @@
         <section>
             <div>
                 <div>
+                    @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
                     <div class="container w-full md:w-4/5 xl:w-3/5 mx-auto" style="margin-bottom: 1rem; margin-top: 4rem;">
                         <div id="recipientes" class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
                             <table id="activos" class="stripe hover" style="width:100%; padding-top: 1rem; padding-bottom: 1em; margin-bottom: 1rem;">
@@ -156,6 +157,7 @@
                             </table>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </section>
