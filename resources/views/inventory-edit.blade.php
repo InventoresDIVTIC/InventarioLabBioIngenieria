@@ -275,10 +275,12 @@
                             </div>
                             <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
                                 <div>
+                                @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
                                     <button type="button" id="btn-siguiente-1" x-show="pantalla < 4" @click="pantalla = 2"
-                                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
-                                <button type="submit" form="form-inventario"
-                                    class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
+                                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
+                                    <button type="submit" form="form-inventario"
+                                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
+                                @endif
                                 </div>
                             </div>
                         </form>
@@ -467,8 +469,10 @@
                                         class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
                                     <button type="button" id="btn-siguiente-2" x-show="pantalla < 3" @click="pantalla = 3"
                                         class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
-                                    <button type="submit" form="form-inventario-2"
+                                    @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
+                                        <button type="submit" form="form-inventario-2"
                                         class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
+                                    @endif
                                 </div>
                             </div>
                         </form>
@@ -553,8 +557,10 @@
                                         class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
                                     <button type="button" id="btn-siguiente-3" x-show="pantalla < 4" @click="pantalla = 4"
                                         class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
-                                    <button type="submit" form="form-inventario-3"
-                                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
+                                        @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
+                                            <button type="submit" form="form-inventario-3"
+                                            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
+                                        @endif
                                 </div>
                             </div>
                         </form>
@@ -597,8 +603,10 @@
                                 <div>
                                     <button type="button" id="btn-anterior-4" x-show="pantalla > 1" @click="pantalla = 3"
                                         class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
-                                    <button type="submit" form="form-inventario-4"
-                                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
+                                    @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
+                                        <button type="submit" form="form-inventario-4"
+                                            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
+                                    @endif
                                 </div>
                             </div>
                         </form>
@@ -606,18 +614,19 @@
                 </div>
             </div>
         </section>
+        @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
+            <div style="text-align: center;">
+                <!-- Botón flotante para agregar tickets -->
+                <a href="{{ route('inventory.DatotempTickets', ['id' => $activo->id]) }}" class="floating-button">
+                    <h2>+</h2>
+                </a>
+            </div>
 
-        <div style="text-align: center;">
-            <!-- Botón flotante para agregar tickets -->
-            <a href="{{ route('inventory.DatotempTickets', ['id' => $activo->id]) }}" class="floating-button">
-                <h2>+</h2>
-            </a>
-        </div>
-
-        <!-- Ventana flotante para mostrar el mensaje -->
-        <div class="floating-message">
-            Agregar tickets
-        </div>
+            <!-- Ventana flotante para mostrar el mensaje -->
+            <div class="floating-message">
+                Agregar tickets
+            </div>
+        @endif
     </x-app-layout>
 
     <script>

@@ -18,7 +18,6 @@
         <section>
             <div>
                 <div>
-                    @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
                     <div class="container w-full md:w-4/5 xl:w-3/5 mx-auto" style="margin-bottom: 1rem; margin-top: 4rem;">
                         <div id="recipientes" class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
                             <table id="activos" class="stripe hover" style="width:100%; padding-top: 1rem; padding-bottom: 1em; margin-bottom: 1rem;">
@@ -157,22 +156,23 @@
                             </table>
                         </div>
                     </div>
-                    @endif
                 </div>
             </div>
         </section>
 
-    <div style="text-align: center;">
-        <!-- Botón flotante para agregar activos -->
-        <a href="{{ route('assets-creation') }}" class="floating-button">
-            <h2>+</h2>
-        </a>
-    </div>
-
-        <!-- Ventana flotante para mostrar el mensaje -->
-        <div class="floating-message">
-            Agregar activos
+    @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
+        <div style="text-align: center;">
+            <!-- Botón flotante para agregar activos -->
+            <a href="{{ route('assets-creation') }}" class="floating-button">
+                <h2>+</h2>
+            </a>
         </div>
+
+            <!-- Ventana flotante para mostrar el mensaje -->
+            <div class="floating-message">
+                Agregar activos
+            </div>
+    @endif
     </x-app-layout>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

@@ -14,6 +14,7 @@
 <body class="min-w-full inline-block min-w-min md:min-w-0 md:inline">
     <x-app-layout>
         <section>
+        @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
             <div>
                 <h2 style="color: #808080; font-size: 2.5rem; text-align: center; text-transform: uppercase; padding-top: 20px;">Dashboard</h2>
                 <div class="px-6 py-8 mx-auto">
@@ -191,6 +192,15 @@
                     </div>
                 </div>
             </div>
+        @endif
+        @if(Auth::check() && Auth::user()->hasAnyRole(['Usuario', 'Prestador de servicio']))
+        <div>
+            <div class="px-6 py-8 mx-auto">
+                <div class="mt-8">
+                    <h2 style="color: #808080; font-size: 2.5rem; text-align: center; text-transform: uppercase; padding-top: 20px;">tas logueado</h2>
+                </div>
+            </div>
+        @endif
         </section>
     </x-app-layout>
 </body>

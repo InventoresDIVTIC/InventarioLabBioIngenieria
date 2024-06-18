@@ -24,31 +24,34 @@
                 <span>Inventario</span>
             </a>
         </li>
-
-        <li>
-            <a class="label" href="{{ __('suppliers') }}">
-                <div class="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#27374d" class="bi bi-wallet2" viewBox="0 0 16 16">
-                        <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z"/>
-                    </svg>
-                </div>
-                <span>Proveedores</span>
-            </a>
-        </li>
-        <li>
-            <a class="label" href="{{ __('services') }}">
-                <div class="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#27374d"
-                        class="bi bi-wrench-adjustable-circle-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M6.705 8.139a.25.25 0 0 0-.288-.376l-1.5.5.159.474.808-.27-.595.894a.25.25 0 0 0 .287.376l.808-.27-.595.894a.25.25 0 0 0 .287.376l1.5-.5-.159-.474-.808.27.596-.894a.25.25 0 0 0-.288-.376l-.808.27.596-.894Z" />
-                        <path
-                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16Zm-6.202-4.751 1.988-1.657a4.5 4.5 0 0 1 7.537-4.623L7.497 6.5l1 2.5 1.333 3.11c-.56.251-1.18.39-1.833.39a4.49 4.49 0 0 1-1.592-.29L4.747 14.2a7.031 7.031 0 0 1-2.949-2.951ZM12.496 8a4.491 4.491 0 0 1-1.703 3.526L9.497 8.5l2.959-1.11c.027.2.04.403.04.61Z" />
-                    </svg>
-                </div>
-                <span>Servicios</span>
-            </a>
-        </li>
+        @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
+            <li>
+                <a class="label" href="{{ __('suppliers') }}">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#27374d" class="bi bi-wallet2" viewBox="0 0 16 16">
+                            <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z"/>
+                        </svg>
+                    </div>
+                    <span>Proveedores</span>
+                </a>
+            </li>
+        @endif
+        @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
+            <li>
+                <a class="label" href="{{ __('services') }}">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#27374d"
+                            class="bi bi-wrench-adjustable-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M6.705 8.139a.25.25 0 0 0-.288-.376l-1.5.5.159.474.808-.27-.595.894a.25.25 0 0 0 .287.376l.808-.27-.595.894a.25.25 0 0 0 .287.376l1.5-.5-.159-.474-.808.27.596-.894a.25.25 0 0 0-.288-.376l-.808.27.596-.894Z" />
+                            <path
+                                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16Zm-6.202-4.751 1.988-1.657a4.5 4.5 0 0 1 7.537-4.623L7.497 6.5l1 2.5 1.333 3.11c-.56.251-1.18.39-1.833.39a4.49 4.49 0 0 1-1.592-.29L4.747 14.2a7.031 7.031 0 0 1-2.949-2.951ZM12.496 8a4.491 4.491 0 0 1-1.703 3.526L9.497 8.5l2.959-1.11c.027.2.04.403.04.61Z" />
+                        </svg>
+                    </div>
+                    <span>Servicios</span>
+                </a>
+            </li>
+        @endif
         @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
             <li>
                 <a class="label" href="{{ __('tickets') }}">
