@@ -194,10 +194,49 @@
             </div>
         @endif
         @if(Auth::check() && Auth::user()->hasAnyRole(['Usuario', 'Prestador de servicio']))
-        <div>
-            <div class="px-6 py-8 mx-auto">
-                <div class="mt-8">
-                    <h2 style="color: #808080; font-size: 2.5rem; text-align: center; text-transform: uppercase; padding-top: 20px;">tas logueado</h2>
+            <div>
+                <style>
+                    .welcome-container {
+                        font-family: Arial, sans-serif;
+                        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 0;
+                    }
+                    .welcome-box {
+                        text-align: center;
+                        background-color: #ffffff;
+                        padding: 40px;
+                        border-radius: 10px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        animation: fadeIn 2s ease-in-out;
+                    }
+                    .welcome-title {
+                        color: #333333;
+                        font-size: 2.5rem;
+                        text-transform: uppercase;
+                        margin: 0;
+                        animation: slideIn 2s ease-in-out;
+                    }
+                    .welcome-message {
+                        color: #808080;
+                        font-size: 1.25rem;
+                        margin-top: 20px;
+                    }
+                    @keyframes fadeIn {
+                        from { opacity: 0; }
+                        to { opacity: 1; }
+                    }
+                    @keyframes slideIn {
+                        from { transform: translateY(-50px); opacity: 0; }
+                        to { transform: translateY(0); opacity: 1; }
+                    }
+                </style>
+                <div class="welcome-container">
+                    <div class="welcome-box">
+                        <h2 class="welcome-title">¡Hola y bienvenido!</h2>
+                    </div>
                 </div>
             </div>
         @endif
