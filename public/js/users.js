@@ -12,7 +12,7 @@ floatingButton.addEventListener('mouseout', function() {
 });
 
 $(document).ready(function() {
-    var table = $('#usuarios').DataTable({
+    var table = $('#usuario').DataTable({
         responsive: true,
         language: {
             url: "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"

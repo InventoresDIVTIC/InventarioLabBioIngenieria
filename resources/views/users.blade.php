@@ -20,7 +20,7 @@
                 <div>
                     <div class="container w-full md:w-4/5 xl:w-3/5 mx-auto" style="margin-bottom: 1rem;">
                         <div id="recipientes" class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-                            <table id="usuarios" class="stripe hover" style="width:100%; padding-top: 1rem; padding-bottom: 1em; margin-bottom: 1rem;">
+                            <table id="usuario" class="stripe hover" style="width:100%; padding-top: 1rem; padding-bottom: 1em; margin-bottom: 1rem;">
                                 <h2 style="color: #808080; font-size: 2.5rem; text-align: center; text-transform: uppercase; padding-bottom: 10px;">Usuarios</h2>
                                 <thead>
                                     <tr>
