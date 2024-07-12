@@ -1,18 +1,6 @@
-var floatingButton = document.querySelector('.floating-button');
-var floatingMessage = document.querySelector('.floating-message');
-
-floatingButton.addEventListener('mouseover', function() {
-    floatingMessage.style.opacity = 1;
-    floatingMessage.style.visibility = 'visible';
-});
-
-floatingButton.addEventListener('mouseout', function() {
-    floatingMessage.style.opacity = 0;
-    floatingMessage.style.visibility = 'hidden';
-});
 
 $(document).ready(function() {
-    var table = $('#usuario').DataTable({
+    var table = $('#users').DataTable({
         responsive: true,
         language: {
             url: "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"

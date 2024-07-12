@@ -9,9 +9,6 @@
     <meta name="keywords" content="">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/users.css">
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 <body class="bg-gray-100 text-gray-900 tracking-wider leading-normal min-w-full inline-block min-w-min md:min-w-0 md:inline">
     <x-app-layout>
@@ -20,7 +17,7 @@
                 <div>
                     <div class="container w-full md:w-4/5 xl:w-3/5 mx-auto" style="margin-bottom: 1rem;">
                         <div id="recipientes" class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-                            <table id="usuario" class="stripe hover" style="width:100%; padding-top: 1rem; padding-bottom: 1em; margin-bottom: 1rem;">
+                            <table id="users" class="stripe hover" style="width:100%; padding-top: 1rem; padding-bottom: 1em; margin-bottom: 1rem;">
                                 <h2 style="color: #808080; font-size: 2.5rem; text-align: center; text-transform: uppercase; padding-bottom: 10px;">Usuarios</h2>
                                 <thead>
                                     <tr>
