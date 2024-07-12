@@ -23,19 +23,19 @@ h2{
     text-align: center;
 }
 
-#usuarios_filter{
+#users_filter{
     display: flex;
     align-items: center;
     justify-content: right;
     margin-left: 20rem;
 }
 
-#usuarios_length{
+#users_length{
     margin-left: 1rem;
     margin-bottom: -4rem;
 }
 
-#usuarios_next{
+#users_next{
     margin-left: 1rem;
 }
 
