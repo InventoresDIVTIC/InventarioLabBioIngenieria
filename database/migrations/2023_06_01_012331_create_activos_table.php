@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('sublocation', 45)->nullable();
             $table->string('status', 45);
             $table->string('hierarchy', 45);
+            $table->string('class', 45)->nullable();
             $table->string('criticality', 45)->nullable();
             $table->string('risk', 45)->nullable();
             $table->string('ing_assigned', 45)->nullable();

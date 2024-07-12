@@ -32,6 +32,7 @@ class ActivesController extends Controller
             'status' => 'required',
             'hierarchy' => 'required',
             'belonging' => 'required',
+            'class' => 'required',
         ]);
 
         // Obtener el ID del usuario autenticado
@@ -50,6 +51,7 @@ class ActivesController extends Controller
         $activo->sublocation = $validatedData['sublocation'];
         $activo->status = $validatedData['status'];
         $activo->hierarchy = $validatedData['hierarchy'];
+        $activo->class = $validatedData['class'];
 
         // Guardar el Activo en la base de datos
         $activo->save();
@@ -166,6 +168,7 @@ class ActivesController extends Controller
         $activo->so = $request->so;
         $activo->firmware_ver = $request->firmware_ver;
         $activo->comments = $request->comments;
+        $activo->class = $request->class;
 
         // Guardar los cambios en la base de datos
         $activo->save();

@@ -18,6 +18,7 @@ class Activo extends Model
         'sublocation',
         'status',
         'hierarchy',
+        'class',
     ];
 
     // Relación con la tabla "activos_proveeduria"

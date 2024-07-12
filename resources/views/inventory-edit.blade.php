@@ -145,6 +145,13 @@
                                 </div>
 
                                 <div>
+                                    <x-input-label for="class" :value="__('Clasificacion')" />
+                                    <x-text-input id="class" name="class" type="text" class="mt-1 w-full"
+                                        value='<?php echo "{$activo->class}"; ?>' />
+                                    <x-input-error class="mt-2" :messages="$errors->get('class')" />
+                                </div>
+
+                                <div>
                                     <x-input-label for="serial" :value="__('No. de serie')" />
                                     <x-text-input id="serial" name="serial" type="text" class="mt-1 w-full"
                                         value='<?php echo "{$activo->serial}"; ?>' />
@@ -153,25 +160,15 @@
 
                                 <div>
                                     <x-input-label for="location" :value="__('Ubicación')" />
-                                    <select id="location" name="location"
-                                        class="mt-1 block w-full bg-gray-800 text-white">
-                                        <option value="Por definir">Por definir</option>
-                                        <option value="Ubicación 1">Ubicación 1</option>
-                                        <option value="Ubicación 2">Ubicación 2</option>
-                                        <option value="Ubicación 3">Ubicación 3</option>
-                                    </select>
+                                    <x-text-input id="location" name="location" type="text" class="mt-1 w-full"
+                                        value='<?php echo "{$activo->location}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('location')" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="sublocation" :value="__('Sub ubicación')" />
-                                    <select id="sublocation" name="sublocation"
-                                        class="mt-1 block w-full bg-gray-800 text-white">
-                                        <option value="Por definir">Por definir</option>
-                                        <option value="Sub Ubicación 1">Sub Ubicación 1</option>
-                                        <option value="Sub Ubicación 2">Sub Ubicación 2</option>
-                                        <option value="Sub Ubicación 3">Sub Ubicación 3</option>
-                                    </select>
+                                    <x-text-input id="sublocation" name="sublocation" type="text" class="mt-1 w-full"
+                                        value='<?php echo "{$activo->sublocation}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('sublocation')" />
                                 </div>
 
@@ -212,6 +209,7 @@
                                         <option value="Baja">Baja</option>
                                     </select>
                                 </div>
+
                                 <div>
                                     <x-input-label for="risk" :value="__('Riesgo')" />
                                     <select id="risk" name="risk"
@@ -314,18 +312,6 @@
                                         class="mt-1 block w-full"
                                         value='<?php echo "{$activo->installation_date}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('installation_date')" />
-                                </div>
-
-                                <div>
-                                    <x-input-label for="divisa" :value="__('Divisa')" />
-                                    <select id="divisa" name="divisa"
-                                        class="mt-1 block w-full bg-gray-800 text-white">
-                                        <option value="Por definir">Por definir</option>
-                                        <option value="MX">MX</option>
-                                        <option value="USD">USD</option>
-                                        <option value="EUR">EUR</option>
-                                    </select>
-                                    <x-input-error class="mt-2" :messages="$errors->get('divisa')" />
                                 </div>
 
                                 <div>

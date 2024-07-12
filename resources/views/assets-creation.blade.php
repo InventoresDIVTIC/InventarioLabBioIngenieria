@@ -54,6 +54,12 @@
                     </div>
 
                     <div>
+                        <x-input-label for="class" :value="__('Clasificacion')" />
+                        <x-text-input id="class" name="class" type="text" class="mt-1 block w-full" required autofocus autocomplete="class" />
+                        <x-input-error class="mt-2" :messages="$errors->get('class')" />
+                    </div>
+
+                    <div>
                         <x-input-label for="brand" :value="__('Marca')" />
                         <x-text-input id="brand" name="brand" type="text" class="mt-1 block w-full" required autofocus autocomplete="brand" />
                         <x-input-error class="mt-2" :messages="$errors->get('brand')" />
@@ -73,23 +79,13 @@
 
                     <div>
                         <x-input-label for="location" :value="__('Ubicación')" />
-                        <select id="location" name="location" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="location">
-                            <option value="Por definir">Por definir</option>
-                            <option value="Ubicación 1">Ubicación 1</option>
-                            <option value="Ubicación 2">Ubicación 2</option>
-                            <option value="Ubicación 3">Ubicación 3</option>
-                        </select>
+                        <x-text-input id="location" name="location" type="text" class="mt-1 block w-full" required autofocus autocomplete="location" />
                         <x-input-error class="mt-2" :messages="$errors->get('location')" />
                     </div>
 
                     <div>
                         <x-input-label for="sublocation" :value="__('Sub ubicación')" />
-                        <select id="sublocation" name="sublocation" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="sublocation">
-                            <option value="Por definir">Por definir</option>
-                            <option value="Sub Ubicación 1">Sub Ubicación 1</option>
-                            <option value="Sub Ubicación 2">Sub Ubicación 2</option>
-                            <option value="Sub Ubicación 3">Sub Ubicación 3</option>
-                        </select>
+                        <x-text-input id="sublocation" name="sublocation" type="text" class="mt-1 block w-full" required autofocus autocomplete="sublocation" />
                         <x-input-error class="mt-2" :messages="$errors->get('sublocation')" />
                     </div>
 
@@ -133,7 +129,6 @@
                         </select>
                         <x-input-error class="mt-2" :messages="$errors->get('belonging')" />
                     </div>
-
 
                     <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
                     <div>
