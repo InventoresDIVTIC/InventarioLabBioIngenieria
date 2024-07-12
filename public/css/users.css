@@ -296,83 +296,43 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
     transform: rotate(180deg);
 }
 
-#icon-folio {
+#icon-nombre {
     transition: transform 0.1s;
 }
 
-#icon-folio.clicked {
+#icon-nombre.clicked {
     transform: rotate(180deg);
 }
 
-#icon-cuenta {
+#icon-apellido {
     transition: transform 0.1s;
 }
 
-#icon-cuenta.clicked {
+#icon-apellido.clicked {
     transform: rotate(180deg);
 }
 
-#icon-tiposervicio {
+#icon-email {
     transition: transform 0.1s;
 }
 
-#icon-tiposervicio.clicked {
+#icon-email.clicked {
     transform: rotate(180deg);
 }
 
-#icon-tipoactivo {
+#icon-rol {
     transition: transform 0.1s;
 }
 
-#icon-tipoactivo.clicked {
+#icon-rol.clicked {
     transform: rotate(180deg);
 }
 
-#icon-ing-asig {
+#icon-area {
     transition: transform 0.1s;
 }
 
-#icon-ing-asig.clicked {
-    transform: rotate(180deg);
-}
-
-#icon-modelo {
-    transition: transform 0.1s;
-}
-
-#icon-modelo.clicked {
-    transform: rotate(180deg);
-}
-
-#icon-sububicacion {
-    transition: transform 0.1s;
-}
-
-#icon-sububicacion.clicked {
-    transform: rotate(180deg);
-}
-
-#icon-status {
-    transition: transform 0.1s;
-}
-
-#icon-status.clicked {
-    transform: rotate(180deg);
-}
-
-#icon-fechaprogramada {
-    transition: transform 0.1s;
-}
-
-#icon-fechaprogramada.clicked {
-    transform: rotate(180deg);
-}
-
-#icon-fechaconclusion {
-    transition: transform 0.1s;
-}
-
-#icon-fechaconclusion.clicked {
+#icon-area.clicked {
     transform: rotate(180deg);
 }
 
