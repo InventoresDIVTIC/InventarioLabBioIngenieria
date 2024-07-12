@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     var table = $('#users').DataTable({
         responsive: true,
