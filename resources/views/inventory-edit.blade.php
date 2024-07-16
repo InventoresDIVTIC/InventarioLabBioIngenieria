@@ -158,15 +158,16 @@
                                     <x-input-error class="mt-2" :messages="$errors->get('serial')" />
                                 </div>
 
+
                                 <div>
-                                    <x-input-label for="location" :value="__('Ubicación')" />
+                                    <x-input-label for="location" :value="__('Ubicacion')" />
                                     <x-text-input id="location" name="location" type="text" class="mt-1 w-full"
                                         value='<?php echo "{$activo->location}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('location')" />
                                 </div>
 
                                 <div>
-                                    <x-input-label for="sublocation" :value="__('Sub ubicación')" />
+                                    <x-input-label for="sublocation" :value="__('Sub ubicacion')" />
                                     <x-text-input id="sublocation" name="sublocation" type="text" class="mt-1 w-full"
                                         value='<?php echo "{$activo->sublocation}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('sublocation')" />
@@ -209,7 +210,6 @@
                                         <option value="Baja">Baja</option>
                                     </select>
                                 </div>
-
                                 <div>
                                     <x-input-label for="risk" :value="__('Riesgo')" />
                                     <select id="risk" name="risk"
@@ -658,7 +658,7 @@
 
     <script>
         <?php
-        $properties = ['category', 'location', 'sublocation', 'status', 'hierarchy', 'criticality', 'risk', 'divisa', 'frecuency_mprev'];
+        $properties = ['category', 'status', 'hierarchy', 'criticality', 'risk', 'frecuency_mprev'];
         foreach ($properties as $property) {
             echo "selectData('{$activo->{$property}}', '$property');";
         }
