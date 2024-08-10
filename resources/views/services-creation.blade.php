@@ -20,7 +20,19 @@
                         <x-input-label for="status" :value="__('Estatus')" />
                         <div>
                         <select id="status" name="status" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="status">
-                            <option value="Planeado">Planeado</option>
+                            <option value="Por definir">Por definir</option>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="En Progreso">En Progreso</option>
+                            <option value="En Espera de Información">En Espera de Información</option>
+                            <option value="Resuelto">Resuelto</option>
+                            <option value="Cerrado">Cerrado</option>
+                            <option value="Reabierto">Reabierto</option>
+                            <option value="Asignado">Asignado</option>
+                            <option value="Cancelado">Cancelado</option>
+                            <option value="Aprobado">Aprobado</option>
+                            <option value="En Revisión">En Revisión</option>
+                            <option value="Omitido">Omitido</option>
+                            <option value="Otro">Otro</option>
                         </select>
                         </div>
                         <x-input-error class="mt-2" :messages="$errors->get('status')" />
@@ -30,7 +42,23 @@
                         <x-input-label for="services_type" :value="__('Tipo de servicio')" />
                         <div>
                         <select id="services_type" name="services_type" class="mt-1 block w-full bg-gray-800 text-white" required autofocus autocomplete="services_type">
-                            <option value="Mantenimiento Preventivo">Mantenimiento Preventivo</option>
+                            <option value="Por definir">Por definir</option>
+                            <option value="Soporte Técnico">Soporte Técnico</option>
+                            <option value="Asistencia al Usuario">Asistencia al Usuario</option>
+                            <option value="Mantenimiento">Mantenimiento</option>
+                            <option value="Consultoría">Consultoría</option>
+                            <option value="Implementación">Implementación</option>
+                            <option value="Entrenamiento">Entrenamiento</option>
+                            <option value="Desarrollo de Software">Desarrollo de Software</option>
+                            <option value="Gestión de Incidente">Gestión de Incidente</option>
+                            <option value="Actualización de Sistema">Actualización de Sistema</option>
+                            <option value="Instalación">Instalación</option>
+                            <option value="Optimización">Optimización</option>
+                            <option value="Auditoría">Auditoría</option>
+                            <option value="Servicio al Cliente">Servicio al Cliente</option>
+                            <option value="Configuración">Configuración</option>
+                            <option value="Resolución de Problemas">Resolución de Problemas</option>
+                            <option value="Otro">Otro</option>
                         </select>
                         </div>
                         <x-input-error class="mt-2" :messages="$errors->get('services_type')" />

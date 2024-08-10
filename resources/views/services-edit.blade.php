@@ -55,7 +55,19 @@
                                         <select id="status" name="status"
                                             class="mt-1 block w-full bg-gray-800 text-white" required autofocus
                                             autocomplete="status">
-                                            <option value="Estatus 1">Estatus 2</option>
+                                            <option value="Por definir">Por definir</option>
+                                            <option value="Pendiente">Pendiente</option>
+                                            <option value="En Progreso">En Progreso</option>
+                                            <option value="En Espera de Información">En Espera de Información</option>
+                                            <option value="Resuelto">Resuelto</option>
+                                            <option value="Cerrado">Cerrado</option>
+                                            <option value="Reabierto">Reabierto</option>
+                                            <option value="Asignado">Asignado</option>
+                                            <option value="Cancelado">Cancelado</option>
+                                            <option value="Aprobado">Aprobado</option>
+                                            <option value="En Revisión">En Revisión</option>
+                                            <option value="Omitido">Omitido</option>
+                                            <option value="Otro">Otro</option>
                                         </select>
                                     </div>
                                     <x-input-error class="mt-2" :messages="$errors->get('status')" />
@@ -66,7 +78,23 @@
                                         <select id="services_type" name="services_type"
                                             class="mt-1 block w-full bg-gray-800 text-white" required autofocus
                                             autocomplete="services_type">
-                                            <option value="Servicio 1">Servicio 1</option>
+                                            <option value="Por definir">Por definir</option>
+                                            <option value="Soporte Técnico">Soporte Técnico</option>
+                                            <option value="Asistencia al Usuario">Asistencia al Usuario</option>
+                                            <option value="Mantenimiento">Mantenimiento</option>
+                                            <option value="Consultoría">Consultoría</option>
+                                            <option value="Implementación">Implementación</option>
+                                            <option value="Entrenamiento">Entrenamiento</option>
+                                            <option value="Desarrollo de Software">Desarrollo de Software</option>
+                                            <option value="Gestión de Incidente">Gestión de Incidente</option>
+                                            <option value="Actualización de Sistema">Actualización de Sistema</option>
+                                            <option value="Instalación">Instalación</option>
+                                            <option value="Optimización">Optimización</option>
+                                            <option value="Auditoría">Auditoría</option>
+                                            <option value="Servicio al Cliente">Servicio al Cliente</option>
+                                            <option value="Configuración">Configuración</option>
+                                            <option value="Resolución de Problemas">Resolución de Problemas</option>
+                                            <option value="Otro">Otro</option>
                                         </select>
                                     </div>
                                     <x-input-error class="mt-2" :messages="$errors->get('services_type')" />
@@ -78,30 +106,17 @@
                                     <x-input-error class="mt-2" :messages="$errors->get('active_model')" />
                                 </div>
                                 <div>
-                                    <x-input-label for="active_sublocation" :value="__('Sub Ubicación')" />
-                                    <div>
-                                        <select id="active_sublocation" name="active_sublocation"
-                                            class="mt-1 block w-full bg-gray-800 text-white" required autofocus
-                                            autocomplete="active_sublocation">
-                                            <option value="Sub Ubicación 1">Sub Ubicación 1</option>
-                                            <option value="Sub Ubicación 2">Sub Ubicación 2</option>
-                                            <option value="Sub Ubicación 3">Sub Ubicación 3</option>
-                                        </select>
-                                    </div>
+                                    <x-input-label for="active_sublocation" :value="__('Sub ubicacion')" />
+                                    <x-text-input id="active_sublocation" name="active_sublocation" type="text"
+                                        class="mt-1 w-full" required autofocus autocomplete="active_sublocation" value='<?php echo "{$servicios->active_sublocation}"; ?>' readonly/>
                                     <x-input-error class="mt-2" :messages="$errors->get('active_sublocation')" />
                                 </div>
                                 <div>
-                                    <x-input-label for="service_type" :value="__('Tipo de servicio')" />
-                                    <div>
-                                        <select id="service_type" name="service_type"
-                                            class="mt-1 block w-full bg-gray-800 text-white" required autofocus
-                                            autocomplete="service_type">
-                                            <option value="Servicio 1">Servicio 1</option>
-                                        </select>
-                                    </div>
+                                    <x-input-label for="service_type" :value="__('Descripcion breve del servicio')" />
+                                    <x-text-input id="service_type" name="service_type" type="text"
+                                        class="mt-1 w-full" required autofocus autocomplete="service_type" value='<?php echo "{$servicios->service_type}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('service_type')" />
                                 </div>
-
                                 <div>
                                     <x-input-label for="supplier_name" :value="__('Proveedor')" />
                                     <x-text-input id="supplier_id" name="supplier_id" type="hidden"
@@ -464,7 +479,7 @@
 
     <script>
     <?php
-    $properties = ["status", "services_type", "active_sublocation", "service_type"];
+    $properties = ["status", "services_type"];
     foreach ($properties as $property) {
         echo "selectData(\"{$servicios->{$property}}\", \"$property\");\n";
     }
