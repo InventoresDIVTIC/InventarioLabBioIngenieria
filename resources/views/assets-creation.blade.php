@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/dashboard.css">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <title>DEV LAB DE BIOINGENIERIA</title>
+    <title>CUCEI LAB DE BIOINGENIERIA</title>
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
 </head>
 @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))

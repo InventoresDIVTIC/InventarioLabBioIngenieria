@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/inventory.css">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/modal-table.css">
     <script src="https://bioingenieria.inventores.org/js/select-edit.js"></script>
-    <title>EDITAR TICKET | DEV LAB DE BIOINGENIERIA</title>
+    <title>EDITAR TICKET | CUCEI LAB DE BIOINGENIERIA</title>
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
 </head>
 @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/wellcome.css">
-    <title>DEV LAB DE BIOINGENIERIA</title>
+    <title>CUCEI LAB DE BIOINGENIERIA</title>
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
     </head>
     <body class="min-w-full inline-block min-w-min md:min-w-0 md:inline">

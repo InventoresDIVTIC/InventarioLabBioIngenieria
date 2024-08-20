@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/inventory.css">
     <script src="https://bioingenieria.inventores.org/js/select-edit.js"></script>
-    <title>DEV LAB DE BIOINGENIERIA</title>
+    <title>CUCEI LAB DE BIOINGENIERIA</title>
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
 </head>
 @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))

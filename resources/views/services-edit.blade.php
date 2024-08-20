@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/modal-table.css">
     <script src="https://bioingenieria.inventores.org/js/select-edit.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
-    <title>DEV LAB DE BIOINGENIERIA</title>
+    <title>CUCEI LAB DE BIOINGENIERIA</title>
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
 </head>
 @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))

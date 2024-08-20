@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/inventory.css">
     <link rel="stylesheet" href="https://bioingenieria.inventores.org/css/modal-table.css">
     <script src="https://bioingenieria.inventores.org/js/select-edit.js"></script>
-    <title>EDITAR USUARIO | DEV LAB DE BIOINGENIERIA</title>
+    <title>EDITAR USUARIO | CUCEI LAB DE BIOINGENIERIA</title>
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
 </head>
 
