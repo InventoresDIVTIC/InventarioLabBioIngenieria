@@ -9,7 +9,7 @@ function cleanTr() {
     })
 }
 
-window.onload = function() {
+window.onpageshow = function() {
     var supplier_id = null;
     var supplier_name = null;
     var assigned_engineer = null;
