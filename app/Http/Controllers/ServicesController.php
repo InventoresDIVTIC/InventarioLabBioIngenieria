@@ -7,6 +7,9 @@ use App\Models\Servicios;
 use App\Models\ServiciosDetalles;
 use App\Models\ServiciosFirmas;
 use App\Models\ServiciosGastos;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewServiceCreated;
+use App\Models\User;
 
 class ServicesController extends Controller
 {
@@ -67,6 +70,14 @@ class ServicesController extends Controller
 
         // Guardar el activoServicios en la base de datos
         $ServiciosGastos->save();
+
+        // Obtener los usuarios con el rol "Admin"
+        $admins = User::role('Admin')->get();
+
+        // Enviar el correo a cada admin
+        foreach ($admins as $admin) {
+            Mail::to($admin->email)->send(new NewServiceCreated($service));
+        }
 
         // Redirigir a la página de servicios o mostrar un mensaje de éxito
         return redirect()->route('services')->with('success', 'El servicio se ha registrado correctamente.');
