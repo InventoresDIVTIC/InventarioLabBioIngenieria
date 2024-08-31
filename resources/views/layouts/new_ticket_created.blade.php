@@ -33,7 +33,7 @@
                     <tr>
                         <td style="padding: 20px; background-color: #f4f4f4; text-align: center; border-radius: 0 0 10px 10px;">
                             <p style="font-size: 14px; color: #777777; margin: 0;">
-                                © {{ date('Y') }}
+                                © {{ date('Y') }} https://bioingenieria.inventores.org
                             </p>
                         </td>
                     </tr>
