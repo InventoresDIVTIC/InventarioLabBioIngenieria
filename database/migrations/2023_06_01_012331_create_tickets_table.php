@@ -17,9 +17,9 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('active_id');
-            $table->string('type', 45)->nullable();
-            $table->string('request', 45)->nullable();
-            $table->string('type_request', 45)->nullable();
+            $table->string('type', 255)->nullable();
+            $table->string('request', 255)->nullable();
+            $table->string('type_request', 255)->nullable();
             $table->string('priority', 45)->nullable();
             $table->date('created_at')->nullable();
             $table->date('updated_at')->nullable();

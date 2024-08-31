@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewTicketCreated;
+use App\Models\User;
 
 class TicketsController extends Controller
 {
@@ -37,6 +40,14 @@ class TicketsController extends Controller
 
         // Guardar el Ticket en la base de datos
         $ticket->save();
+
+        // Obtener los usuarios con el rol "Admin"
+        $admins = User::role('Admin')->get();
+
+        // Enviar el correo a cada admin
+        foreach ($admins as $admin) {
+            Mail::to($admin->email)->send(new NewTicketCreated($ticket));
+        }
 
         // Redireccionar o realizar otras acciones según tus necesidades
         return redirect()->back()->with('status', 'Ticket guardado exitosamente');
