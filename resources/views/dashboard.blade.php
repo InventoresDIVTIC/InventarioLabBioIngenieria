@@ -61,20 +61,23 @@
                     </div>
                 </div>
                 <!-- Estadisticas-->
-                <div class="ml-auto mb-2 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
-                    <div class="px-6 2xl:container">
-                        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div class="ml-auto mb-2 lg:w-[120%] xl:w-[130%] 2xl:w-[150%]">
+                    <div class="px-6">
+                        <div class="grid gap-6">
                             <div>
                                 <div class="h-full py-6 px-6 rounded-xl border border-gray-200 bg-white">
                                     <div class="relative bg-clip-border rounded-xl overflow-hidden bg-transparent text-gray-700 shadow-none m-0 flex items-center justify-between p-6">
                                         <div>
-                                            <h6 class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900">Tabla de Proximos Mantenimientos Preventivos</h6>
+                                            <h6 class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900">Tabla de Próximos Mantenimientos Preventivos</h6>
                                         </div>
                                     </div>
                                     <div class="p-6 px-0 pt-0 pb-2">
-                                        <table class="w-full min-w-[640px] table-auto">
+                                        <table class="w-full min-w-[1280px] table-auto">
                                             <thead>
                                                 <tr>
+                                                    <th class="border-b border-blue-gray-50 py-3 px-6 text-left">
+                                                        <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">ID</p>
+                                                    </th>
                                                     <th class="border-b border-blue-gray-50 py-3 px-6 text-left">
                                                         <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">Activo</p>
                                                     </th>
@@ -88,23 +91,23 @@
                                                 <tr>
                                                     <td class="py-3 px-5 border-b border-blue-gray-50">
                                                         <div class="flex items-center gap-4">
+                                                            <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold">{{ $mantenimiento->id}}</p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="py-3 px-5 border-b border-blue-gray-50">
+                                                        <div class="flex items-center gap-4">
                                                             <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold">{{ $mantenimiento->type }}</p>
                                                         </div>
                                                     </td>
                                                     <td class="py-3 px-5 border-b border-blue-gray-50">
-                                                        <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">{{ $mantenimiento->next_mprev }}</p>
+                                                        <div class="flex items-center gap-4">
+                                                            <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">{{ $mantenimiento->next_mprev }}</p>
+                                                        </div>
                                                     </td>
                                                 </tr>
-                                            @endforeach
-
+                                                @endforeach
                                             </tbody>
                                         </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="h-full py-6 px-6 rounded-xl border border-gray-200 bg-white">
-                                    <div class="my-8">
                                     </div>
                                 </div>
                             </div>

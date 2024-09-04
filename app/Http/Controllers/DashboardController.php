@@ -57,7 +57,7 @@ class DashboardController extends Controller
             ->whereMonth('activos_servicios.next_mprev', Carbon::now()->month)
             ->whereYear('activos_servicios.next_mprev', Carbon::now()->year)
             ->orderBy('activos_servicios.next_mprev')
-            ->select('activos.type', 'activos_servicios.next_mprev')
+            ->select('activos.id','activos.type','activos_servicios.next_mprev')
             ->get();
 
         // Enviar todas las variables a la vista
