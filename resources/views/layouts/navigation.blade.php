@@ -64,7 +64,7 @@
                 </a>
             </li>
         @endif
-
+        @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
         <li>
             <a class="label" href="{{ route('users') }}"> <!-- Usa la función `route` para generar URLs -->
                 <div class="icon">
@@ -74,6 +74,6 @@
                 <span>Usuarios</span>
             </a>
         </li>
-
+        @endif
     </ul>
 </div>
