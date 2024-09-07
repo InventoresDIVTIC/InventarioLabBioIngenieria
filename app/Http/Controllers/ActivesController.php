@@ -37,103 +37,110 @@ class ActivesController extends Controller
 
         // Obtener el ID del usuario autenticado
         $user_id = Auth::id();
+        $user = Auth::user();
 
-        // Crear un nuevo registro de Activo
-        $activo = new Activo();
-        $activo->id = $validatedData['id'];
-        $activo->user_id = $user_id;
-        $activo->category = $validatedData['category'];
-        $activo->type = $validatedData['type'];
-        $activo->brand = $validatedData['brand'];
-        $activo->model = $validatedData['model'];
-        $activo->serial = $validatedData['serial'];
-        $activo->location = $validatedData['location'];
-        $activo->sublocation = $validatedData['sublocation'];
-        $activo->status = $validatedData['status'];
-        $activo->hierarchy = $validatedData['hierarchy'];
-        $activo->class = $validatedData['class'];
+        if ($user->rol === 'Admin') {
+            // Crear un nuevo registro de Activo
+            $activo = new Activo();
+            $activo->id = $validatedData['id'];
+            $activo->user_id = $user_id;
+            $activo->category = $validatedData['category'];
+            $activo->type = $validatedData['type'];
+            $activo->brand = $validatedData['brand'];
+            $activo->model = $validatedData['model'];
+            $activo->serial = $validatedData['serial'];
+            $activo->location = $validatedData['location'];
+            $activo->sublocation = $validatedData['sublocation'];
+            $activo->status = $validatedData['status'];
+            $activo->hierarchy = $validatedData['hierarchy'];
+            $activo->class = $validatedData['class'];
 
-        // Guardar el Activo en la base de datos
-        $activo->save();
+            // Guardar el Activo en la base de datos
+            $activo->save();
 
-        // Crear un nuevo registro de ActivoProveeduria relacionado
-        $activoProveeduria = new ActivoProveeduria();
-        $activoProveeduria->belonging = $validatedData['belonging'];
-        $activoProveeduria->id = $request->id; //usar request
+            // Crear un nuevo registro de ActivoProveeduria relacionado
+            $activoProveeduria = new ActivoProveeduria();
+            $activoProveeduria->belonging = $validatedData['belonging'];
+            $activoProveeduria->id = $request->id; //usar request
 
-        // Guardar el ActivoProveeduria en la base de datos
-        $activoProveeduria->save();
+            // Guardar el ActivoProveeduria en la base de datos
+            $activoProveeduria->save();
 
-        // Crear un nuevo registro de activoFinanzas relacionado
-        $activoFinanzas = new ActivoFinanzas();
-        $activoFinanzas->id = $request->id;
+            // Crear un nuevo registro de activoFinanzas relacionado
+            $activoFinanzas = new ActivoFinanzas();
+            $activoFinanzas->id = $request->id;
 
-        // Guardar el activoFinanzas en la base de datos
-        $activoFinanzas->save();
+            // Guardar el activoFinanzas en la base de datos
+            $activoFinanzas->save();
 
-        $ultimoServicio = Servicios::orderBy('id', 'desc')->first();
+            $ultimoServicio = Servicios::orderBy('id', 'desc')->first();
 
-        // Verificar si existe al menos un servicio en la base de datos
-        if ($ultimoServicio) {
-            $nuevoIdServicio = $ultimoServicio->id + 1;
-        } else {
-            // Si no hay servicios en la base de datos, empezar desde 1
-            $nuevoIdServicio = 1;
+            // Verificar si existe al menos un servicio en la base de datos
+            if ($ultimoServicio) {
+                $nuevoIdServicio = $ultimoServicio->id + 1;
+            } else {
+                // Si no hay servicios en la base de datos, empezar desde 1
+                $nuevoIdServicio = 1;
+            }
+            $userId = Auth::user()->id;
+            $user_name = Auth::user()->name;
+            // Crear un nuevo registro de Servicio
+            $Servicios = new Servicios();
+            $Servicios->user_id = $userId;
+            $Servicios->user_name = $user_name;
+            $Servicios->id = $nuevoIdServicio;
+            $Servicios->active_name = $request->type;
+            $Servicios->active_model = $request->model;
+            $Servicios->active_sublocation = $request->sublocation;
+            $Servicios->status = "Generado automaticamente";
+
+            // Obtener la fecha actual
+            $fechaCreacion = Carbon::now();
+
+            // Agregar un año a la fecha de creación
+            $fechaMantenimiento = $fechaCreacion->copy()->addYear();
+
+            // Asignar la fecha de mantenimiento
+            $Servicios->scheduled_date = $fechaMantenimiento;
+
+            // Guardar el nuevo servicio en la base de datos
+            $Servicios->save();
+
+            // Crear un nuevo registro de ActivoProveeduria relacionado
+            $ServiciosDetalles = new ServiciosDetalles();
+            $ServiciosDetalles->id = $Servicios->id;
+
+            // Guardar el ActivoProveeduria en la base de datos
+            $ServiciosDetalles->save();
+
+            // Crear un nuevo registro de activoFinanzas relacionado
+            $ServiciosFirmas = new ServiciosFirmas();
+            $ServiciosFirmas->id = $Servicios->id;
+
+            // Guardar el activoFinanzas en la base de datos
+            $ServiciosFirmas->save();
+
+            // Crear un nuevo registro de activoServicios relacionado
+            $ServiciosGastos = new ServiciosGastos();
+            $ServiciosGastos->id = $Servicios->id;
+
+            // Guardar el activoServicios en la base de datos
+            $ServiciosGastos->save();
+
+            // Crear un nuevo registro de activoServicios relacionado
+            $activoServicios = new ActivoServicios();
+            $activoServicios->id = $request->id;
+            $activoServicios->next_mprev = $fechaMantenimiento;
+            // Guardar el activoServicios en la base de datos
+            $activoServicios->save();
+
+            // Redireccionar o realizar otras acciones según tus necesidades
+            return redirect()->back()->with('status', 'Activo guardado exitosamente');
         }
-        $userId = Auth::user()->id;
-        $user_name = Auth::user()->name;
-        // Crear un nuevo registro de Servicio
-        $Servicios = new Servicios();
-        $Servicios->user_id = $userId;
-        $Servicios->user_name = $user_name;
-        $Servicios->id = $nuevoIdServicio;
-        $Servicios->active_name = $request->type;
-        $Servicios->active_model = $request->model;
-        $Servicios->active_sublocation = $request->sublocation;
-        $Servicios->status = "Generado automaticamente";
-
-        // Obtener la fecha actual
-        $fechaCreacion = Carbon::now();
-
-        // Agregar un año a la fecha de creación
-        $fechaMantenimiento = $fechaCreacion->copy()->addYear();
-
-        // Asignar la fecha de mantenimiento
-        $Servicios->scheduled_date = $fechaMantenimiento;
-
-        // Guardar el nuevo servicio en la base de datos
-        $Servicios->save();
-
-        // Crear un nuevo registro de ActivoProveeduria relacionado
-        $ServiciosDetalles = new ServiciosDetalles();
-        $ServiciosDetalles->id = $Servicios->id;
-
-        // Guardar el ActivoProveeduria en la base de datos
-        $ServiciosDetalles->save();
-
-        // Crear un nuevo registro de activoFinanzas relacionado
-        $ServiciosFirmas = new ServiciosFirmas();
-        $ServiciosFirmas->id = $Servicios->id;
-
-        // Guardar el activoFinanzas en la base de datos
-        $ServiciosFirmas->save();
-
-        // Crear un nuevo registro de activoServicios relacionado
-        $ServiciosGastos = new ServiciosGastos();
-        $ServiciosGastos->id = $Servicios->id;
-
-        // Guardar el activoServicios en la base de datos
-        $ServiciosGastos->save();
-
-        // Crear un nuevo registro de activoServicios relacionado
-        $activoServicios = new ActivoServicios();
-        $activoServicios->id = $request->id;
-        $activoServicios->next_mprev = $fechaMantenimiento;
-        // Guardar el activoServicios en la base de datos
-        $activoServicios->save();
-
-        // Redireccionar o realizar otras acciones según tus necesidades
-        return redirect()->back()->with('status', 'Activo guardado exitosamente');
+        else {
+            // El usuario no tiene permisos
+            return redirect()->back()->with('error', 'No tienes permisos para guardar este ticket');
+        }
     }
 
     public function edit_actives($id, Request $request)
@@ -148,37 +155,47 @@ class ActivesController extends Controller
 
         // Obtener el Nombre del usuario que esta editando
         $user_name = Auth::user()->name;
+        $user = Auth::user();
 
-        // Actualizar los datos del proveedor con los valores del formulario
-        $activo->type = $request->type;
-        $activo->description = $request->description;
-        $activo->category = $request->category;
-        $activo->brand = $request->brand;
-        $activo->model = $request->model;
-        $activo->serial = $request->serial;
-        $activo->location = $request->location;
-        $activo->sublocation = $request->sublocation;
-        $activo->status = $request->status;
-        $activo->hierarchy = $request->hierarchy;
-        $activo->criticality = $request->criticality;
-        $activo->ing_assigned = $request->ing_assigned;
-        $activo->last_editor = $user_name;
-        $activo->software_ver = $request->software_ver;
-        $activo->risk = $request->risk;
-        $activo->so = $request->so;
-        $activo->firmware_ver = $request->firmware_ver;
-        $activo->comments = $request->comments;
-        $activo->class = $request->class;
+        if ($user->rol === 'Admin') {
+            // Actualizar los datos del proveedor con los valores del formulario
+            $activo->type = $request->type;
+            $activo->description = $request->description;
+            $activo->category = $request->category;
+            $activo->brand = $request->brand;
+            $activo->model = $request->model;
+            $activo->serial = $request->serial;
+            $activo->location = $request->location;
+            $activo->sublocation = $request->sublocation;
+            $activo->status = $request->status;
+            $activo->hierarchy = $request->hierarchy;
+            $activo->criticality = $request->criticality;
+            $activo->ing_assigned = $request->ing_assigned;
+            $activo->last_editor = $user_name;
+            $activo->software_ver = $request->software_ver;
+            $activo->risk = $request->risk;
+            $activo->so = $request->so;
+            $activo->firmware_ver = $request->firmware_ver;
+            $activo->comments = $request->comments;
+            $activo->class = $request->class;
 
-        // Guardar los cambios en la base de datos
-        $activo->save();
+            // Guardar los cambios en la base de datos
+            $activo->save();
 
-        // Redireccionar o realizar otras acciones según tus necesidades
-        return redirect()->back()->with('status', 'Activo actualizado exitosamente');
+            // Redireccionar o realizar otras acciones según tus necesidades
+            return redirect()->back()->with('status', 'Activo actualizado exitosamente');
+        }
+        else {
+            // El usuario no tiene permisos
+            return redirect()->back()->with('error', 'No tienes permisos para guardar este ticket');
+        }
     }
 
     public function edit_actives_finanzas($id, Request $request)
     {
+        $user = Auth::user();
+
+        if ($user->rol === 'Admin') {
         // Obtener el Activo existente por ID
         $activo = ActivoFinanzas::find($id);
 
@@ -298,10 +315,18 @@ class ActivesController extends Controller
 
         // Redireccionar o realizar otras acciones según tus necesidades
         return redirect()->back()->with('status', 'Activo actualizado exitosamente');
+        }
+        else {
+            // El usuario no tiene permisos
+            return redirect()->back()->with('error', 'No tienes permisos para guardar este ticket');
+        }
     }
 
     public function edit_actives_proveeduria($id, Request $request)
     {
+        $user = Auth::user();
+
+        if ($user->rol === 'Admin') {
         // Obtener el Activo existente por ID
         $activo = ActivoProveeduria::find($id);
 
@@ -334,9 +359,17 @@ class ActivesController extends Controller
         // Redireccionar o realizar otras acciones según tus necesidades
         return redirect()->back()->with('status', 'Activo actualizado exitosamente');
     }
+    else {
+        // El usuario no tiene permisos
+        return redirect()->back()->with('error', 'No tienes permisos para guardar este ticket');
+    }
+    }
 
     public function edit_actives_baja($id, Request $request)
     {
+        $user = Auth::user();
+
+        if ($user->rol === 'Admin') {
         // Obtener el Activo existente por ID
         $activo = Activo::find($id);
 
@@ -354,6 +387,11 @@ class ActivesController extends Controller
 
         // Redireccionar o realizar otras acciones según tus necesidades
         return redirect()->back()->with('status', 'Activo actualizado exitosamente');
+        }
+        else {
+            // El usuario no tiene permisos
+            return redirect()->back()->with('error', 'No tienes permisos para guardar este ticket');
+        }
     }
 
     public function Datotemp($data)
