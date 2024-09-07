@@ -64,6 +64,7 @@
                 </a>
             </li>
         @endif
+
         <li>
             <a class="label" href="{{ route('users') }}"> <!-- Usa la función `route` para generar URLs -->
                 <div class="icon">
@@ -73,5 +74,6 @@
                 <span>Usuarios</span>
             </a>
         </li>
+
     </ul>
 </div>
