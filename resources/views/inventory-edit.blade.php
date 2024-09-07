@@ -284,7 +284,7 @@
                         </form>
                     </div>
 
-
+                @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
                     <!-- Pantalla 2: Datos de Facturas -->
                     <div x-show="pantalla === 2">
                         <form id="form-inventario-2" action="{{ route('actives.finanzas', ['id' => $activo->id]) }}" method="POST" enctype="multipart/form-data" class="space-y-6 w-full sm:w-96">
@@ -463,7 +463,8 @@
                             </div>
                         </form>
                     </div>
-
+                    @endif
+                @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
                     <!-- Pantalla 3: Datos de registro y mantenimiento -->
                     <div x-show="pantalla === 3">
                         <form id="form-inventario-3" action="{{ route('actives.proveeduria', ['id' => $activo->id]) }}"
@@ -551,7 +552,9 @@
                             </div>
                         </form>
                     </div>
+                @endif
 
+                @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
                     <!-- Pantalla 4: Datos de eliminacion -->
                     <div x-show="pantalla === 4">
                         <form id="form-inventario-4" action="{{ route('actives.delete', ['id' => $activo->id]) }}"
@@ -597,6 +600,7 @@
                             </div>
                         </form>
                     </div>
+                    @endif
                 </div>
             </div>
         </section>
