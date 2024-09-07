@@ -11,7 +11,7 @@
     <title>EDITAR USUARIO | CUCEI LAB DE BIOINGENIERIA</title>
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
 </head>
-
+@if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
 <body class="min-w-full inline-block min-w-min md:min-w-0 md:inline">
     <x-app-layout>
         <section>
@@ -35,28 +35,28 @@
                         <div>
                             <div>
                                 <div class="grid grid-cols-2 gap-6">
-    
+
                                     <div title="Modifica el Tipo de Solicitud del usuario">
                                         <x-input-label for="code" :value="__('Codigo')" />
                                         <x-text-input id="code" name="code" type="text" class="mt-1 w-full"
                                             value='<?php echo "{$users->code}"; ?>' />
                                         <x-input-error class="mt-2" :messages="$errors->get('code')" />
                                     </div>
-    
+
                                     <div title="Modifica el Tipo de Solicitud del usuario">
                                         <x-input-label for="name" :value="__('Nombre')" />
                                         <x-text-input id="name" name="name" type="text" class="mt-1 w-full"
                                             value='<?php echo "{$users->name}"; ?>' />
                                         <x-input-error class="mt-2" :messages="$errors->get('name')" />
                                     </div>
-    
+
                                     <div title="Modifica el Tipo de Solicitud del usuario">
                                         <x-input-label for="lastname" :value="__('Apellido')" />
                                         <x-text-input id="lastname" name="lastname" type="text" class="mt-1 w-full"
                                             value='<?php echo "{$users->lastname}"; ?>' />
                                         <x-input-error class="mt-2" :messages="$errors->get('lastname')" />
                                     </div>
-    
+
                                     <div title="Modifica el Tipo de Solicitud del usuario">
                                         <x-input-label for="email" :value="__('Email')" />
                                         <x-text-input id="email" name="email" type="text" class="mt-1 w-full"
@@ -71,21 +71,21 @@
                                             servicio</option>
                                         <option value="Web designer" @selected($users->rol === 'Web designer')>Web designer</option>
                                     </select>
-    
+
                                     <div title="Modifica el Tipo de Solicitud del usuario">
                                         <x-input-label for="area" :value="__('Area')" />
                                         <x-text-input id="area" name="area" type="text" class="mt-1 w-full"
                                             value='<?php echo "{$users->area}"; ?>' />
                                         <x-input-error class="mt-2" :messages="$errors->get('area')" />
                                     </div>
-    
+
                                     <div title="Modifica el Tipo de Solicitud del usuario">
                                         <x-input-label for="phone" :value="__('Telefono')" />
                                         <x-text-input id="phone" name="phone" type="text" class="mt-1 w-full"
                                             value='<?php echo "{$users->phone}"; ?>' />
                                         <x-input-error class="mt-2" :messages="$errors->get('phone')" />
                                     </div>
-    
+
                                 </div>
                             </div>
                             <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
@@ -96,7 +96,7 @@
                                         {{ __('Guardar') }}
                                     </button>
                                 </div>
-                            </div>                        
+                            </div>
                         </div>
                         </div>
                     </form>
@@ -112,7 +112,7 @@
                         </form>
                     </div>
                 </div>
-               
+
             </div>
         </section>
     </x-app-layout>
@@ -123,5 +123,52 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://bioingenieria.inventores.org/js/tickets-creation.js"></script>
 </body>
-
+@endif
+@if(Auth::check() && Auth::user()->hasAnyRole(['Usuario', 'Prestador de servicio']))
+<div>
+    <style>
+        .welcome-container {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .welcome-box {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s ease-in-out;
+        }
+        .welcome-title {
+            color: #333333;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin: 0;
+            animation: slideIn 2s ease-in-out;
+        }
+        .welcome-message {
+            color: #808080;
+            font-size: 1.25rem;
+            margin-top: 20px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+    <div class="welcome-container">
+        <div class="welcome-box">
+            <h2 class="welcome-title">Parece que no tienes permisos para acceder a este sitio por favor contacta a un administrador</h2>
+        </div>
+    </div>
+</div>
+@endif
 </html>
