@@ -39,7 +39,7 @@
 </div>
     </section>
     <footer class="footer">
-            <p class="footer-pagina">&copy; 2023 Sistema de Gestión de Inventario</p>
+            <p class="footer-pagina">&copy; 2024 Sistema de Gestión de Inventario</p>
     </footer>
 </body>
 

@@ -13,7 +13,7 @@
 
 <body class="min-w-full inline-block min-w-min md:min-w-0 md:inline">
     <x-app-layout>
-        <section>
+        <section style="align-items: center;">
         @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
             <div>
                 <h2 style="color: #808080; font-size: 2.5rem; text-align: center; text-transform: uppercase; padding-top: 20px;">Dashboard</h2>
