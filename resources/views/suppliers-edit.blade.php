@@ -167,17 +167,21 @@
             justify-content: center;
             align-items: center;
             margin: 0;
+            background: url("https://bioingenieria.inventores.org/img/ImagenBackground.jpg") no-repeat;
+            background-position: center;
+            background-size: cover;
         }
         .welcome-box {
             text-align: center;
-            background-color: #ffffff;
             padding: 40px;
+            width: 80rem;
+            backdrop-filter: blur(15px);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             animation: fadeIn 2s ease-in-out;
         }
         .welcome-title {
-            color: #333333;
+            color: white;
             font-size: 2.5rem;
             text-transform: uppercase;
             margin: 0;
@@ -197,11 +201,11 @@
             to { transform: translateY(0); opacity: 1; }
         }
     </style>
-    <div class="welcome-container">
+    <section class="welcome-container">
         <div class="welcome-box">
             <h2 class="welcome-title">Parece que no tienes permisos para acceder a este sitio por favor contacta a un administrador</h2>
         </div>
-    </div>
+    </section>
 </div>
 @endif
 </html>
