@@ -19,6 +19,7 @@ class Activo extends Model
         'status',
         'hierarchy',
         'class',
+        'manual_doc',
     ];
 
     // Relación con la tabla "activos_proveeduria"

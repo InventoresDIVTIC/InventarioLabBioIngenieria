@@ -40,6 +40,7 @@ return new class extends Migration
             $table->date('leaving_date')->nullable();
             $table->string('motive', 100)->nullable();
             $table->string('leaving_comments')->nullable();
+            $table->string('manual_doc')->nullable();
         });
     }
 

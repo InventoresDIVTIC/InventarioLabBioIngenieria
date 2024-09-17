@@ -159,22 +159,17 @@
                 </div>
             </div>
         </section>
-
-    @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
         <div style="text-align: center;">
             <!-- Botón flotante para agregar activos -->
             <a href="{{ route('assets-creation') }}" class="floating-button">
                 <h2>+</h2>
             </a>
         </div>
-
-            <!-- Ventana flotante para mostrar el mensaje -->
-            <div class="floating-message">
+        <!-- Ventana flotante para mostrar el mensaje -->
+        <div class="floating-message">
                 Agregar activos
-            </div>
-    @endif
+        </div>
     </x-app-layout>
-
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>

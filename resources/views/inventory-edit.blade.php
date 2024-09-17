@@ -52,7 +52,7 @@
                 <div x-data="{ pantalla }">
 
                     <div x-show="pantalla === 1">
-                        <form id="form-inventario" action="{{ route('actives.edit', ['id' => $activo->id]) }}"
+                        <form id="form-inventario" enctype="multipart/form-data" action="{{ route('actives.edit', ['id' => $activo->id]) }}"
                             method="POST" class="space-y-6 w-full sm:w-96">
                             @csrf
                             @method('PATCH')
@@ -270,6 +270,40 @@
                                         <x-input-error class="mt-2" :messages="$errors->get('comments')" />
                                     </div>
                                 </div>
+                                <div>
+                                    <label for="manual_doc" style="color: white;">Manual de usuario</label>
+                                    <input id="manual_doc" name="manual_doc" type="file" accept=".pdf" class="mt-1 w-full" onchange="previewManual_doc()" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('manual_doc')" />
+
+                                    <!-- Para mostrar la vista previa del documento existente -->
+                                    <div id="manual_doc-preview-container">
+                                        <label for="manual_doc">Vista previa del documento:</label>
+                                        <br>
+                                        @if($activo->manual_doc)
+                                            <embed id="manual_doc-document-preview" type="application/pdf" width="100%" height="300px" src="{{ asset($activo->manual_doc) }}" />
+                                        @else
+                                            <p>No hay documento existente.</p>
+                                        @endif
+                                    </div>
+                                </div>
+                                <script>
+                                    function previewManual_doc() {
+                                        var input = document.getElementById('manual_doc');
+                                        var preview = document.getElementById('manual_doc-document-preview');
+
+                                        if (input.files && input.files.length > 0) {
+                                            var reader = new FileReader();
+
+                                            reader.onload = function (e) {
+                                                preview.src = e.target.result;
+                                            }
+
+                                            reader.readAsDataURL(input.files[0]);
+                                        } else {
+                                            preview.src = ''; // Establecer preview.src en blanco
+                                        }
+                                    }
+                                </script>
                             </div>
                             <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
                                 <div>

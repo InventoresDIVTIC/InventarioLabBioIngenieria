@@ -148,9 +148,41 @@ class ActivesController extends Controller
         // Obtener el Activo existente por ID
         $activo = Activo::find($id);
 
-        // Verificar si el proveedor existe
+        // Verificar si el activo existe
         if (!$activo) {
             return redirect()->back()->with('error', 'Activo no encontrado');
+        }
+
+         // Verificar si se proporcionó una firma nueva
+         if ($request->hasFile('manual_doc')) {
+            $request->validate([
+                'manual_doc' => ['mimes:txt,TXT,pdf,PDF', 'max:10240'],
+            ]);
+
+            // Eliminar el documento existente si hay uno
+            if ($activo->manual_doc) {
+                // Asegúrate de que el documento existente tenga una ruta válida
+                if (file_exists(public_path($activo->manual_doc))) {
+                    unlink(public_path($activo->manual_doc));
+                }
+            }
+
+            $manual_doc_File = $request->file('manual_doc');
+
+            // Asegúrate de que la carpeta de destino exista
+            $destinationFolder = public_path('Activos-doc-manual');
+            if (!file_exists($destinationFolder)) {
+                mkdir($destinationFolder, 0755, true);
+            }
+
+            // Genera un nombre único para el archivo
+            $documentName = uniqid() . '_' . $manual_doc_File->getClientOriginalName();
+
+            // Mueve el archivo a la carpeta de destino con el nuevo nombre
+            $manual_doc_File->move($destinationFolder, $documentName);
+
+            // Guarda la ruta relativa del nuevo documento en la base de datos
+            $activo->manual_doc = 'Activos-doc-manual/' . $documentName;
         }
 
         // Obtener el Nombre del usuario que esta editando
@@ -158,7 +190,7 @@ class ActivesController extends Controller
         $user = Auth::user();
 
         if ($user->rol === 'Admin') {
-            // Actualizar los datos del proveedor con los valores del formulario
+            // Actualizar los datos del activo con los valores del formulario
             $activo->type = $request->type;
             $activo->description = $request->description;
             $activo->category = $request->category;
@@ -184,8 +216,7 @@ class ActivesController extends Controller
 
             // Redireccionar o realizar otras acciones según tus necesidades
             return redirect()->back()->with('status', 'Activo actualizado exitosamente');
-        }
-        else {
+        } else {
             // El usuario no tiene permisos
             return redirect()->back()->with('error', 'No tienes permisos para guardar este ticket');
         }
