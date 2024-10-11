@@ -3,7 +3,7 @@ window.onload = function() {
     var active_id = null;
     var active_name = null;
 
-    $('tr').click(function(e) {
+    $("#activos").on("click", "tr", function(e) {
         if ($(this).hasClass('row-selected')) {
             cleanTr()
             $('#select-active').attr("disabled", true);
