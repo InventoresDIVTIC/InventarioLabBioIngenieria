@@ -28,7 +28,7 @@ window.onpageshow = function() {
         $('#select-active-prov').addClass('disabled');
     })
 
-    $('tr').click(function(e) {
+    $("#proveedores, #activos").on("click", "tr", function(e) {
 
         if (idName === "supplier_name"){
 
