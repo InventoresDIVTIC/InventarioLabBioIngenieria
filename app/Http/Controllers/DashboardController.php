@@ -50,6 +50,25 @@ class DashboardController extends Controller
         // Obtener el recuento de activos
         $totalActivos = Activo::count();
 
+
+        // Obtener el recuento de activos funcionales
+        $totalActivosFuncionales = Activo::whereIn('status', ['funcional', 'en stock'])->count(); // Asumiendo que 'status' es el campo que define el estado de los activos
+
+        // Obtener el recuento de activos funcionales
+        $totalActivosMantenimiento = Activo::whereIn('status', ['En mantenimiento', 'Pendiente' , 'En revision'])->count();
+
+        // Obtener el recuento de activos funcionales
+        $totalActivosBaja = Activo::whereIn('status', ['Baja', 'No funcional'])->count();
+
+        // Calcular el porcentaje de activos funcionales
+        $porcentajeFuncionales = ($totalActivos > 0) ? ($totalActivosFuncionales / $totalActivos) * 100 : 0;
+
+        // Calcular el porcentaje de activos funcionales
+        $porcentajeMantenimiento = ($totalActivos > 0) ? ($totalActivosMantenimiento / $totalActivos) * 100 : 0;
+
+        // Calcular el porcentaje de activos funcionales
+        $porcentajeBaja = ($totalActivos > 0) ? ($totalActivosBaja / $totalActivos) * 100 : 0;
+
         // Obtener los mantenimientos preventivos próximos de este mes
         $mantenimientosProximos = DB::table('activos')
             ->join('activos_servicios', 'activos.id', '=', 'activos_servicios.id')
@@ -61,6 +80,6 @@ class DashboardController extends Controller
             ->get();
 
         // Enviar todas las variables a la vista
-        return view('dashboard', compact('totalGastosMensualesFormateado', 'totalUsuarios', 'totalActivos', 'mantenimientosProximos'));
+        return view('dashboard', compact('totalGastosMensualesFormateado', 'totalUsuarios', 'totalActivos', 'mantenimientosProximos', 'porcentajeFuncionales', 'porcentajeMantenimiento', 'porcentajeBaja'));
     }
 }

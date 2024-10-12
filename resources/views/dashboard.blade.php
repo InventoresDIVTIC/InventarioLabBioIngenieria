@@ -13,15 +13,69 @@
 
 <body class="min-w-full inline-block min-w-min md:min-w-0 md:inline">
     <x-app-layout>
-        <section style="align-items: center;">
+    <section style="align-items: center;">
         @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
+        <style>
+            .fade-in {
+                animation: fadeIn 1s ease forwards;
+                opacity: 0;
+                transform: translateY(-20px);
+                }
+
+            @keyframes fadeIn {
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            .styled-heading {
+                    color: #fff;
+                    font-size: 2.5rem;
+                    text-align: center;
+                    text-transform: uppercase;
+                    padding: 20px;
+                    background: linear-gradient(90deg, #010328, #8288fd);
+                    border-radius: 8px;
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .styled-heading::before {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 300%;
+                    height: 300%;
+                    background: rgba(255, 255, 255, 0.1);
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%) scale(0);
+                    transition: transform 0.6s ease;
+                    z-index: 0;
+                }
+
+                .styled-heading:hover {
+                    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+                }
+
+                .styled-heading:hover::before {
+                    transform: translate(-50%, -50%) scale(1);
+                }
+
+                .styled-heading span {
+                    position: relative;
+                    z-index: 1;
+                }
+        </style>
             <div>
-                <h2 style="color: #808080; font-size: 2.5rem; text-align: center; text-transform: uppercase; padding-top: 20px;">Dashboard</h2>
+                <h2 class="styled-heading fade-in"><span>Dashboard</span></h2>
                 <div class="px-6 py-8 mx-auto">
                     <div class="mt-8">
                         <div class="gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4" style="text-align: center;">
                             <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md" style="display: inline-block;width: 32.5%;margin-right: 4px;">
-                                <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-green-600 to-green-400 text-white shadow-green-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+                                <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-green-600 to-green-400 text-white shadow-green-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center fade-in">
                                     <svg class="h-8 w-8 text-slate-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="7" y="9" width="14" height="10" rx="2" />  <circle cx="14" cy="14" r="2" />  <path d="M17 9v-2a2 2 0 0 0 -2 -2h-10a2 2 0 0 0 -2 2v6a2 2 0 0 0 2 2h2" /></svg>
                                 </div>
                                 <div class="p-4 text-right">
@@ -30,7 +84,7 @@
                                 </div>
                             </div>
                             <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md" style="display: inline-block;width: 32.5%;margin-left: 4px;margin-right: 4px;">
-                                <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+                                <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-700 to-blue-500 text-white shadow-blue-600/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center fade-in">
                                     <svg class="h-8 w-8 text-slate-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z"/>
                                         <circle cx="9" cy="7" r="4" />
@@ -46,7 +100,7 @@
                             </div>
 
                             <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md" style="display: inline-block;width: 32.5%;margin-left: 4px;">
-                                <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-purple-600 to-purple-400 text-white shadow-purple-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+                                <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-purple-800 to-purple-500 text-white shadow-purple-700/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center fade-in">
                                     <svg class="h-8 w-8 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
                                         <polyline points="13 2 13 9 20 9" />
@@ -60,6 +114,50 @@
                         </div>
                     </div>
                 </div>
+                <div>
+                    <div class="px-6 py-3 mx-auto">
+                            <div class="gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4" style="text-align: center;">
+                                <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md" style="display: inline-block;width: 32.5%;margin-right: 4px;">
+                                    <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-green-700 to-green-500 text-white shadow-green-600/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center fade-in">
+                                        <svg class="h-8 w-8 text-slate-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z"/>
+                                            <rect x="6" y="8" width="12" height="10" rx="2" />
+                                            <circle cx="12" cy="13" r="2" />
+                                            <path d="M6 8v-2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v2" />
+                                          </svg>
+                                    </div>
+                                    <div class="p-4 text-right">
+                                        <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Total activos funcionales</p>
+                                        <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{{ round($porcentajeFuncionales, 2)}}%</h4>
+                                    </div>
+                                </div>
+                                <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md" style="display: inline-block;width: 32.5%;margin-left: 4px;margin-right: 4px;">
+                                    <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-yellow-700 to-yellow-500 text-white shadow-yellow-600/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center fade-in">
+                                        <svg class="h-8 w-8 text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                          <path stroke="none" d="M0 0h24v24H0z"/>
+                                          <path d="M12 9v2m0 4v.01" />
+                                          <path d="M5.5 19h13l-6.5 -14z" />
+                                        </svg>
+                                      </div>
+                                    <div class="p-4 text-right">
+                                        <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Total activos pendientes de revisión</p>
+                                        <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{{ round($porcentajeMantenimiento, 2)}}%</h4>
+                                    </div>
+                                </div>
+
+                                <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md" style="display: inline-block;width: 32.5%;margin-left: 4px;">
+                                    <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-red-800 to-red-500 text-white shadow-red-700/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center fade-in">
+                                        <svg class="h-8 w-8 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </div>
+                                    <div class="p-4 text-right">
+                                        <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Total activos no funcionales o dados de baja</p>
+                                        <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{{ round($porcentajeBaja, 2)}}%</h4>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
                 <!-- Estadisticas-->
                 <div class="ml-auto mb-2 lg:w-[120%] xl:w-[130%] 2xl:w-[150%]">
                     <div class="px-6">
