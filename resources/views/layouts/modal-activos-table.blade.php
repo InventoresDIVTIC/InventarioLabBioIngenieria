@@ -26,6 +26,7 @@
                         // Obtén los datos de la tabla "activos" y "activos_servicios" de la base de datos
                         $activos = \App\Models\Activo::all();
                         foreach ($activos as $activo) {
+                            if($activo->status != "Baja"){
                     ?>
                     <td>
                         <div class="idactivo">
@@ -35,7 +36,7 @@
                                     echo "<td>{$activo->type}</td>";
                                     echo "</tr>";
 
-                            }
+                            }}
                         ?>
                 </tbody>
             </table>
