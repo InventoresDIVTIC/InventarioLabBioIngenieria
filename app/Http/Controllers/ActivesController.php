@@ -211,6 +211,13 @@ class ActivesController extends Controller
             $activo->comments = $request->comments;
             $activo->class = $request->class;
 
+            // Verificar si el status es "Baja" para asignar la fecha de hoy
+            if ($request->status === 'Baja') {
+                $activo->leaving_date = now(); // Almacena la fecha y hora actual
+            } else {
+                $activo->leaving_date = null; // Si no es "Baja", puede quedar en null o mantener el valor actual
+            }
+
             // Guardar los cambios en la base de datos
             $activo->save();
 
