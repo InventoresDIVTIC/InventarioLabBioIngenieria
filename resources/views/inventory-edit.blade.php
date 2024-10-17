@@ -573,6 +573,50 @@
                                     <x-input-error class="mt-2" :messages="$errors->get('next_mprev')" />
                                 </div>
                             </div>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    const frecuencySelect = document.getElementById('frecuency_mprev');
+                                    const lastMprevInput = document.getElementById('last_mprev');
+                                    const nextMprevInput = document.getElementById('next_mprev');
+
+                                    // Función para calcular la nueva fecha según la frecuencia seleccionada
+                                    function calculateNextMprev() {
+                                        let lastMprevDate = new Date(lastMprevInput.value || new Date());
+                                        const frecuency = frecuencySelect.value;
+
+                                        switch (frecuency) {
+                                            case 'Anual':
+                                                lastMprevDate.setFullYear(lastMprevDate.getFullYear() + 1);
+                                                break;
+                                            case 'Semestral':
+                                                lastMprevDate.setMonth(lastMprevDate.getMonth() + 6);
+                                                break;
+                                            case 'Trimestral':
+                                                lastMprevDate.setMonth(lastMprevDate.getMonth() + 3);
+                                                break;
+                                            case 'Mensual':
+                                                lastMprevDate.setMonth(lastMprevDate.getMonth() + 1);
+                                                break;
+                                            case 'Semanal':
+                                                lastMprevDate.setDate(lastMprevDate.getDate() + 7);
+                                                break;
+                                            default:
+                                                return; // No hacer nada si está en "Por definir"
+                                        }
+
+                                        // Formatear la fecha para el input de tipo date
+                                        const formattedDate = lastMprevDate.toISOString().split('T')[0];
+                                        nextMprevInput.value = formattedDate;
+                                    }
+
+                                    // Evento que detecta cambios en la frecuencia seleccionada
+                                    frecuencySelect.addEventListener('change', calculateNextMprev);
+
+                                    // Evento que detecta cambios en la fecha de 'last_mprev'
+                                    lastMprevInput.addEventListener('change', calculateNextMprev);
+                                });
+                            </script>
                             <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
                                 <div>
                                     <button type="button" id="btn-anterior-3" x-show="pantalla > 1" @click="pantalla = 2"
