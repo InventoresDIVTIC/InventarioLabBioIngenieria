@@ -39,7 +39,7 @@ class ActivesController extends Controller
         $user_id = Auth::id();
         $user = Auth::user();
 
-        if ($user->rol === 'Admin') {
+        if (strtolower($user->rol) === 'admin' || strtolower($user->rol) === 'prestador de servicio'){
             // Crear un nuevo registro de Activo
             $activo = new Activo();
             $activo->id = $validatedData['id'];
@@ -189,7 +189,7 @@ class ActivesController extends Controller
         $user_name = Auth::user()->name;
         $user = Auth::user();
 
-        if ($user->rol === 'Admin') {
+        if (strtolower($user->rol) === 'admin' || strtolower($user->rol) === 'prestador de servicio'){
             // Actualizar los datos del activo con los valores del formulario
             $activo->type = $request->type;
             $activo->description = $request->description;
@@ -233,7 +233,7 @@ class ActivesController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->rol === 'Admin') {
+        if (strtolower($user->rol) === 'admin' || strtolower($user->rol) === 'prestador de servicio'){
         // Obtener el Activo existente por ID
         $activo = ActivoFinanzas::find($id);
 
@@ -364,7 +364,7 @@ class ActivesController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->rol === 'Admin') {
+        if (strtolower($user->rol) === 'admin' || strtolower($user->rol) === 'prestador de servicio'){
         // Obtener el Activo existente por ID
         $activo = ActivoProveeduria::find($id);
 
@@ -407,7 +407,7 @@ class ActivesController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->rol === 'Admin') {
+        if (strtolower($user->rol) === 'admin' || strtolower($user->rol) === 'prestador de servicio'){
         // Obtener el Activo existente por ID
         $activo = Activo::find($id);
 
