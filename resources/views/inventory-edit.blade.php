@@ -307,7 +307,7 @@
                             </div>
                             <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
                                 <div>
-                                @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
+                                @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin', 'Prestador de servicio']))
                                     <button type="button" id="btn-siguiente-1" x-show="pantalla < 4" @click="pantalla = 2"
                                         class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
                                     <button type="submit" form="form-inventario"
@@ -489,7 +489,7 @@
                                         class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
                                     <button type="button" id="btn-siguiente-2" x-show="pantalla < 3" @click="pantalla = 3"
                                         class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
-                                    @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
+                                    @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin', 'Prestador de servicio']))
                                         <button type="submit" form="form-inventario-2"
                                         class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
                                     @endif
@@ -623,7 +623,7 @@
                                         class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
                                     <button type="button" id="btn-siguiente-3" x-show="pantalla < 4" @click="pantalla = 4"
                                         class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
-                                        @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
+                                        @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin', 'Prestador de servicio']))
                                             <button type="submit" form="form-inventario-3"
                                             class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
                                         @endif
@@ -671,7 +671,7 @@
                                 <div>
                                     <button type="button" id="btn-anterior-4" x-show="pantalla > 1" @click="pantalla = 3"
                                         class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Anterior</button>
-                                    @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
+                                    @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin', 'Prestador de servicio']))
                                         <button type="submit" form="form-inventario-4"
                                             class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ __('Guardar') }}</button>
                                     @endif
