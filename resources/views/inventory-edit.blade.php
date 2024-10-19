@@ -350,10 +350,11 @@
 
                                 <div>
                                     <x-input-label for="price" :value="__('Precio')" />
-                                    <x-text-input id="price" name="price" type="text" class="mt-1 w-full"
+                                    <x-text-input id="price" name="price" type="number" step="any" class="mt-1 w-full"
                                         value='<?php echo "{$activo->price}"; ?>' />
                                     <x-input-error class="mt-2" :messages="$errors->get('price')" />
                                 </div>
+
 
                                 <div>
                                     <x-input-label for="warranty_start" :value="__('Inicio de la garantía')" />

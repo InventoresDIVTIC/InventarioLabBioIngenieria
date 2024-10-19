@@ -338,6 +338,10 @@ class ActivesController extends Controller
             $activo->bill = 'Activos-doc-signature/' . $documentName;
         }
 
+        $request->validate([
+            'price' => 'required|numeric|max:1000000000000000000000', // Validar que 'price' sea numérico y no sobrepase 1000 trillones
+        ]);
+
         // Actualizar los datos del proveedor con los valores del formulario
         $activo->bill_number = $request->bill_number;
         $activo->acquisition_date = $request->acquisition_date;
