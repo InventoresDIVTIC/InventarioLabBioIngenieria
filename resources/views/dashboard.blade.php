@@ -221,6 +221,8 @@
                             <?php
                                 $users = DB::table('users')
                                 ->select('id','name', 'lastname', 'email', 'rol', 'area', 'last_seen')
+                                ->orderBy('last_seen', 'desc')
+                                ->limit(10)
                                 ->get();
                             ?>
                             <table class="min-w-full">
