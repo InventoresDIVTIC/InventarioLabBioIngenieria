@@ -8,7 +8,7 @@
     <title>CUCEI LAB DE BIOINGENIERIA</title>
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
 </head>
-@if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
+@if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin', 'Prestador de servicio']))
 <body>
     <x-app-layout>
         <section>
@@ -149,7 +149,7 @@
     </x-app-layout>
 </body>
 @endif
-@if(Auth::check() && Auth::user()->hasAnyRole(['Usuario', 'Prestador de servicio']))
+@if(Auth::check() && Auth::user()->hasAnyRole(['Usuario']))
 <div>
     <style>
         .welcome-container {

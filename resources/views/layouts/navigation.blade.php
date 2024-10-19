@@ -24,7 +24,7 @@
                 <span>Inventario</span>
             </a>
         </li>
-        @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
+        @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin', 'Prestador de servicio']))
             <li>
                 <a class="label" href="{{ __('suppliers') }}">
                     <div class="icon">
@@ -36,7 +36,7 @@
                 </a>
             </li>
         @endif
-        @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
+        @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin', 'Prestador de servicio']))
             <li>
                 <a class="label" href="{{ __('services') }}">
                     <div class="icon">
@@ -52,7 +52,7 @@
                 </a>
             </li>
         @endif
-        @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin']))
+        @if(Auth::check() && Auth::user()->hasAnyRole(['Web designer', 'Admin', 'Prestador de servicio']))
             <li>
                 <a class="label" href="{{ __('tickets') }}">
                     <div class="icon">
