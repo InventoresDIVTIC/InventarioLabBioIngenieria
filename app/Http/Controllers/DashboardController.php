@@ -82,4 +82,45 @@ class DashboardController extends Controller
         // Enviar todas las variables a la vista
         return view('dashboard', compact('totalGastosMensualesFormateado', 'totalUsuarios', 'totalActivos', 'mantenimientosProximos', 'porcentajeFuncionales', 'porcentajeMantenimiento', 'porcentajeBaja'));
     }
+
+    public function actualizarNextMprev()
+    {
+        // Obtener los activos que tienen un próximo mantenimiento preventivo (next_mprev) definido
+        $activos = ActivoServicios::whereNotNull('next_mprev')->get();
+        $hoy = Carbon::now();
+
+        foreach ($activos as $activo) {
+            $nextMprevDate = Carbon::parse($activo->next_mprev); // Fecha actual del próximo mantenimiento
+            $lastMprevDate = Carbon::parse($activo->last_mprev) ?: Carbon::now(); // Usa la fecha de mantenimiento pasada o la actual si no existe
+
+            // Revisar si la fecha actual ha pasado de next_mprev
+            if ($hoy->greaterThan($nextMprevDate)) {
+                // Actualizar next_mprev según la frecuencia
+                switch ($activo->frecuency_mprev) {
+                    case 'Anual':
+                        $nextMprevDate = $lastMprevDate->addYear();
+                        break;
+                    case 'Semestral':
+                        $nextMprevDate = $lastMprevDate->addMonths(6);
+                        break;
+                    case 'Trimestral':
+                        $nextMprevDate = $lastMprevDate->addMonths(3);
+                        break;
+                    case 'Mensual':
+                        $nextMprevDate = $lastMprevDate->addMonth();
+                        break;
+                    case 'Semanal':
+                        $nextMprevDate = $lastMprevDate->addWeek();
+                        break;
+                    default:
+                        break; // Si es "Por definir" u otra cosa, no hacer nada
+                }
+
+                // Guardar la nueva fecha de mantenimiento
+                $activo->next_mprev = $nextMprevDate;
+                $activo->save();
+            }
+        }
+        return redirect()->back()->with('success');
+    }
 }

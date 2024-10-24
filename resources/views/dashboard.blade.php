@@ -68,6 +68,22 @@
                     position: relative;
                     z-index: 1;
                 }
+                .floating-button {
+                    display: inline-block;
+                    padding: 15px 30px;
+                    background-color: #4CAF50; /* Color verde */
+                    color: white;
+                    text-decoration: none;
+                    font-size: 18px;
+                    border-radius: 25px; /* Bordes redondeados */
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+                    transition: background-color 0.3s, transform 0.3s; /* Transición suave */
+                }
+
+                .floating-button:hover {
+                    background-color: #45a049; /* Color más oscuro al pasar el mouse */
+                    transform: translateY(-2px); /* Efecto de elevación */
+                }
         </style>
             <div>
                 <h2 class="styled-heading fade-in"><span>Dashboard</span></h2>
@@ -157,6 +173,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <div style="text-align: center; position: relative; margin-top: 50px;">
+                                <!-- Botón flotante para actualizar next_mprev -->
+                                <a href="{{ route('actualizar.next.mprev') }}" class="floating-button">
+                                    <h2 style="margin: 0; color: white;">Actualizar Mantenimientos Preventivos</h2>
+                                </a>
+                            </div>
                     </div>
                 <!-- Estadisticas-->
                 <div class="ml-auto mb-2 lg:w-[120%] xl:w-[130%] 2xl:w-[150%]">
@@ -244,7 +266,6 @@
                                             class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                             VISTO ULTIMA VEZ</th>
                                     </tr>
-
                                 </thead>
                                 <tbody class="bg-white">
                                     <?php

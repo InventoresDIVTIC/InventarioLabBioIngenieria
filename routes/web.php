@@ -104,6 +104,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/editar-Activos-new/{id}', [ActivesController::class, 'Datotemp'])->name('inventory.Datotemp');
     Route::get('/crear-ticket/{id}', [ActivesController::class, 'DatotempTickets'])->name('inventory.DatotempTickets');
     Route::get('/dashboard', [DashboardController::class, 'MetricasDashboard'])->name('dashboard');
+    Route::get('/actualizar-next-mprev', [DashboardController::class, 'actualizarNextMprev'])->name('actualizar.next.mprev');
+
 });
 
 require __DIR__.'/auth.php';
