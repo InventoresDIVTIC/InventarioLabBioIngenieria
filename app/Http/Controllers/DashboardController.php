@@ -91,36 +91,54 @@ class DashboardController extends Controller
 
         foreach ($activos as $activo) {
             $nextMprevDate = Carbon::parse($activo->next_mprev); // Fecha actual del próximo mantenimiento
-            $lastMprevDate = Carbon::parse($activo->last_mprev) ?: Carbon::now(); // Usa la fecha de mantenimiento pasada o la actual si no existe
+            $lastMprevDate = Carbon::parse($activo->last_mprev); // Usa la fecha de mantenimiento pasada
 
-            // Revisar si la fecha actual ha pasado de next_mprev
-            if ($hoy->greaterThan($nextMprevDate)) {
-                // Actualizar next_mprev según la frecuencia
+            // Si last_mprev no está definido, asignar hoy
+            if (!$lastMprevDate) {
+                $lastMprevDate = $hoy; // Usar la fecha actual solo si last_mprev no existe
+            }
+
+            // Calcular los intervalos necesarios para que next_mprev sea mayor que hoy
+            if ($hoy->greaterThanOrEqualTo($nextMprevDate)) {
+                // Obtener la diferencia entre hoy y next_mprev
+                $diffDays = $nextMprevDate->diffInDays($hoy);
+                $increment = 0;
+
+                // Determinar cuántos intervalos se necesitan
                 switch ($activo->frecuency_mprev) {
                     case 'Anual':
-                        $nextMprevDate = $lastMprevDate->addYear();
+                        $increment = ceil($diffDays / 365);
+                        $nextMprevDate = $nextMprevDate->addYears($increment);
                         break;
                     case 'Semestral':
-                        $nextMprevDate = $lastMprevDate->addMonths(6);
+                        $increment = ceil($diffDays / 182.5); // Promedio de días en un semestre
+                        $nextMprevDate = $nextMprevDate->addMonths(6 * $increment);
                         break;
                     case 'Trimestral':
-                        $nextMprevDate = $lastMprevDate->addMonths(3);
+                        $increment = ceil($diffDays / 91.25); // Promedio de días en un trimestre
+                        $nextMprevDate = $nextMprevDate->addMonths(3 * $increment);
                         break;
                     case 'Mensual':
-                        $nextMprevDate = $lastMprevDate->addMonth();
+                        $increment = ceil($diffDays / 30); // Promedio de días en un mes
+                        $nextMprevDate = $nextMprevDate->addMonths($increment);
                         break;
                     case 'Semanal':
-                        $nextMprevDate = $lastMprevDate->addWeek();
+                        $increment = ceil($diffDays / 7); // Promedio de días en una semana
+                        $nextMprevDate = $nextMprevDate->addWeeks($increment);
                         break;
                     default:
                         break; // Si es "Por definir" u otra cosa, no hacer nada
                 }
 
-                // Guardar la nueva fecha de mantenimiento
+                // Antes de actualizar next_mprev, guardar su valor en last_mprev
+                $activo->last_mprev = $activo->next_mprev;
+
+                // Guardar la nueva fecha de mantenimiento solo si es mayor que la fecha actual
                 $activo->next_mprev = $nextMprevDate;
                 $activo->save();
             }
         }
-        return redirect()->back()->with('success');
+
+        return redirect()->back()->with('success', 'Mantenimientos preventivos actualizados correctamente.');
     }
 }
