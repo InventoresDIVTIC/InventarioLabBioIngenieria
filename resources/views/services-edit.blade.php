@@ -67,6 +67,7 @@
                                             <option value="Aprobado">Aprobado</option>
                                             <option value="En Revisión">En Revisión</option>
                                             <option value="Omitido">Omitido</option>
+                                            <option value="Generado automaticamente" selected disabled>Generado automaticamente</option>
                                             <option value="Otro">Otro</option>
                                         </select>
                                     </div>
