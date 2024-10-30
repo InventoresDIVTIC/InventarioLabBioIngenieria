@@ -70,6 +70,22 @@
                                                 </div>
                                             </div>
                                         </th>
+                                        <th id="icon-menu-area" data-priority="7">
+                                            <div class="orden">
+                                                <div>ESTADO</div>
+                                                <div id="icon-area" class="ordicon" title="Ordenar el estado de manera descendente o ascendente">
+                                                    <svg class="w-3 h-3 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 10"> <path fill-rule="evenodd" d="M15.434 1.235A2 2 0 0 0 13.586 0H2.414A2 2 0 0 0 1 3.414L6.586 9a2 2 0 0 0 2.828 0L15 3.414a2 2 0 0 0 .434-2.179Z"/></svg>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <th id="icon-menu-area" data-priority="8">
+                                            <div class="orden">
+                                                <div>VISTO ULTIMA VEZ</div>
+                                                <div id="icon-area" class="ordicon" title="Ordenar el visto última vez de manera descendente o ascendente">
+                                                    <svg class="w-3 h-3 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 10"> <path fill-rule="evenodd" d="M15.434 1.235A2 2 0 0 0 13.586 0H2.414A2 2 0 0 0 1 3.414L6.586 9a2 2 0 0 0 2.828 0L15 3.414a2 2 0 0 0 .434-2.179Z"/></svg>
+                                                </div>
+                                            </div>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -87,6 +103,21 @@
                                         echo "<td>{$users->email}</td>";
                                         echo "<td>{$users->rol}</td>";
                                         echo "<td>{$users->area}</td>";
+                                        ?>
+                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                <span>
+                                                    @if(Cache::has('user-is-online-' . $users->id))
+                                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Online</span>
+                                                    @else
+                                                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">Offline</span>
+                                                    @endif
+                                                </span>
+                                            </td>
+                                            <td
+                                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
+                                                {{ Carbon\Carbon::parse($users->last_seen)->diffForHumans() }}
+                                            </td>
+                                        <?php
                                         echo "</tr>";
                                     }
                                     ?>
