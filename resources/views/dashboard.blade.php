@@ -320,28 +320,57 @@
         @if(Auth::check() && Auth::user()->hasAnyRole(['Usuario', 'Prestador de servicio']))
             <div>
                 <style>
-                    .welcome-container {
+                    section {
                         font-family: Arial, sans-serif;
                         background: linear-gradient(135deg, #f8f9fa, #e9ecef);
                         display: flex;
                         justify-content: center;
                         align-items: center;
                         margin: 0;
+                        background: url("https://bioingenieria.inventores.org/img/ImagenBackground.jpg") no-repeat;
+                        background-position: center;
+                        background-size: cover;
+                    }
+                    .welcome-container {
+                        font-family: Arial, sans-serif;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 0;
+                        
                     }
                     .welcome-box {
                         text-align: center;
-                        background-color: #ffffff;
+                        /*background-color: #ffffff; */
                         padding: 40px;
+                        border-radius: 10px;
+                        /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+                        animation: fadeIn 2s ease-in-out;
+
+                        
+                        /*width: 80rem; */
+                        backdrop-filter: blur(15px);
                         border-radius: 10px;
                         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                         animation: fadeIn 2s ease-in-out;
+
                     }
                     .welcome-title {
-                        color: #333333;
-                        font-size: 2.5rem;
+                        color: white;
+                        font-size: 2rem;
                         text-transform: uppercase;
                         margin: 0;
                         animation: slideIn 2s ease-in-out;
+                        
+                    }
+                    .welcome-title-lab{
+                        color: white;
+                        font-size: 3rem;
+                        font-weight: bold;
+                        text-transform: uppercase;
+                        margin: 0;
+                        animation: slideIn 2s ease-in-out;
+                        margin-top: -0.5rem;
                     }
                     .welcome-message {
                         color: #808080;
@@ -359,6 +388,7 @@
                 </style>
                 <div class="welcome-container">
                     <div class="welcome-box">
+                        <h1 class="welcome-title-lab">LABORATORIO DE BIOINGENIERIA</h1>
                         <h2 class="welcome-title">¡Hola y bienvenido!</h2>
                     </div>
                 </div>
