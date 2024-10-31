@@ -7,6 +7,11 @@ use App\Models\ActivoFinanzas;
 use App\Models\User;
 use App\Models\Activo;
 use App\Models\ActivoServicios;
+use App\Models\Servicios;
+use App\Models\ServiciosDetalles;
+use App\Models\ServiciosFirmas;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewServiceCreated;
 use Carbon\Carbon;
 
 class DashboardController extends Controller
@@ -136,9 +141,51 @@ class DashboardController extends Controller
                 // Guardar la nueva fecha de mantenimiento solo si es mayor que la fecha actual
                 $activo->next_mprev = $nextMprevDate;
                 $activo->save();
+                $this->crearServicio($activo);
             }
         }
-
         return redirect()->back()->with('success', 'Mantenimientos preventivos actualizados correctamente.');
+    }
+
+    // Función separada para crear el servicio
+    protected function crearServicio($activo)
+    {
+        $activodata = Activo::find($activo->id);
+        $user_id = 0;
+        $user_name = 'Bot';
+
+        $service = new Servicios();
+        $service->user_id = $user_id;
+        $service->user_name = $user_name;
+        $service->status = 'Por definir'; // Puedes ajustar el valor según sea necesario
+        $service->services_type = 'Mantenimiento'; // Puedes ajustar el valor según sea necesario
+        $service->active_name = $activodata->type;
+        $service->active_model = $activodata->model;
+        $service->active_sublocation = $activodata->sublocation;
+        $service->active_id = $activo->id;
+        $service->scheduled_date = $activo->next_mprev; // O usa otra fecha según sea necesario
+        $service->assigned_engineer = 'Por asignar'; // Ajusta según sea necesario
+
+        $service->save();
+
+        // Guardar registros relacionados
+        $ServiciosDetalles = new ServiciosDetalles();
+        $ServiciosDetalles->id = $service->id;
+        $ServiciosDetalles->start_date = $activo->next_mprev;;
+        $ServiciosDetalles->save();
+
+        $ServiciosFirmas = new ServiciosFirmas();
+        $ServiciosFirmas->id = $service->id;
+        $ServiciosFirmas->save();
+
+        $ServiciosGastos = new ServiciosGastos();
+        $ServiciosGastos->id = $service->id;
+        $ServiciosGastos->save();
+
+        // Notificar a los admins
+        $admins = User::role('Admin')->get();
+        foreach ($admins as $admin) {
+            Mail::to($admin->email)->send(new NewServiceCreated($service));
+        }
     }
 }

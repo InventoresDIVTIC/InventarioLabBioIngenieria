@@ -18,8 +18,11 @@ class Servicios extends Model
         'active_model',
         'supplier_name',
         'assigned_engineer',
+        'active_name',
+        'active_model',
+        'active_sublocation',
     ];
-    
+
 
     // Relación con la tabla "Servicios_"
     public function detalles()

@@ -157,6 +157,14 @@
                                         required autofocus autocomplete="reference" value='<?php echo "{$servicios->reference}"; ?>'/>
                                     <x-input-error class="mt-2" :messages="$errors->get('reference')" />
                                 </div>
+                                <div class="grid grid-cols-2 gap-6">
+                                    <div>
+                                        <x-input-label for="scheduled_date" :value="__('Fecha prevista')" />
+                                        <input id="scheduled_date" name="scheduled_date" type="date" class="mt-1 w-full"
+                                            required autofocus autocomplete="scheduled_date" value='<?php echo "{$servicios->scheduled_date}"; ?>' readonly/>
+                                        <x-input-error class="mt-2" :messages="$errors->get('scheduled_date')" />
+                                    </div>
+                                </div>
                                 <div class="flex items-center gap-4 mt-4" style="justify-content: center;">
                                     <div>
                                         <button type="button" id="btn-siguiente-1" x-show="pantalla < 4"
