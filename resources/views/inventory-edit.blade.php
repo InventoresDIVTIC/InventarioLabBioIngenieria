@@ -562,7 +562,7 @@
                                     <x-input-label for="last_mprev" :value="__('Ultimo mantenimiento preventivo')" />
                                     <input type="date" id="last_mprev" name="last_mprev"
                                         class="mt-1 block w-full"
-                                        value='<?php echo "{$activo->last_mprev}"; ?>' />
+                                        value='<?php echo "{$activo->last_mprev}"; ?>' readonly/>
                                     <x-input-error class="mt-2" :messages="$errors->get('last_mprev')" />
                                 </div>
 

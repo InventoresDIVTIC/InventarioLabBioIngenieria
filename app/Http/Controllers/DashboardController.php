@@ -147,9 +147,16 @@ class DashboardController extends Controller
         return redirect()->back()->with('success', 'Mantenimientos preventivos actualizados correctamente.');
     }
 
-    // Función separada para crear el servicio
-    protected function crearServicio($activo)
-    {
+// Función separada para crear el servicio
+protected function crearServicio($activo)
+{
+    // Verificar si ya existe un servicio para el mismo activo y la misma fecha de mantenimiento
+    $servicioExistente = Servicios::where('active_id', $activo->id)
+                                  ->where('scheduled_date', $activo->next_mprev)
+                                  ->exists();
+
+    // Si no existe un servicio, crear uno nuevo
+    if (!$servicioExistente) {
         $activodata = Activo::find($activo->id);
         $user_id = 0;
         $user_name = 'Bot';
@@ -157,21 +164,22 @@ class DashboardController extends Controller
         $service = new Servicios();
         $service->user_id = $user_id;
         $service->user_name = $user_name;
-        $service->status = 'Por definir'; // Puedes ajustar el valor según sea necesario
-        $service->services_type = 'Mantenimiento'; // Puedes ajustar el valor según sea necesario
+        $service->status = 'Generado automaticamente';
+        $service->services_type = 'Mantenimiento';
         $service->active_name = $activodata->type;
         $service->active_model = $activodata->model;
         $service->active_sublocation = $activodata->sublocation;
         $service->active_id = $activo->id;
-        $service->scheduled_date = $activo->next_mprev; // O usa otra fecha según sea necesario
-        $service->assigned_engineer = 'Por asignar'; // Ajusta según sea necesario
+        $service->scheduled_date = $activo->next_mprev;
+        $service->assigned_engineer = 'Por asignar';
+        $service->service_type = 'Mantenimiento Preventivo';
 
         $service->save();
 
         // Guardar registros relacionados
         $ServiciosDetalles = new ServiciosDetalles();
         $ServiciosDetalles->id = $service->id;
-        $ServiciosDetalles->start_date = $activo->next_mprev;;
+        $ServiciosDetalles->start_date = $activo->next_mprev;
         $ServiciosDetalles->save();
 
         $ServiciosFirmas = new ServiciosFirmas();
@@ -188,4 +196,5 @@ class DashboardController extends Controller
             Mail::to($admin->email)->send(new NewServiceCreated($service));
         }
     }
+}
 }
