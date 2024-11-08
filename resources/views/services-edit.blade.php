@@ -224,6 +224,98 @@
                                     <x-input-error class="mt-2" :messages="$errors->get('end_hour')" />
                                 </div>
                             </div>
+
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function () {
+                                    // Obtener los campos
+                                    const startDateField = document.getElementById("start_date");
+                                    const startHourField = document.getElementById("starting_hour");
+                                    const endDateField = document.getElementById("end_date");
+                                    const endHourField = document.getElementById("end_hour");
+
+                                    // Función para activar/desactivar los campos end_date y end_hour
+                                    function toggleEndFields() {
+                                        if (startDateField.value && startHourField.value) {
+                                            // Habilitar end_date y end_hour si hay start_date y starting_hour
+                                            endDateField.disabled = false;
+                                            endHourField.disabled = false;
+
+                                            // Establecer la fecha mínima para end_date
+                                            endDateField.min = startDateField.value;
+
+                                            // Si end_date es el mismo que start_date, establecer min para end_hour
+                                            if (endDateField.value === startDateField.value) {
+                                                endHourField.min = startHourField.value;
+                                            } else {
+                                                endHourField.removeAttribute('min');
+                                            }
+                                        } else {
+                                            // Si no hay start_date o starting_hour, deshabilitar los campos
+                                            endDateField.disabled = true;
+                                            endHourField.disabled = true;
+                                        }
+                                    }
+
+                                    // Llamar la función al cargar la página para configurar el estado inicial
+                                    toggleEndFields();
+
+                                    // Agregar event listeners a los campos para verificar cambios
+                                    startDateField.addEventListener("change", toggleEndFields);
+                                    startHourField.addEventListener("change", toggleEndFields);
+
+                                    // Validar la fecha de finalización y hora de finalización
+                                    endDateField.addEventListener("change", function() {
+                                        // Validar si la fecha de finalización es menor que la de inicio
+                                        if (endDateField.value < startDateField.value) {
+                                            endDateField.setCustomValidity("La fecha final no puede ser menor a la fecha de inicio.");
+                                        } else {
+                                            endDateField.setCustomValidity(""); // Limpiar el mensaje de error
+                                        }
+
+                                        // Si la fecha final es el mismo día que la de inicio, validamos la hora
+                                        if (endDateField.value === startDateField.value) {
+                                            // Validar si la hora de finalización es menor que la de inicio
+                                            if (endHourField.value && endHourField.value < startHourField.value) {
+                                                endHourField.setCustomValidity("La hora de finalización no puede ser menor que la hora de inicio.");
+                                            } else {
+                                                endHourField.setCustomValidity(""); // Limpiar el mensaje de error
+                                            }
+                                        } else {
+                                            // Si la fecha final es posterior, no validar la hora
+                                            endHourField.setCustomValidity(""); // Limpiar el mensaje de error
+                                        }
+                                    });
+
+                                    // Validar la hora de finalización cuando cambia
+                                    endHourField.addEventListener("change", function() {
+                                        // Si las fechas son iguales, validar la hora de finalización
+                                        if (endDateField.value === startDateField.value && endHourField.value < startHourField.value) {
+                                            endHourField.setCustomValidity("La hora de finalización no puede ser menor que la hora de inicio.");
+                                        } else {
+                                            endHourField.setCustomValidity(""); // Limpiar el mensaje de error
+                                        }
+                                    });
+
+                                    // Verificar que la hora final no sea anterior a la hora de inicio, considerando si es un día posterior
+                                    endDateField.addEventListener("change", function() {
+                                        const startDate = new Date(startDateField.value + "T" + startHourField.value + ":00");
+                                        const endDate = new Date(endDateField.value + "T" + endHourField.value + ":00");
+
+                                        // Si la fecha de end_date es mayor, no validamos la hora
+                                        if (endDate > startDate) {
+                                            endHourField.setCustomValidity(""); // Limpiar el mensaje de error
+                                        } else {
+                                            // Validar si la hora de end_hour es menor que start_hour en el mismo día
+                                            if (endDateField.value === startDateField.value && endHourField.value < startHourField.value) {
+                                                endHourField.setCustomValidity("La hora de finalización no puede ser menor que la hora de inicio.");
+                                            } else {
+                                                endHourField.setCustomValidity(""); // Limpiar el mensaje de error
+                                            }
+                                        }
+                                    });
+                                });
+                            </script>
+
                             <div>
                                 <x-input-label for="summary" :value="__('Resumen')" />
                                 <x-text-input id="summary" name="summary" type="text" class="mt-1 w-full"

@@ -111,10 +111,25 @@
 
                     <div>
                         <x-input-label for="scheduled_date" :value="__('Fecha asignada')" />
-                        <input type="date" id="scheduled_date" name="scheduled_date" class="mt-1 block w-full" required autofocus autocomplete="scheduled_date" />
+                        <input type="date" id="scheduled_date" name="scheduled_date"
+                            class="mt-1 block w-full" required autofocus autocomplete="scheduled_date"
+                            min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" />
                         <x-input-error class="mt-2" :messages="$errors->get('scheduled_date')" />
                     </div>
 
+                    <script>
+                        // Asegurarse de que la fecha seleccionada o escrita sea hoy o una fecha futura
+                        document.getElementById('scheduled_date').addEventListener('input', function() {
+                            var today = new Date().toISOString().split('T')[0]; // Obtener la fecha actual en formato YYYY-MM-DD
+                            var selectedDate = this.value;
+
+                            if (selectedDate < today) {
+                                this.setCustomValidity('La fecha debe ser hoy o una fecha futura.');
+                            } else {
+                                this.setCustomValidity('');
+                            }
+                        });
+                    </script>
 
                     <div>
                         <x-input-label for="assigned_engineer" :value="__('Ingeniero asignado')" />

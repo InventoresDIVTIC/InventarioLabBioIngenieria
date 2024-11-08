@@ -336,17 +336,45 @@
                                     <x-input-label for="acquisition_date" :value="__('Fecha de adquisicion')" />
                                     <input type="date" id="acquisition_date" name="acquisition_date"
                                         class="mt-1 block w-full"
-                                        value='<?php echo "{$activo->acquisition_date}"; ?>' />
+                                        value='<?php echo "{$activo->acquisition_date}"; ?>'
+                                        min="2000-01-01" /> <!-- Restricción para fechas mayores al 2000 -->
                                     <x-input-error class="mt-2" :messages="$errors->get('acquisition_date')" />
                                 </div>
+                                <script>
+                                    // Asegurarse de que la fecha seleccionada o escrita sea el 1 de enero de 2000 o una fecha posterior
+                                    document.getElementById('acquisition_date').addEventListener('input', function() {
+                                        var minDate = '2000-01-01'; // La fecha mínima permitida (1 de enero de 2000)
+                                        var selectedDate = this.value;
+
+                                        if (selectedDate < minDate) {
+                                            this.setCustomValidity('La fecha debe ser el 1 de enero de 2000 o una fecha posterior.');
+                                        } else {
+                                            this.setCustomValidity('');
+                                        }
+                                    });
+                                </script>
 
                                 <div>
-                                    <x-input-label for="installation_date" :value="__('Fecha de instalacion')" />
+                                    <x-input-label for="installation_date" :value="__('Fecha de instalación')" />
                                     <input type="date" id="installation_date" name="installation_date"
                                         class="mt-1 block w-full"
-                                        value='<?php echo "{$activo->installation_date}"; ?>' />
+                                        value='<?php echo "{$activo->installation_date}"; ?>'
+                                        min="2000-01-01" /> <!-- Restricción para fechas mayores al 2000 -->
                                     <x-input-error class="mt-2" :messages="$errors->get('installation_date')" />
                                 </div>
+                                <script>
+                                    // Asegurarse de que la fecha seleccionada o escrita sea el 1 de enero de 2000 o una fecha posterior
+                                    document.getElementById('installation_date').addEventListener('input', function() {
+                                        var minDate = '2000-01-01'; // La fecha mínima permitida (1 de enero de 2000)
+                                        var selectedDate = this.value;
+
+                                        if (selectedDate < minDate) {
+                                            this.setCustomValidity('La fecha debe ser el 1 de enero de 2000 o una fecha posterior.');
+                                        } else {
+                                            this.setCustomValidity('');
+                                        }
+                                    });
+                                </script>
 
                                 <div>
                                     <x-input-label for="price" :value="__('Precio')" />
@@ -355,22 +383,49 @@
                                     <x-input-error class="mt-2" :messages="$errors->get('price')" />
                                 </div>
 
-
                                 <div>
                                     <x-input-label for="warranty_start" :value="__('Inicio de la garantía')" />
                                     <input type="date" id="warranty_start" name="warranty_start"
                                         class="mt-1 block w-full"
-                                        value='<?php echo "{$activo->warranty_start}"; ?>' />
+                                        value='<?php echo "{$activo->warranty_start}"; ?>'
+                                        min="2000-01-01" /> <!-- Restricción para fechas mayores al 2000 -->
                                     <x-input-error class="mt-2" :messages="$errors->get('warranty_start')" />
                                 </div>
+                                <script>
+                                    // Asegurarse de que la fecha seleccionada o escrita sea el 1 de enero de 2000 o una fecha posterior
+                                    document.getElementById('warranty_start').addEventListener('input', function() {
+                                        var minDate = '2000-01-01'; // La fecha mínima permitida (1 de enero de 2000)
+                                        var selectedDate = this.value;
+
+                                        if (selectedDate < minDate) {
+                                            this.setCustomValidity('La fecha debe ser el 1 de enero de 2000 o una fecha posterior.');
+                                        } else {
+                                            this.setCustomValidity('');
+                                        }
+                                    });
+                                </script>
 
                                 <div>
                                     <x-input-label for="warranty_end" :value="__('Fin de la garantía')" />
                                     <input type="date" id="warranty_end" name="warranty_end"
                                         class="mt-1 block w-full"
-                                        value='<?php echo "{$activo->warranty_end}"; ?>' />
+                                        value='<?php echo "{$activo->warranty_end}"; ?>'
+                                        min="2000-01-01" /> <!-- Restricción para fechas mayores al 2000 -->
                                     <x-input-error class="mt-2" :messages="$errors->get('warranty_end')" />
                                 </div>
+                                <script>
+                                    // Asegurarse de que la fecha seleccionada o escrita sea el 1 de enero de 2000 o una fecha posterior
+                                    document.getElementById('warranty_end').addEventListener('input', function() {
+                                        var minDate = '2000-01-01'; // La fecha mínima permitida (1 de enero de 2000)
+                                        var selectedDate = this.value;
+
+                                        if (selectedDate < minDate) {
+                                            this.setCustomValidity('La fecha debe ser el 1 de enero de 2000 o una fecha posterior.');
+                                        } else {
+                                            this.setCustomValidity('');
+                                        }
+                                    });
+                                </script>
 
                                 <div>
                                     <label for="bill" style="color: white;">Factura</label>
@@ -567,12 +622,27 @@
                                 </div>
 
                                 <div>
-                                    <x-input-label for="next_mprev" :value="__('Proximo mantenimiento preventivo')" />
+                                    <x-input-label for="next_mprev" :value="__('Próximo mantenimiento preventivo')" />
                                     <input type="date" id="next_mprev" name="next_mprev"
                                         class="mt-1 block w-full"
-                                        value='<?php echo "{$activo->next_mprev}"; ?>' />
+                                        value='<?php echo "{$activo->next_mprev}"; ?>'
+                                        min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" />
                                     <x-input-error class="mt-2" :messages="$errors->get('next_mprev')" />
                                 </div>
+
+                                <script>
+                                    // Asegurarse de que la fecha seleccionada o escrita sea hoy o una fecha futura
+                                    document.getElementById('next_mprev').addEventListener('input', function() {
+                                        var today = new Date().toISOString().split('T')[0]; // Obtener la fecha actual en formato YYYY-MM-DD
+                                        var selectedDate = this.value;
+
+                                        if (selectedDate < today) {
+                                            this.setCustomValidity('La fecha debe ser hoy o una fecha futura.');
+                                        } else {
+                                            this.setCustomValidity('');
+                                        }
+                                    });
+                                </script>
                             </div>
 
                             <script>
