@@ -186,10 +186,8 @@
                         <div class="grid gap-6">
                             <div>
                                 <div class="h-full py-6 px-6 rounded-xl border border-gray-200 bg-white">
-                                    <div class="relative bg-clip-border rounded-xl overflow-hidden bg-transparent text-gray-700 shadow-none m-0 flex items-center justify-between p-6">
-                                        <div>
-                                            <h6 class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900">Tabla de Próximos Servicios</h6>
-                                        </div>
+                                    <div class="relative bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-xl overflow-hidden shadow-lg m-0 flex items-center justify-center p-8">
+                                        <h6 class="text-2xl font-bold tracking-wide uppercase">Próximos Servicios</h6>
                                     </div>
                                     <div class="p-6 px-0 pt-0 pb-2">
                                         <table class="w-full min-w-[1280px] table-auto">
