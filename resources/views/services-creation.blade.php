@@ -112,19 +112,19 @@
                     <div>
                         <x-input-label for="scheduled_date" :value="__('Fecha asignada')" />
                         <input type="date" id="scheduled_date" name="scheduled_date"
-                            class="mt-1 block w-full" required autofocus autocomplete="scheduled_date"
-                            min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" />
+                               class="mt-1 block w-full" required autofocus autocomplete="scheduled_date"
+                               min="2000-01-01" />
                         <x-input-error class="mt-2" :messages="$errors->get('scheduled_date')" />
                     </div>
 
                     <script>
-                        // Asegurarse de que la fecha seleccionada o escrita sea hoy o una fecha futura
+                        // Asegurarse de que la fecha seleccionada o escrita sea el 1 de enero de 2000 o una fecha posterior
                         document.getElementById('scheduled_date').addEventListener('input', function() {
-                            var today = new Date().toISOString().split('T')[0]; // Obtener la fecha actual en formato YYYY-MM-DD
+                            var minDate = '2000-01-01'; // La fecha mínima permitida (1 de enero de 2000)
                             var selectedDate = this.value;
 
-                            if (selectedDate < today) {
-                                this.setCustomValidity('La fecha debe ser hoy o una fecha futura.');
+                            if (selectedDate < minDate) {
+                                this.setCustomValidity('La fecha debe ser el 1 de enero de 2000 o una fecha posterior.');
                             } else {
                                 this.setCustomValidity('');
                             }
