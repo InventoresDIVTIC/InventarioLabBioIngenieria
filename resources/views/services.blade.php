@@ -124,7 +124,7 @@
                                         <?php
                                         echo "<td>{$services->foil}</td>";
                                         echo "<td>{$services->user_name}</td>";
-                                        echo "<td>{$services->service_type}</td>";
+                                        echo "<td>{$services->services_type}</td>";
                                         echo "<td>{$services->active_name}</td>";
                                         echo "<td>{$services->assigned_engineer}</td>";
                                         echo "<td>{$services->active_model}</td>";

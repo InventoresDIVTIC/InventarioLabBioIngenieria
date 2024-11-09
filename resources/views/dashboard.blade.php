@@ -212,7 +212,7 @@
                                                 <tr>
                                                     <td class="py-3 px-5 border-b border-blue-gray-50">
                                                         <div class="flex items-center gap-4">
-                                                            <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold">{{ $mantenimiento->servicio_id}}</p>
+                                                            <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold"><a href="https://bioingenieria.inventores.org/services-edit?id={{ $mantenimiento->servicio_id}}">{{ $mantenimiento->servicio_id}}</a></p>
                                                         </div>
                                                     </td>
                                                     <td class="py-3 px-5 border-b border-blue-gray-50">
