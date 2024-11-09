@@ -77,11 +77,12 @@ class DashboardController extends Controller
         // Obtener los mantenimientos preventivos próximos de este mes
         $mantenimientosProximos = DB::table('activos')
             ->join('activos_servicios', 'activos.id', '=', 'activos_servicios.id')
+            ->join('servicios', 'activos_servicios.id', '=', 'servicios.active_id')
             ->where('activos_servicios.next_mprev', '!=', '')
             ->whereMonth('activos_servicios.next_mprev', Carbon::now()->month)
             ->whereYear('activos_servicios.next_mprev', Carbon::now()->year)
             ->orderBy('activos_servicios.next_mprev')
-            ->select('activos.id','activos.type','activos_servicios.next_mprev')
+            ->select('activos.id','activos.type','activos_servicios.next_mprev','servicios.id as servicio_id')
             ->get();
 
         // Enviar todas las variables a la vista

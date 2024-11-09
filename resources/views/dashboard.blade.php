@@ -188,7 +188,7 @@
                                 <div class="h-full py-6 px-6 rounded-xl border border-gray-200 bg-white">
                                     <div class="relative bg-clip-border rounded-xl overflow-hidden bg-transparent text-gray-700 shadow-none m-0 flex items-center justify-between p-6">
                                         <div>
-                                            <h6 class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900">Tabla de Próximos Mantenimientos Preventivos</h6>
+                                            <h6 class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900">Tabla de Próximos Servicios</h6>
                                         </div>
                                     </div>
                                     <div class="p-6 px-0 pt-0 pb-2">
@@ -196,7 +196,10 @@
                                             <thead>
                                                 <tr>
                                                     <th class="border-b border-blue-gray-50 py-3 px-6 text-left">
-                                                        <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">ID</p>
+                                                        <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">ID Servicios</p>
+                                                    </th>
+                                                    <th class="border-b border-blue-gray-50 py-3 px-6 text-left">
+                                                        <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">ID Activos</p>
                                                     </th>
                                                     <th class="border-b border-blue-gray-50 py-3 px-6 text-left">
                                                         <p class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">Activo</p>
@@ -209,6 +212,11 @@
                                             <tbody>
                                                 @foreach ($mantenimientosProximos as $mantenimiento)
                                                 <tr>
+                                                    <td class="py-3 px-5 border-b border-blue-gray-50">
+                                                        <div class="flex items-center gap-4">
+                                                            <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold">{{ $mantenimiento->servicio_id}}</p>
+                                                        </div>
+                                                    </td>
                                                     <td class="py-3 px-5 border-b border-blue-gray-50">
                                                         <div class="flex items-center gap-4">
                                                             <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold">{{ $mantenimiento->id}}</p>
@@ -337,7 +345,7 @@
                         justify-content: center;
                         align-items: center;
                         margin: 0;
-                        
+
                     }
                     .welcome-box {
                         text-align: center;
@@ -347,7 +355,7 @@
                         /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
                         animation: fadeIn 2s ease-in-out;
 
-                        
+
                         /*width: 80rem; */
                         backdrop-filter: blur(15px);
                         border-radius: 10px;
@@ -361,7 +369,7 @@
                         text-transform: uppercase;
                         margin: 0;
                         animation: slideIn 2s ease-in-out;
-                        
+
                     }
                     .welcome-title-lab{
                         color: white;
