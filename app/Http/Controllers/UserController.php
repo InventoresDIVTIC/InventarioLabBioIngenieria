@@ -21,36 +21,51 @@ class UserController extends Controller
                         ->paginate(10);
 
         return view('users', compact('users'));
+
+        $request->validate([
+            'code' => 'required',
+            'code' => 'unique:users,code',
+            'email' => 'required',
+            'email' => 'unique:users,email',
+        ]);
     }
 
     public function users_edit($id, Request $request)
     {
-        // Obtener el proveedor existente por ID
-        $users = User::find($id);
+        // Validar los datos del formulario
+        $request->validate([
+            'code' => 'required|unique:users,code,' . $id,
+            'email' => 'required|email|unique:users,email,' . $id,
+            'name' => 'required|string',
+            'lastname' => 'required|string',
+            'rol' => 'required|exists:roles,name', // Verificar que el rol existe en la tabla roles
+            'area' => 'nullable|string',
+            'phone' => 'nullable|string',
+        ]);
 
-        // Verificar si el proveedor existe
-        if (!$users) {
-            return redirect()->back()->with('error', 'usuario no encontrado');
+        // Obtener el usuario existente por ID
+        $user = User::find($id);
+
+        // Verificar si el usuario existe
+        if (!$user) {
+            return redirect()->back()->with('error', 'Usuario no encontrado');
         }
 
-        // Actualizar los datos del proveedor con los valores del formulario
-        $users->code = $request->code;
-        $users->name = $request->name;
-        $users->lastname = $request->lastname;
-        $users->email = $request->email;
-        // Primero eliminar todos los roles actuales del usuario
-        $users->syncRoles([]);
-        // Luego asignar el nuevo rol
-        $users->assignRole($request->rol);
-        $users->rol = $request->rol;
-        $users->area = $request->area;
-        $users->phone = $request->phone;
+        // Actualizar los datos del usuario
+        $user->update([
+            'code' => $request->code,
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'email' => $request->email,
+            'rol' => $request->rol,
+            'area' => $request->area,
+            'phone' => $request->phone,
+        ]);
 
-        // Guardar los cambios en la base de datos
-        $users->save();
+        // Sincronizar los roles del usuario
+        $user->syncRoles([$request->rol]);
 
-        // Redireccionar o realizar otras acciones según tus necesidades
-        return redirect()->back()->with('status', 'usuario actualizado exitosamente');
+        return redirect()->back()->with('status', 'Usuario actualizado exitosamente');
     }
 
     public function users_destroy($id, Request $request)
