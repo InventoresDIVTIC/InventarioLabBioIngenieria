@@ -67,10 +67,29 @@
                     <x-input-error :messages="$errors->get('password_confirmation')" class="error-message" />
                 </div>
                 <div class="container">
-                <x-primary-button class="boton">
+                    <x-primary-button class="boton" id="submitButton">
                         {{ __('Registrar') }}
                     </x-primary-button>
                 </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const button = document.getElementById('submitButton');
+
+                        button.addEventListener('click', function (event) {
+                            // Deshabilitar el botón para evitar múltiples clics
+                            button.disabled = true;
+                            button.innerText = "Procesando..."; // Cambiar texto para feedback
+
+                            // Evitar que se envíe el formulario directamente si es necesario
+                            // Puedes personalizar esto si el envío del formulario se maneja con un evento AJAX
+                            const form = button.closest('form');
+                            if (form) {
+                                form.submit(); // Asegura que el formulario sea enviado una vez
+                            }
+                        });
+                    });
+                </script>
                 <br>
                 <div>
                     <a href="{{ route('login') }}" class="forget-label-b">
